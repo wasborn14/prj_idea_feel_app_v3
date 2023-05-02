@@ -4,7 +4,5 @@
  * see:global-styles.ts
  */
 
-const BASE_SIZE = 10;
-export const pxToRem = (px: number) => `${px / BASE_SIZE}rem`;
-
-
+const BASE_SIZE = 10
+export const pxToRem = (px: number) => `${px / BASE_SIZE}rem`
