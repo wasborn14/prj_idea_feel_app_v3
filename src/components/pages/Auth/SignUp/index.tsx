@@ -15,18 +15,25 @@ import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
 import { Input } from '@/components/atoms/Forms/First/Input/Input'
 import { ErrorMessage } from '@/components/atoms/Forms/First/ErrorMessage'
 import { SuccessModal } from '@/components/mlecules/BaseModal/SuccessModal'
-import { useSignUpMutation } from '@/hooks/api/SignUp'
+import { useSignUpMutation } from '@/hooks/api/auth'
 import { LoadingCenter } from '@/components/mlecules/Loading'
+import { TextAnchor } from '@/components/atoms/Anchors/First/TextAnchor'
 
 export type FormProps = Schema & {}
 
 export const SignUp = () => {
   const router = useRouter()
-  const defaultValues: FormProps = {
-    name: '',
-    email: '',
-    password: '',
-    re_password: ''
+  // const defaultValues: FormProps = {
+  //   name: '',
+  //   email: '',
+  //   password: '',
+  //   re_password: ''
+  // }
+  const testValues: FormProps = {
+    name: 'test',
+    email: 'ideafeel.app+2@gmail.com',
+    password: 'password',
+    re_password: 'password'
   }
   const {
     getValues,
@@ -34,7 +41,7 @@ export const SignUp = () => {
     register,
     formState: { errors }
   } = useForm({
-    defaultValues: defaultValues,
+    defaultValues: testValues,
     resolver: yupResolver(schema)
   })
   const [emailErrorMessage, setEmailErrorMessage] = useState('')
@@ -56,7 +63,7 @@ export const SignUp = () => {
     signUpMutate(
       { name: getValues('name'), email: getValues('email'), password: getValues('password') },
       {
-        onSuccess: () => console.log('success'),
+        onSuccess: () => setIsSuccessModalVisible(true),
         onError: (error: any) => setEmailErrorMessage(error.response.data.email[0])
       }
     )
@@ -75,7 +82,7 @@ export const SignUp = () => {
       <Container>
         <form onSubmit={handleSubmit(authUser)}>
           <MainContents>
-            <LoadingCenter loading={isLoading} />
+            <LoadingCenter isLoading={isLoading} />
             <Title>SignUp</Title>
             <InputWrapper>
               <ErrorMessage errorMessage={errors.name?.message} />
@@ -116,8 +123,7 @@ export const SignUp = () => {
             <InputWrapper>
               <ErrorMessage errorMessage={errors.password?.message ?? passwordErrorMessage} />
               <Input
-                {...(register('re_password'),
-                {
+                {...register('re_password', {
                   onChange: () => {
                     setPasswordErrorMessage('')
                   }
@@ -134,7 +140,9 @@ export const SignUp = () => {
             </GeneralButton>
             <LinkContainer>
               <Link href='/auth/login' passHref>
-                <Text>Return Login</Text>
+                <TextAnchor type='normal' size={18}>
+                  Return Login
+                </TextAnchor>
               </Link>
             </LinkContainer>
           </MainContents>
@@ -177,10 +185,4 @@ const LinkContainer = styled.div`
   ${sp`
     margin-left: 160px;
   `}
-`
-
-const Text = styled.p`
-  ${fontStyles['18px']}
-  color: ${Color.LIGHT_GRAY2};
-  cursor: pointer;
 `

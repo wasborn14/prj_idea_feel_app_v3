@@ -2,13 +2,13 @@ import Loading from '@/components/atoms/Loading'
 import styled from 'styled-components'
 
 interface Props {
-  loading: boolean
+  isLoading: boolean
 }
 
-export const LoadingCenter = ({ loading }: Props) => {
+export const LoadingCenter = ({ isLoading }: Props) => {
   return (
     <>
-      {loading && (
+      {isLoading && (
         <Wrapper>
           <Loading />
         </Wrapper>
