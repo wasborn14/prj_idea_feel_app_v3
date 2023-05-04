@@ -1,0 +1,217 @@
+openapi: 3.1.0
+x-stoplight:
+  id: kan9q9hpx5oh0
+info:
+  title: User
+  version: '1.0'
+  description: テスト
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  '/users/{userId}':
+    parameters:
+      - schema:
+          type: integer
+        name: userId
+        in: path
+        required: true
+        description: Id of an existing user.
+    get:
+      summary: Get User Info by User ID
+      tags: []
+      responses:
+        '200':
+          description: User Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                Get User Alice Smith:
+                  value:
+                    id: 142
+                    firstName: Alice
+                    lastName: Smith
+                    email: alice.smith@gmail.com
+                    dateOfBirth: '1997-10-31'
+                    emailVerified: true
+                    signUpDate: '2019-08-24'
+        '404':
+          description: User Not Found
+      operationId: get-users-userId
+      description: Retrieve the information of the user with the matching user ID.
+    patch:
+      summary: Update User Information
+      operationId: patch-users-userId
+      responses:
+        '200':
+          description: User Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                Updated User Rebecca Baker:
+                  value:
+                    id: 13
+                    firstName: Rebecca
+                    lastName: Baker
+                    email: rebecca@gmail.com
+                    dateOfBirth: '1985-10-02'
+                    emailVerified: false
+                    createDate: '2019-08-24'
+        '404':
+          description: User Not Found
+        '409':
+          description: Email Already Taken
+      description: Update the information of an existing user.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                email:
+                  type: string
+                  description: "If a new email is given, the user's email verified property will be set to false."
+                dateOfBirth:
+                  type: string
+            examples:
+              Update First Name:
+                value:
+                  firstName: Rebecca
+              Update Email:
+                value:
+                  email: rebecca@gmail.com
+              Update Last Name & Date of Birth:
+                value:
+                  lastName: Baker
+                  dateOfBirth: '1985-10-02'
+        description: Patch user properties to update.
+  /user:
+    post:
+      summary: Create New User
+      operationId: post-user
+      responses:
+        '200':
+          description: User Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                New User Bob Fellow:
+                  value:
+                    id: 12
+                    firstName: Bob
+                    lastName: Fellow
+                    email: bob.fellow@gmail.com
+                    dateOfBirth: '1996-08-24'
+                    emailVerified: false
+                    createDate: '2020-11-18'
+        '400':
+          description: Missing Required Information
+        '409':
+          description: Email Already Taken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                email:
+                  type: string
+                dateOfBirth:
+                  type: string
+                  format: date
+              required:
+                - firstName
+                - lastName
+                - email
+                - dateOfBirth
+            examples:
+              Create User Bob Fellow:
+                value:
+                  firstName: Bob
+                  lastName: Fellow
+                  email: bob.fellow@gmail.com
+                  dateOfBirth: '1996-08-24'
+        description: Post the necessary fields for the API to create a new user.
+      description: Create a new user.
+  /example:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    x-stoplight:
+                      id: yi0mhpxczirr1
+                  name:
+                    type: string
+                    x-stoplight:
+                      id: qwennez1l1t9k
+                  email:
+                    type: string
+                    x-stoplight:
+                      id: 5cigetdm2sadb
+              examples:
+                Example 1:
+                  value:
+                    id: '1'
+                    name: test
+                    email: test@test.com
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+            multipart/form-data:
+              schema:
+                type: object
+                properties: {}
+      operationId: get-example
+      requestBody:
+        content: {}
+    parameters: []
+components:
+  schemas:
+    User:
+      title: User
+      x-stoplight:
+        id: m946ycpawwywj
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          x-stoplight:
+            id: 7kx2gnal7slf4
+        email:
+          type: string
+          x-stoplight:
+            id: sdnxf5sqqr0np
+        email_verified_at:
+          type: string
+          x-stoplight:
+            id: pt55b6a3x6nk3
+        password:
+          type: string
+          x-stoplight:
+            id: qxrbksdwm90v1
+  securitySchemes: {}
