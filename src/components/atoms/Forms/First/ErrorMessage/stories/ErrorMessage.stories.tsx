@@ -15,6 +15,6 @@ type Story = StoryObj<typeof ErrorMessage>
 
 export const General: Story = {
   args: {
-    message: 'Error'
+    errorMessage: 'Error'
   }
 }

@@ -23,10 +23,10 @@ export type FormProps = Schema & {}
 export const SignUp = () => {
   const router = useRouter()
   const defaultValues: FormProps = {
-    name: 'test',
-    email: 'ideafeel.app+2@gmail.com',
-    password: 'password',
-    re_password: 'password'
+    name: '',
+    email: '',
+    password: '',
+    re_password: ''
   }
   const {
     getValues,
@@ -40,8 +40,6 @@ export const SignUp = () => {
   const [emailErrorMessage, setEmailErrorMessage] = useState('')
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('')
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false)
-
-  const hasFormError = Object.keys(errors).length !== 0
 
   const isDifferentPasswordMatch = () => {
     return getValues('password') !== getValues('re_password')
@@ -80,11 +78,7 @@ export const SignUp = () => {
             <LoadingCenter loading={isLoading} />
             <Title>SignUp</Title>
             <InputWrapper>
-              {hasFormError && (
-                <ErrorMessageWrapper>
-                  <ErrorMessage message={errors.name?.message} />
-                </ErrorMessageWrapper>
-              )}
+              <ErrorMessage errorMessage={errors.name?.message} />
               <Input
                 {...register('name')}
                 autoComplete='name'
@@ -93,16 +87,7 @@ export const SignUp = () => {
               />
             </InputWrapper>
             <InputWrapper>
-              {hasFormError && (
-                <ErrorMessageWrapper>
-                  <ErrorMessage message={errors.email?.message} />
-                </ErrorMessageWrapper>
-              )}
-              {emailErrorMessage !== '' && (
-                <ErrorMessageWrapper>
-                  <ErrorMessage message={emailErrorMessage} />
-                </ErrorMessageWrapper>
-              )}
+              <ErrorMessage errorMessage={errors.email?.message ?? emailErrorMessage} />
               <Input
                 {...register('email', {
                   onChange: () => {
@@ -115,11 +100,7 @@ export const SignUp = () => {
               />
             </InputWrapper>
             <InputWrapper>
-              {hasFormError && (
-                <ErrorMessageWrapper>
-                  <ErrorMessage message={errors.password?.message} />
-                </ErrorMessageWrapper>
-              )}
+              <ErrorMessage errorMessage={errors.password?.message} />
               <Input
                 {...register('password', {
                   onChange: () => {
@@ -133,18 +114,14 @@ export const SignUp = () => {
               />
             </InputWrapper>
             <InputWrapper>
-              {hasFormError && (
-                <ErrorMessageWrapper>
-                  <ErrorMessage message={errors.password?.message} />
-                </ErrorMessageWrapper>
-              )}
-              {passwordErrorMessage !== '' && (
-                <ErrorMessageWrapper>
-                  <ErrorMessage message={passwordErrorMessage} />
-                </ErrorMessageWrapper>
-              )}
+              <ErrorMessage errorMessage={errors.password?.message ?? passwordErrorMessage} />
               <Input
-                {...register('re_password')}
+                {...(register('re_password'),
+                {
+                  onChange: () => {
+                    setPasswordErrorMessage('')
+                  }
+                })}
                 autoComplete='current-password'
                 placeholder='Confirm Password'
                 type='password'
@@ -188,12 +165,7 @@ const Title = styled.h1`
   color: ${Color.DARK_BROWN2};
 `
 
-const ErrorMessageWrapper = styled.div`
-  margin-bottom: 4px;
-`
-
 const InputWrapper = styled.div`
-  margin-top: 24px;
   width: 320px;
   ${sp`
     width: 280px;
