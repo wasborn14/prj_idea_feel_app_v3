@@ -206,4 +206,6 @@ const LinkContainer = styled.div`
   `}
 `
 
-const GuestTextWrapper = styled.div``
+const GuestTextWrapper = styled.div`
+  cursor: pointer;
+`
