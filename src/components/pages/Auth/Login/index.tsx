@@ -62,7 +62,7 @@ export const Login = () => {
         onSuccess: (res) => {
           console.log({ res })
           setAccessStatus(res)
-          router.push('/feel')
+          router.push('/category/feel')
         },
         onError: (error: any) => {
           if (error.response.data.error === API_ERROR_EMAIL_NOT_VERIFIED) {
@@ -85,7 +85,7 @@ export const Login = () => {
       {
         onSuccess: (res) => {
           setAccessStatus(res)
-          router.push('/feel')
+          router.push('/category/feel')
         },
         onError: (error: any) => {
           if (error.response.data.error === API_ERROR_EMAIL_NOT_VERIFIED) {
@@ -104,8 +104,8 @@ export const Login = () => {
 
   return (
     <Layout meta={{ pageTitle: 'Ifee - Login' }}>
-      <LoadingCenter isLoading={isLoading} />
       <Container>
+        <LoadingCenter isLoading={isLoading} />
         <form onSubmit={handleSubmit(handleClickLogin)}>
           <MainContents>
             <Title>Login</Title>
@@ -174,7 +174,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 100vh;
 `
 
 const MainContents = styled.div`

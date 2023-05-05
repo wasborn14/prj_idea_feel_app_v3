@@ -37,7 +37,7 @@ export const ConfirmModal = ({ description, onApproveClick, onCancelClick }: Pro
   }
 
   return (
-    <BaseModal width={580} color='white' isRadius onClick={handleClickCancelClick}>
+    <BaseModal width={580} color='white' isRadius onClick={handleClickCancelClick} wrapperId='confirm-modal'>
       <Container onClick={onInnerClick}>
         <Description>{description}</Description>
         <Spacer y={32} />

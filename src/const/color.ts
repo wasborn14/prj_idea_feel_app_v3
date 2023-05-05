@@ -31,6 +31,7 @@ export const TRANSPARENT_BLACK_CC = '#000000cc'
 // 茶色
 export const DARK_BROWN1 = '#99681d'
 export const DARK_BROWN2 = '#492f08'
+export const DARK_BROWN3 = '#a0540e13'
 
 // 黄色
 export const BRIGHT_YELLOW = '#ffb600'
@@ -47,6 +48,7 @@ export const DARK_RED2 = '#b1221a'
 export const BLUE = '#53aaef'
 export const PREDICT_COLOR = 'rgba(27, 195, 201, 0.721)'
 export const DARK_BLUE = '#3C9EEB'
+export const DARK_BLUE2 = 'rgba(34, 33, 81, 0.1)'
 export const BRIGHT_BLUE = '#75baf2'
 
 // 緑

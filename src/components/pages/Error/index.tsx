@@ -7,17 +7,17 @@ import { Spacer } from '@/components/atoms/Spacer'
 import { sp } from '@/media'
 import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
 
-export const AlreadyActivated = () => {
+export const Error = () => {
   return (
-    <Layout meta={{ pageTitle: 'Ifee - AlreadyActivated' }}>
+    <Layout meta={{ pageTitle: 'Ifee - Error' }}>
       <Container>
         <MainContents>
-          <TitleWrapper>
-            <Title>こちらのアカウントは既に本登録が完了しています。</Title>
-          </TitleWrapper>
+          <Title>エラーが発生しました。</Title>
+          <Spacer y={8} />
+          <Description>申し訳ございませんが再度ログインしてください。</Description>
           <Spacer y={32} />
-          <Link href='/auth/login' passHref>
-            <GeneralButton width={200}>Return Login Page</GeneralButton>
+          <Link href='/auth/login'>
+            <GeneralButton width={200}>Return Login</GeneralButton>
           </Link>
         </MainContents>
       </Container>
@@ -29,7 +29,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
 `
 
 const MainContents = styled.div`
@@ -41,11 +41,20 @@ const MainContents = styled.div`
   `}
 `
 
-const TitleWrapper = styled.div`
-  margin-top: 200px;
-`
-
 const Title = styled.h1`
   ${fontStyles['28px']}
+  ${sp`
+    ${fontStyles['20px']}
+  `}
   color: ${Color.DARK_BROWN2};
+  text-align: center;
+`
+
+const Description = styled.h1`
+  ${fontStyles['18px']}
+  ${sp`
+    ${fontStyles['12px']}
+  `}
+  color: ${Color.DARK_BROWN2};
+  text-align: center;
 `
