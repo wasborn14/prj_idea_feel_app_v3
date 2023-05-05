@@ -1,9 +1,12 @@
 import { Color } from '@/const'
+import { pc, sp } from '@/media'
 import styled, { css } from 'styled-components'
 
 type ButtonProps = {
+  select?: boolean
   current?: boolean
   className?: string
+  backgroundColor?: string
   width: number
   height?: 36 | 40 | 48
   disabled?: boolean
@@ -57,11 +60,36 @@ const PrimaryOutlinedStyle = css<Pick<ButtonProps, 'current' | 'disabled'>>`
   ${({ disabled }) => disabled && DisabledStyle}
 `
 
-const GeneralStyle = css<Pick<ButtonProps, 'current' | 'disabled'>>`
-  color: ${Color.GRAY_66};
-  background: ${({ current }) => (current ? Color.GRAY_FA : 'transparent')};
-  border: 2px solid ${Color.GRAY_99};
-  ${({ disabled }) => disabled && DisabledStyle};
+// const GeneralStyle = css<Pick<ButtonProps, 'current' | 'disabled'>>`
+//   color: ${Color.GRAY_66};
+//   background: ${({ current }) => (current ? Color.GRAY_FA : 'transparent')};
+//   border: 2px solid ${Color.GRAY_99};
+//   ${({ disabled }) => disabled && DisabledStyle};
+// `
+
+const GeneralStyle = css<Pick<ButtonProps, 'disabled' | 'select' | 'backgroundColor'>>`
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  ${sp`
+    width: 240px;
+    height: 36px;
+  `}
+  ${pc`
+    width: 240px;
+    height: 40px;
+  `}
+  text-decoration: none;
+  font-weight: normal;
+  svg {
+    margin-right: 8px;
+  }
+  background: ${Color.DARK_BROWN1};
+  border: 2px solid ${Color.DARK_BROWN2};
+  color: ${Color.WHITE};
+  ${({ disabled }) => disabled && DisabledStyle}
 `
 
 const OperateStyle = css<Pick<ButtonProps, 'height' | 'disabled'>>`

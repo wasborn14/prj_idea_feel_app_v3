@@ -1,4 +1,4 @@
-export type MarginSize = 2 | 4 | 8 | 9 | 10 | 12 | 16 | 20 | 22 | 24 | 32 | 40 | 42 | 48 | 56 | 72 | 100 | 200
+export type MarginSize = 2 | 4 | 8 | 9 | 10 | 12 | 16 | 20 | 22 | 24 | 28 | 32 | 36 | 40 | 42 | 48 | 56 | 72 | 100 | 200
 
 export const MARGINS: Record<MarginSize, string> = {
   '2': '2px',
@@ -11,7 +11,9 @@ export const MARGINS: Record<MarginSize, string> = {
   '20': '20px',
   '22': '22px',
   '24': '24px',
+  '28': '28px',
   '32': '32px',
+  '36': '36px',
   '40': '40px',
   '42': '42px',
   '48': '48px',

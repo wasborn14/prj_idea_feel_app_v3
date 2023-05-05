@@ -1,16 +1,21 @@
 // ログインに関するエラー文言
-export const ERROR_AUTH_EMAIL_OR_PASSWORD_IS_WRONG = 'メールアドレスまたはパスワードが間違っています'
-// export const ERROR_AUTH_EMAIL_OR_PASSWORD_IS_WRONG = "Email or Password is wrong";
-export const ERROR_AUTH_ENTER_NAME = '名前を入力してください'
-export const ERROR_AUTH_ENTER_EMAIL = 'メールアドレスを入力してください'
-export const ERROR_AUTH_ENTER_EMAIL_CORRECT_FORMAT = 'メールアドレスの形式が正しくありません'
-export const ERROR_AUTH_RESULT_EMAIL_ALREADY_IN_USE = 'このメールアドレスは既に使用されています'
-export const ERROR_AUTH_ENTER_EMAIL_SAME = '同じメールアドレスを入力してください'
+// export const ERROR_AUTH_EMAIL_OR_PASSWORD_IS_WRONG = 'メールアドレスまたはパスワードが間違っています'
+export const ERROR_AUTH_EMAIL_OR_PASSWORD_IS_WRONG = 'Email or password is wrong'
+// export const ERROR_AUTH_ENTER_NAME = '名前を入力してください'
+export const ERROR_AUTH_ENTER_NAME = 'Enter your name'
+// export const ERROR_AUTH_ENTER_EMAIL = 'メールアドレスを入力してください'
+export const ERROR_AUTH_ENTER_EMAIL = 'Enter your email'
+// export const ERROR_AUTH_ENTER_EMAIL_CORRECT_FORMAT = 'メールアドレスの形式が正しくありません'
+export const ERROR_AUTH_ENTER_EMAIL_CORRECT_FORMAT = 'Email is invalid'
+// export const ERROR_AUTH_RESULT_EMAIL_ALREADY_IN_USE = 'このメールアドレスは既に使用されています'
+// export const ERROR_AUTH_ENTER_EMAIL_SAME = '同じメールアドレスを入力してください'
+export const ERROR_AUTH_ENTER_EMAIL_SAME = 'Enter same email'
 // export const ERROR_AUTH_ENTER_EMAIL = "Please enter your email";
-export const ERROR_AUTH_ENTER_PASSWORD = 'パスワードを入力してください'
+// export const ERROR_AUTH_ENTER_PASSWORD = 'パスワードを入力してください'
+export const ERROR_AUTH_ENTER_PASSWORD = 'Please enter your password'
 export const ERROR_AUTH_ENTER_NEW_PASSWORD = '新しいパスワードを入力してください'
-// export const ERROR_AUTH_ENTER_PASSWORD = "Please enter your password";
-export const ERROR_AUTH_ENTER_PASSWORD_SAME = '同じパスワードを入力してください'
+// export const ERROR_AUTH_ENTER_PASSWORD_SAME = '同じパスワードを入力してください'
+export const ERROR_AUTH_ENTER_PASSWORD_SAME = 'Enter same password'
 
 // 文字数制限に関するエラー文言
 export const ERROR_LIMIT_WORDS_30 = '30文字以内で入力してください'
