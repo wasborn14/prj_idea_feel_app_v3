@@ -4,14 +4,14 @@ import { Header } from './Header'
 import { SideMenu } from './SideMenu'
 import { SettingsMenu } from './SettingsMenu'
 import { DeleteIcon } from '@/components/atoms/Icons/Shared/DeleteIcon'
-import { SettingsSpAccount } from '@/components/organisms/SettingsSpNav'
+import { SettingsSpAccount } from '@/components/templates/SideMenuLayout/SpLayout/SettingsSpNav'
 
 type Props = {
   sideNavContents: ReactNode
   children: ReactNode
 }
 
-export const SpSideMenuLayout = ({ sideNavContents, children }: Props) => {
+export const SpLayout = ({ sideNavContents, children }: Props) => {
   const [isMenuActive, setIsMenuActive] = useState(false)
   const [isSettingsMenuActive, setIsSettingsMenuActive] = useState(false)
 

@@ -8,9 +8,9 @@ import { fontStyles } from '@/const/font'
 import { profileDataSelector } from '@/store/domain/profile'
 import styled from 'styled-components'
 import Cookie from 'universal-cookie'
-import { ChangeEmailModal } from '../SettingsModal/SettingsAccount/ChangeEmailModal'
-import { ChangeNameModal } from '../SettingsModal/SettingsAccount/ChangeNameModal'
-import { ChangePasswordModal } from '../SettingsModal/SettingsAccount/ChangePasswordModal'
+import { ChangeEmailModal } from '../../../../organisms/SettingsModal/SettingsAccount/ChangeEmailModal'
+import { ChangeNameModal } from '../../../../organisms/SettingsModal/SettingsAccount/ChangeNameModal'
+import { ChangePasswordModal } from '../../../../organisms/SettingsModal/SettingsAccount/ChangePasswordModal'
 import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
 
 const cookie = new Cookie()

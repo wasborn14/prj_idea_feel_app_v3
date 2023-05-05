@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import { Layout } from '../Layout'
 import ResizeLayout from './ResizeLayout'
 import { useIsSp } from '@/hooks/util/useIsSp'
-import { SpSideMenuLayout } from './SpSideMenuLayout'
+import { SpLayout } from './SpLayout'
 import { CategoryList } from '@/components/organisms/CategoryList'
 import { SideMainMenu } from '@/components/organisms/SideMainMenu'
 
@@ -16,7 +16,7 @@ export const SideMenuLayout = ({ children }: Props) => {
   return (
     <Layout meta={{ pageTitle: 'Ifee - MyPage' }}>
       {isSp ? (
-        <SpSideMenuLayout
+        <SpLayout
           sideNavContents={
             <>
               <SideMainMenu />
@@ -25,7 +25,7 @@ export const SideMenuLayout = ({ children }: Props) => {
           }
         >
           {children}
-        </SpSideMenuLayout>
+        </SpLayout>
       ) : (
         <ResizeLayout
           sideNavContents={
