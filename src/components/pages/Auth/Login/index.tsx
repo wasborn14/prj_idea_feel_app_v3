@@ -104,8 +104,8 @@ export const Login = () => {
 
   return (
     <Layout meta={{ pageTitle: 'Ifee - Login' }}>
-      <LoadingCenter isLoading={isLoading} />
       <Container>
+        <LoadingCenter isLoading={isLoading} />
         <form onSubmit={handleSubmit(handleClickLogin)}>
           <MainContents>
             <Title>Login</Title>
@@ -174,7 +174,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 100vh;
 `
 
 const MainContents = styled.div`
