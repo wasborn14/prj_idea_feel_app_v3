@@ -179,7 +179,6 @@ const Wrapper = styled.li<{
     `}
 
   // clone
-
   ${({ clone }) =>
     clone &&
     css`

@@ -4,7 +4,6 @@ import {
   Announcements,
   DndContext,
   closestCenter,
-  KeyboardSensor,
   useSensor,
   useSensors,
   DragStartEvent,
@@ -31,10 +30,9 @@ import {
   setProperty
 } from './utilities'
 import type { FlattenedItem, SensorContext, TreeItems } from './types'
-import { sortableTreeKeyboardCoordinates } from './keyboardCoordinates'
-import { SortableTreeItem } from './components/SortableTreeItem'
+import { SortableTreeItem } from './Items/SortableTreeItem'
 import { CSS } from '@dnd-kit/utilities'
-import { InputItem } from './components/InputItem'
+import { InputItem } from './Items/InputItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { actionCategoryIdSelector, actions, haveChildActionCategoryIdSelector } from '@/store/app/category'
 import { Menu, Item, Separator } from 'react-contexify'
@@ -125,16 +123,7 @@ export const CategoryList = ({
     items: flattenedItems,
     offset: offsetLeft
   })
-  const [coordinateGetter] = useState(() => sortableTreeKeyboardCoordinates(sensorContext, indicator, indentationWidth))
-  const sensors = useSensors(
-    // ポインターセンサーがSPでうまく動かなかったためMouseSensorに変更
-    // useSensor(PointerSensor),
-    useSensor(MouseSensor),
-    useSensor(TouchSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter
-    })
-  )
+  const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor))
 
   const sortedIds = useMemo(() => flattenedItems.map(({ id }) => id), [flattenedItems])
   const activeItem = activeId ? flattenedItems.find(({ id }) => id === activeId) : null
@@ -171,20 +160,6 @@ export const CategoryList = ({
       setItems(categoryListData.data)
     }
   }, [categoryListData])
-
-  // useEffect(() => {
-  //   // TODO:呼び出し回数を抑えるためにisFirstRenderを用いているが後に修正の必要あり
-  //   if (isFirstRender.current) {
-  //     fetchCategoryList()
-  //       .then((res) => {
-  //         setItems(res.data)
-  //       })
-  //       .catch((err) => {
-  //         console.log('err', err)
-  //       })
-  //   }
-  //   isFirstRender.current = false
-  // }, [])
 
   const handleDragStart = ({ active: { id: activeDragId } }: DragStartEvent) => {
     setActiveId(String(activeDragId))
@@ -248,25 +223,10 @@ export const CategoryList = ({
   }
 
   const handleRemove = (id: string) => {
+    // TODO:ideaのdelete処理追加
     setItems(() => removeItem(items, id))
-    // putCategoryList(removeItem(items, id))
-    //   .then(() => {})
-    //   .catch(() => {})
     putCategoryList({ category_list: removeItem(items, id) })
     setConfirmModalVisible(false)
-
-    // TODO:ideaのdelete処理及びメインページの表示変更を実装
-    // deleteIdeaList(id)
-    //   .then((res) => {
-    //     console.log("res", res);
-    //     setItems(() => removeItem(items, id));
-    //     putCategoryList(removeItem(items, id))
-    //       .then(() => {})
-    //       .catch(() => {});
-    //   })
-    //   .catch((err) => {
-    //     console.log("err", err);
-    //   });
   }
 
   const handleCollapse = (id: string) => {
