@@ -1,6 +1,8 @@
-import { useMutation } from 'react-query'
-import { gestApi } from '@/hooks/api'
+import { useMutation, useQuery } from 'react-query'
+import { api, gestApi } from '@/hooks/api'
 import { AxiosResponse } from 'axios'
+import { useDispatch } from 'react-redux'
+import { actions as profileActions } from '@/store/domain/profile'
 
 // signup
 export const useSignUpMutation = () => {
@@ -14,6 +16,18 @@ export const useLogin = () => {
   return useMutation((data: { email: string; password: string }): Promise<AxiosResponse> => {
     return gestApi.post('auth/login', { email: data.email, password: data.password })
   })
+}
+
+// get user status
+export const useGetUserStatus = () => {
+  const dispatch = useDispatch()
+  return useQuery(
+    'userStatus',
+    (): Promise<AxiosResponse> => {
+      return api.get('auth/me')
+    },
+    { onSuccess: (res) => dispatch(profileActions.setProfileData({ name: res.data.name, email: res.data.email })) }
+  )
 }
 
 // resend activation email

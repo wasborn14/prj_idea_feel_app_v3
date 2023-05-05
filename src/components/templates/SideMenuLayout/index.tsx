@@ -1,9 +1,10 @@
 import { ReactNode } from 'react'
 import { Layout } from '../Layout'
 import ResizeLayout from './ResizeLayout'
-import styled from 'styled-components'
 import { useIsSp } from '@/hooks/util/useIsSp'
 import { SpSideMenuLayout } from './SpSideMenuLayout'
+import { CategoryList } from '@/components/organisms/CategoryList'
+import { SideMainMenu } from '@/components/organisms/SideMainMenu'
 
 type Props = {
   children: ReactNode
@@ -18,12 +19,8 @@ export const SideMenuLayout = ({ children }: Props) => {
         <SpSideMenuLayout
           sideNavContents={
             <>
-              <Container>sidenav</Container>
-              <Container>sidenav</Container>
-              <Container>sidenav</Container>
-              <Container>sidenav</Container>
-              <Container>sidenav</Container>
-              <Container>sidenav</Container>
+              {/* <SideMainMenu /> */}
+              <CategoryList />
             </>
           }
         >
@@ -33,12 +30,8 @@ export const SideMenuLayout = ({ children }: Props) => {
         <ResizeLayout
           sideNavContents={
             <>
-              <Container>sidenav</Container>
-              <Container>sidenav</Container>
-              <Container>sidenav</Container>
-              <Container>sidenav</Container>
-              <Container>sidenav</Container>
-              <Container>sidenav</Container>
+              <SideMainMenu />
+              <CategoryList />
             </>
           }
         >
@@ -48,7 +41,3 @@ export const SideMenuLayout = ({ children }: Props) => {
     </Layout>
   )
 }
-
-const Container = styled.div`
-  padding: 100px;
-`

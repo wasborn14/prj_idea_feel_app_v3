@@ -12,6 +12,9 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.0.8",
+    "@dnd-kit/sortable": "^7.0.2",
+    "@dnd-kit/utilities": "^3.2.1",
     "@hookform/resolvers": "^3.1.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@stoplight/prism-cli": "^4.13.0",
@@ -31,6 +34,7 @@
     "next": "13.3.0",
     "postcss": "8.4.23",
     "react": "18.2.0",
+    "react-contexify": "^6.0.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
     "react-icons": "^4.8.0",

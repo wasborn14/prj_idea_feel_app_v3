@@ -22,6 +22,7 @@ export default ResizeSplitter
 
 const Container = styled.div<{ isDragging: boolean; dir: boolean }>`
   width: 10px;
+  min-height: 100vh;
   padding-left: 8px;
   background-clip: content-box;
   background-color: ${Color.DARK_BROWN1};
