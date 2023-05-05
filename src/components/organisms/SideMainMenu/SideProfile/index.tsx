@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React from 'react'
 import { Item, Menu, Separator, TriggerEvent, useContextMenu } from 'react-contexify'
 import { useSelector } from 'react-redux'
 import { useIsSp } from '@/hooks/util/useIsSp'
@@ -20,7 +20,7 @@ export const SideProfile = () => {
   const { show } = useContextMenu({
     id: PROFILE_MENU_ID
   })
-  const [isSettingsModalVisible, setIsSettingsModalVisible] = useState(false)
+  // const [isSettingsModalVisible, setIsSettingsModalVisible] = useState(false)
   const router = useRouter()
 
   const handleContextMenu = (event: TriggerEvent) => {
@@ -47,23 +47,13 @@ export const SideProfile = () => {
 
   useGetUserStatus()
 
-  // useEffect(() => {
-  //   getUserStatus()
-  //     .then((res) => {
-  //       dispatch(profileActions.setProfileData({ name: res.data.name, email: res.data.email }))
-  //     })
-  //     .catch((err) => {
-  //       console.error('error', err)
-  //     })
-  // }, [dispatch])
-
   return (
     <>
       {/* {isSettingsModalVisible && <SettingsModal onClick={() => setIsSettingsModalVisible(false)} />} */}
       <Wrapper onClick={(event) => handleContextMenu(event)}>
         <Text>{userProfile.name}</Text>
         <Menu id={PROFILE_MENU_ID}>
-          <Item id='settings' onClick={() => setIsSettingsModalVisible(true)}>
+          <Item id='settings' onClick={() => {}}>
             Settings
           </Item>
           <Separator />
