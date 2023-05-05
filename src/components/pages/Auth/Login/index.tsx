@@ -62,7 +62,7 @@ export const Login = () => {
         onSuccess: (res) => {
           console.log({ res })
           setAccessStatus(res)
-          router.push('/feel')
+          router.push('/category/feel')
         },
         onError: (error: any) => {
           if (error.response.data.error === API_ERROR_EMAIL_NOT_VERIFIED) {
@@ -85,7 +85,7 @@ export const Login = () => {
       {
         onSuccess: (res) => {
           setAccessStatus(res)
-          router.push('/feel')
+          router.push('/category/feel')
         },
         onError: (error: any) => {
           if (error.response.data.error === API_ERROR_EMAIL_NOT_VERIFIED) {

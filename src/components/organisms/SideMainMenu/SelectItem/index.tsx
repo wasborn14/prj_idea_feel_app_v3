@@ -14,7 +14,7 @@ export const SelectItem = () => {
   }
 
   return (
-    <Link href='/idea/feel' onClick={handleClickPageTitle} passHref>
+    <Link href='/category/feel' onClick={handleClickPageTitle} passHref>
       <Wrapper>
         <Text>Feel</Text>
       </Wrapper>

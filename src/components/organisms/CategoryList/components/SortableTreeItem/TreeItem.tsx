@@ -91,7 +91,7 @@ export const TreeItem = forwardRef<HTMLDivElement, Props>(
       dispatch(categoryActions.setSelectCategoryId({ selectCategoryId: id }))
       dispatch(actions.setPageTitle({ title: value }))
       router.push({
-        pathname: `/idea/${id}`
+        pathname: `/category/idea/${id}`
       })
     }
 
