@@ -19,7 +19,7 @@ export const SideMenuLayout = ({ children }: Props) => {
         <SpSideMenuLayout
           sideNavContents={
             <>
-              {/* <SideMainMenu /> */}
+              <SideMainMenu />
               <CategoryList />
             </>
           }

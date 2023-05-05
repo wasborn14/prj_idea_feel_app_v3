@@ -62,3 +62,30 @@ export const useResetPassword = () => {
     }
   )
 }
+
+// update name
+export const useUpdateName = () => {
+  return useMutation((data: { name: string }): Promise<AxiosResponse> => {
+    return api.post('user/name', { name: data.name })
+  })
+}
+
+// send change email
+export const useSendChangeEmailUrl = () => {
+  return useMutation((data: { new_email: string }): Promise<AxiosResponse> => {
+    return api.post('auth/email', { new_email: data.new_email })
+  })
+}
+
+// change password
+export const useUpdatePassword = () => {
+  return useMutation(
+    (data: { current_password: string; new_password: string; re_new_password: string }): Promise<AxiosResponse> => {
+      return api.post('user/password', {
+        current_password: data.current_password,
+        new_password: data.new_password,
+        re_new_password: data.re_new_password
+      })
+    }
+  )
+}
