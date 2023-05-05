@@ -58,6 +58,7 @@ export const SideProfile = () => {
 
 const Wrapper = styled.div`
   padding: 6px 10px;
+  cursor: pointer;
   ${sp`
     padding: 12px 10px;
   `}
