@@ -1,12 +1,12 @@
-import { ReactNode } from "react";
-import { Color, ZIndex } from "src/const";
-import styled, { css } from "styled-components";
+import { ReactNode } from 'react'
+import { Color, ZIndex } from '@/const'
+import styled, { css } from 'styled-components'
 
 type Props = {
-  isMenuActive: boolean;
-  onOverLayClick: () => void;
-  children: ReactNode;
-};
+  isMenuActive: boolean
+  onOverLayClick: () => void
+  children: ReactNode
+}
 
 export const SideMenu = ({ isMenuActive, onOverLayClick, children }: Props) => {
   return (
@@ -16,8 +16,8 @@ export const SideMenu = ({ isMenuActive, onOverLayClick, children }: Props) => {
         <SideMenuColorOverWrite>{children}</SideMenuColorOverWrite>
       </SideMenuContent>
     </Container>
-  );
-};
+  )
+}
 
 const Container = styled.aside<{ isMenuActive: boolean }>`
   position: fixed;
@@ -34,7 +34,7 @@ const Container = styled.aside<{ isMenuActive: boolean }>`
     css`
       pointer-events: auto;
     `}
-`;
+`
 
 const SideMenuOverlay = styled.div<{ isMenuActive: boolean }>`
   position: absolute;
@@ -52,7 +52,7 @@ const SideMenuOverlay = styled.div<{ isMenuActive: boolean }>`
     css`
       opacity: 0.3;
     `}
-`;
+`
 
 const SideMenuContent = styled.div<{ isMenuActive: boolean }>`
   box-sizing: border-box;
@@ -74,11 +74,11 @@ const SideMenuContent = styled.div<{ isMenuActive: boolean }>`
     css`
       transform: none;
     `}
-`;
+`
 
 const SideMenuColorOverWrite = styled.div`
   height: 100%;
   width: 100%;
   overflow: scroll;
   background-color: ${Color.BACKGROUND_COLOR1};
-`;
+`
