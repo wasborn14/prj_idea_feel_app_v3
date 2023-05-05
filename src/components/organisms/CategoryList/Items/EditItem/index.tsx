@@ -3,8 +3,9 @@ import React, { forwardRef, HTMLAttributes } from 'react'
 import { useForm } from 'react-hook-form'
 import { pc } from '@/media'
 import styled from 'styled-components'
-import { schema, Schema } from './schema'
+import { schema, Schema } from '../../schema'
 import { CategoryInput } from '@/components/atoms/Forms/Second/CategoryInput'
+import { Color } from '@/const'
 
 export interface Props extends Omit<HTMLAttributes<HTMLLIElement>, 'id'> {
   id: string
@@ -88,7 +89,7 @@ const InputWrapper = styled.div`
   ${pc`
     padding: 2px 14px;
   `}
-  color: #222;
+  color: ${Color.BLACK};
   box-sizing: border-box;
   overflow: hidden;
 `

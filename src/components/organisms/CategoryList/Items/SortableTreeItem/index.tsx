@@ -39,7 +39,7 @@ export const SortableTreeItem = ({ id, depth, ...props }: Props) => {
       style={style}
       depth={depth}
       ghost={isDragging}
-      // TODO:後にios判定方法検討
+      // for iOS setting
       // disableSelection={iOS}
       disableInteraction={isSorting}
       handleProps={{

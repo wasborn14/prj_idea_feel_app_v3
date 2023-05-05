@@ -9,6 +9,7 @@ type BaseModalProps = {
   color: 'black' | 'white'
   isRadius?: boolean
   zIndex?: number
+  wrapperId?: string
   onClick?: () => void
 }
 
@@ -18,10 +19,18 @@ export const BaseModal = ({
   color,
   isRadius = false,
   zIndex = ZIndex.Modal,
+  wrapperId,
   onClick
 }: BaseModalProps) => {
   return (
-    <Overlay justifyContent='center' alignItems='center' color={color} zIndex={zIndex} onClick={onClick}>
+    <Overlay
+      justifyContent='center'
+      alignItems='center'
+      color={color}
+      zIndex={zIndex}
+      onClick={onClick}
+      wrapperId={wrapperId}
+    >
       <Wrapper width={width} isRadius={isRadius}>
         <Inner>{children}</Inner>
       </Wrapper>

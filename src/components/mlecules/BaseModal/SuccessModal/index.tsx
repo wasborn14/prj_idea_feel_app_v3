@@ -28,7 +28,7 @@ export const SuccessModal = ({ successMessage, onClick, description }: Props) =>
   }
 
   return (
-    <BaseModal width={340} color='white' isRadius onClick={onClose}>
+    <BaseModal width={340} color='white' isRadius onClick={onClose} wrapperId='success-modal'>
       <Container onClick={onInnerClick}>
         <TitleContainer>
           <Title>{successMessage ?? 'Success'}</Title>
