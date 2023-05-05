@@ -169,7 +169,7 @@ const Wrapper = styled.li<{
   width: 500px;
   box-sizing: border-box;
   &:hover {
-    background-color: #a0540e13;
+    background-color: ${Color.DARK_BROWN3};
   }
 
   ${({ selected }) =>
@@ -189,13 +189,13 @@ const Wrapper = styled.li<{
       padding-left: 10px;
       width: 200px;
       overflow-x: hidden;
+      border-radius: 8px;
 
       .TreeItemWrapper {
         --vertical-padding: 5px;
-
         padding-right: 24px;
         border-radius: 4px;
-        box-shadow: 0px 15px 15px 0 rgba(34, 33, 81, 0.1);
+        box-shadow: 0px 15px 15px 0 ${Color.DARK_BLUE2};
       }
     `}
 
@@ -214,8 +214,8 @@ const Wrapper = styled.li<{
         position: relative;
         padding: 0;
         height: 8px;
-        border-color: #2389ff;
-        background-color: #56a1f8;
+        border-color: ${Color.BLUE};
+        background-color: ${Color.BLUE};
 
         &:before {
           position: absolute;
@@ -226,8 +226,8 @@ const Wrapper = styled.li<{
           width: 12px;
           height: 12px;
           border-radius: 50%;
-          border: 1px solid #2389ff;
-          background-color: #ffffff;
+          border: 1px solid ${Color.BLUE};
+          background-color: ${Color.WHITE};
         }
 
         > * {
@@ -281,7 +281,7 @@ const TreeItemWrapper = styled.div`
   ${sp`
     padding: 10px 10px; 
   `}
-  color: #222;
+  color: ${Color.BLACK};
   box-sizing: border-box;
 `
 
@@ -308,7 +308,7 @@ const Count = styled.span`
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background-color: #2389ff;
+  background-color: ${Color.BLUE};
   font-size: 0.8rem;
   font-weight: 600;
   color: ${Color.WHITE};

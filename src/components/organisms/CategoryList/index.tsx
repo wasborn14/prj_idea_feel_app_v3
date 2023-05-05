@@ -1,7 +1,6 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { createPortal } from 'react-dom'
 import {
-  Announcements,
   DndContext,
   closestCenter,
   useSensor,
@@ -11,15 +10,12 @@ import {
   DragMoveEvent,
   DragEndEvent,
   DragOverEvent,
-  MeasuringStrategy,
-  DropAnimation,
-  Modifier,
-  defaultDropAnimation,
   TouchSensor,
   MouseSensor
 } from '@dnd-kit/core'
 import { SortableContext, arrayMove, verticalListSortingStrategy } from '@dnd-kit/sortable'
 
+import { dropAnimationConfig, measuring, adjustTranslate } from './configs'
 import {
   buildTree,
   flattenTree,
@@ -29,9 +25,8 @@ import {
   removeChildrenOf,
   setProperty
 } from './utilities'
-import type { FlattenedItem, SensorContext, TreeItems } from './types'
+import type { FlattenedItem, TreeItems } from './types'
 import { SortableTreeItem } from './Items/SortableTreeItem'
-import { CSS } from '@dnd-kit/utilities'
 import { InputItem } from './Items/InputItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { actionCategoryIdSelector, actions, haveChildActionCategoryIdSelector } from '@/store/app/category'
@@ -48,65 +43,27 @@ import { usePostIdeaList } from '@/hooks/api/idea'
 export const RESET_IDEA_ID = ''
 const MENU_ID = 'category_context_menu'
 
-const initialItems: TreeItems = []
-
-const measuring = {
-  droppable: {
-    strategy: MeasuringStrategy.Always
-  }
-}
-
-const dropAnimationConfig: DropAnimation = {
-  keyframes({ transform }) {
-    return [
-      { opacity: 1, transform: CSS.Transform.toString(transform.initial) },
-      {
-        opacity: 0,
-        transform: CSS.Transform.toString({
-          ...transform.final,
-          x: transform.final.x + 5,
-          y: transform.final.y + 5
-        })
-      }
-    ]
-  },
-  easing: 'ease-out',
-  sideEffects({ active }) {
-    active.node.animate([{ opacity: 0 }, { opacity: 1 }], {
-      duration: defaultDropAnimation.duration,
-      easing: defaultDropAnimation.easing
-    })
-  }
-}
-
 interface Props {
   collapsible?: boolean
-  defaultItems?: TreeItems
   indentationWidth?: number
   indicator?: boolean
   removable?: boolean
 }
 
-export const CategoryList = ({
-  collapsible = true,
-  defaultItems = initialItems,
-  indicator = false,
-  indentationWidth = 24
-}: Props) => {
+export const CategoryList = ({ collapsible = true, indicator = false, indentationWidth = 24 }: Props) => {
   const dispatch = useDispatch()
   const actionCategoryId = useSelector(actionCategoryIdSelector)
   const haveChildActionCategoryId = useSelector(haveChildActionCategoryIdSelector)
   const sideWidth = useSelector(sideWidthSelector)
-  const [items, setItems] = useState(() => defaultItems)
+  const [items, setItems] = useState<TreeItems>([])
   const [activeId, setActiveId] = useState<string | null>(null)
   const [activeTitle, setActiveTitle] = useState<string | null>(null)
   const [overId, setOverId] = useState<string | null>(null)
   const [offsetLeft, setOffsetLeft] = useState(0)
-  const [currentPosition, setCurrentPosition] = useState<{
-    parentId: string | null
-    overId: string
-  } | null>(null)
   const [confirmModalVisible, setConfirmModalVisible] = useState(false)
+  const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor))
+  const { data: categoryListData } = useGetCategory()
+  const { mutate: putCategoryList } = usePutCategory()
 
   const flattenedItems = useMemo(() => {
     const flattenedTree = flattenTree(items)
@@ -117,49 +74,19 @@ export const CategoryList = ({
 
     return removeChildrenOf(flattenedTree, activeId ? [activeId, ...collapsedItems] : collapsedItems)
   }, [activeId, items])
+
   const projected =
     activeId && overId ? getProjection(flattenedItems, activeId, overId, offsetLeft, indentationWidth) : null
-  const sensorContext: SensorContext = useRef({
-    items: flattenedItems,
-    offset: offsetLeft
-  })
-  const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor))
-
   const sortedIds = useMemo(() => flattenedItems.map(({ id }) => id), [flattenedItems])
   const activeItem = activeId ? flattenedItems.find(({ id }) => id === activeId) : null
-
-  useEffect(() => {
-    sensorContext.current = {
-      items: flattenedItems,
-      offset: offsetLeft
-    }
-  }, [flattenedItems, offsetLeft])
-
-  const announcements: Announcements = {
-    onDragStart({ active }) {
-      return `Picked up ${active.id}.`
-    },
-    onDragMove() {
-      return getMovementAnnouncement('onDragMove')
-    },
-    onDragOver() {
-      return getMovementAnnouncement('onDragOver')
-    },
-    onDragEnd() {
-      return getMovementAnnouncement('onDragEnd')
-    },
-    onDragCancel({ active }) {
-      return `Moving was cancelled. ${active.id} was dropped in its original position.`
-    }
-  }
-
-  const { data: categoryListData } = useGetCategory()
 
   useEffect(() => {
     if (categoryListData) {
       setItems(categoryListData.data)
     }
   }, [categoryListData])
+
+  // -------------- handleDragEvents ----------------
 
   const handleDragStart = ({ active: { id: activeDragId } }: DragStartEvent) => {
     setActiveId(String(activeDragId))
@@ -169,10 +96,6 @@ export const CategoryList = ({
 
     if (activeDragItem) {
       setActiveTitle(activeDragItem.title)
-      setCurrentPosition({
-        parentId: activeDragItem.parentId,
-        overId: String(activeDragId)
-      })
     }
 
     document.body.style.setProperty('cursor', 'grabbing')
@@ -185,8 +108,6 @@ export const CategoryList = ({
   const handleDragOver = ({ over }: DragOverEvent) => {
     setOverId(over?.id ? String(over.id) : null)
   }
-
-  const { mutate: putCategoryList } = usePutCategory()
 
   const handleDragEnd = ({ active, over }: DragEndEvent) => {
     resetState()
@@ -217,10 +138,11 @@ export const CategoryList = ({
     setActiveId(null)
     setActiveTitle(null)
     setOffsetLeft(0)
-    setCurrentPosition(null)
 
     document.body.style.setProperty('cursor', '')
   }
+
+  // -------------- handleDragEvents ----------------
 
   const handleRemove = (id: string) => {
     // TODO:ideaのdelete処理追加
@@ -235,62 +157,6 @@ export const CategoryList = ({
     })
     setItems(changedItems)
     putCategoryList({ category_list: changedItems })
-  }
-
-  const getMovementAnnouncement = (eventName: string) => {
-    if (overId && projected) {
-      if (eventName !== 'onDragEnd') {
-        if (currentPosition && projected.parentId === currentPosition.parentId && overId === currentPosition.overId) {
-          return
-        } else {
-          setCurrentPosition({
-            parentId: projected.parentId,
-            overId
-          })
-        }
-      }
-
-      const clonedItems: FlattenedItem[] = JSON.parse(JSON.stringify(flattenTree(items)))
-      const overIndex = clonedItems.findIndex(({ id }) => id === overId)
-      const activeIndex = clonedItems.findIndex(({ id }) => id === activeId)
-      const sortedItems = arrayMove(clonedItems, activeIndex, overIndex)
-
-      const previousItem = sortedItems[overIndex - 1]
-
-      let announcement
-      const movedVerb = eventName === 'onDragEnd' ? 'dropped' : 'moved'
-      const nestedVerb = eventName === 'onDragEnd' ? 'dropped' : 'nested'
-
-      if (!previousItem) {
-        const nextItem = sortedItems[overIndex + 1]
-        announcement = `${activeId} was ${movedVerb} before ${nextItem.id}.`
-      } else {
-        if (projected.depth > previousItem.depth) {
-          announcement = `${activeId} was ${nestedVerb} under ${previousItem.id}.`
-        } else {
-          let previousSibling: FlattenedItem | undefined = previousItem
-          while (previousSibling && projected.depth < previousSibling.depth) {
-            const parentId: string | null = previousSibling.parentId
-            previousSibling = sortedItems.find(({ id }) => id === parentId)
-          }
-
-          if (previousSibling) {
-            announcement = `${activeId} was ${movedVerb} after ${previousSibling.id}.`
-          }
-        }
-      }
-
-      return announcement
-    }
-
-    return
-  }
-
-  const adjustTranslate: Modifier = ({ transform }) => {
-    return {
-      ...transform,
-      y: transform.y - 25
-    }
   }
 
   const { mutate: postIdeaList } = usePostIdeaList()
@@ -356,7 +222,7 @@ export const CategoryList = ({
         dispatch(actions.setEditCategoryId({ editCategoryId: newId }))
       },
       onError: (err) => {
-        console.log('err', err)
+        console.error({ err })
       }
     })
   }
@@ -394,7 +260,6 @@ export const CategoryList = ({
       )}
       <DndContext
         id='context'
-        accessibility={{ announcements }}
         sensors={sensors}
         collisionDetection={closestCenter}
         measuring={measuring}

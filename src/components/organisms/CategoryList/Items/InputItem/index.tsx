@@ -3,8 +3,9 @@ import React, { forwardRef, HTMLAttributes, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { pc } from '@/media'
 import styled from 'styled-components'
-import { schema, Schema } from './schema'
+import { schema, Schema } from '../../schema'
 import { CategoryInput } from '@/components/atoms/Forms/Second/CategoryInput'
+import { Color } from '@/const'
 
 export interface Props extends Omit<HTMLAttributes<HTMLLIElement>, 'id'> {
   depth: number
@@ -109,8 +110,12 @@ const TreeItem = styled.div`
     padding: 6px 10px; 
   `}
   background-color: transparent;
-  color: #222;
+  color: ${Color.BLACK};
   box-sizing: border-box;
+  cursor: pointer;
+  &:hover {
+    background-color: ${Color.DARK_BROWN3};
+  }
 `
 
 const Text = styled.span`
@@ -130,7 +135,7 @@ const InputWrapper = styled.div`
   ${pc`
     padding: 2px 14px;
   `}
-  color: #222;
+  color: ${Color.BLACK};
   box-sizing: border-box;
   overflow: hidden;
 `
