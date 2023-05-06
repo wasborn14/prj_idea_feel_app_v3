@@ -16,10 +16,10 @@ export default class MyDocument extends Document {
       return {
         ...initialProps,
         styles: [
-          <>
+          <div key='my-documents'>
             {initialProps.styles}
             {sheet.getStyleElement()}
-          </>
+          </div>
         ]
       }
     } finally {

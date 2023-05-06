@@ -6,6 +6,7 @@ import { useWindowSize } from '@/hooks/util/useWindowSize'
 import { useDispatch } from 'react-redux'
 import { actions } from '@/store/app/window'
 import { Header } from './Header'
+import { Spacer } from '@/components/atoms/Spacer'
 
 interface Props {
   sideNavContents: ReactNode
@@ -37,6 +38,7 @@ const ResizeLayout = ({ sideNavContents, children }: Props): JSX.Element => {
       <ResizeSplitter isDragging={isFileDragging} {...fileDragBarProps} />
       <MainContents>
         <Header onClick={() => {}} />
+        <Spacer y={24} />
         {children}
       </MainContents>
     </Container>
@@ -62,4 +64,5 @@ const SideNavWrapper = styled.div<SideNavWrapperProps>`
 const MainContents = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 24px;
 `
