@@ -35,7 +35,7 @@ export const FeelContents = () => {
   const Today = new Date()
   const [baseDate, setBaseDate] = useState(Today)
   const isSp = useIsSp()
-  const [isSelectWeek, setIsSelectWeek] = useState(isSp)
+  const [isSelectWeek, setIsSelectWeek] = useState(false)
   const [isRecordOpen, setIsRecordOpen] = useState(false)
 
   const convertedBaseDate = useMemo(() => {
@@ -164,11 +164,7 @@ export const FeelContents = () => {
     lineAtIndex: 6
   }
 
-  const { refetch } = useGetFeelList(baseDate, isSelectWeek)
-
-  useEffect(() => {
-    refetch()
-  }, [isSelectWeek, refetch])
+  useGetFeelList(baseDate, isSelectWeek)
 
   useEffect(() => {
     setIsSelectWeek(isSp)
