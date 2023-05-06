@@ -7,8 +7,9 @@ type ButtonProps = {
   current?: boolean
   className?: string
   backgroundColor?: string
+  color?: string
   width: number
-  height?: 36 | 40 | 48
+  height?: 32 | 36 | 40 | 48
   disabled?: boolean
 }
 
@@ -25,7 +26,7 @@ const DisabledStyle = css`
   }
 `
 
-const BaseStyle = css<Pick<ButtonProps, 'width' | 'height'>>`
+const BaseStyle = css<Pick<ButtonProps, 'select' | 'width' | 'height'>>`
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -111,6 +112,18 @@ const DestroyOutlinedStyle = css<Pick<ButtonProps, 'disabled'>>`
   ${({ disabled }) => disabled && DisabledStyle};
 `
 
+const SelectStyle = css<Pick<ButtonProps, 'select' | 'disabled'>>`
+  color: ${({ select }) => (select ? Color.WHITE : Color.TEXT_SECOND)};
+  background: ${({ select }) => (select ? Color.DARK_BROWN1 : Color.LIGHT_GRAY)};
+  ${({ disabled }) => disabled && DisabledStyle}
+`
+
+const ColorStyle = css<Pick<ButtonProps, 'color' | 'backgroundColor' | 'disabled'>>`
+  color: ${({ color }) => `${color}`};
+  background: ${({ backgroundColor }) => `${backgroundColor}`};
+  ${({ disabled }) => disabled && DisabledStyle}
+`
+
 export const ContainedButton = styled.button`
   ${BaseStyle}
   ${PrimaryContainedStyle}
@@ -141,7 +154,17 @@ export const OperateButton = styled.button`
   ${OperateStyle}
 `
 
+export const SelectButton = styled.button`
+  ${BaseStyle}
+  ${SelectStyle}
+`
+
 export const DestroyOutlinedButton = styled.button`
   ${BaseStyle}
   ${DestroyOutlinedStyle}
+`
+
+export const ColorButton = styled.button`
+  ${BaseStyle}
+  ${ColorStyle}
 `
