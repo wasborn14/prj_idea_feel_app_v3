@@ -159,7 +159,6 @@ const RecordFunctionsContainer = styled.div<{ isSp: boolean }>`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  width: 70%;
 
   ${({ isSp }) =>
     isSp &&
