@@ -22,6 +22,7 @@ export const GRAY_FA = '#FAFAFA'
 // 透過
 export const TRANSPARENT_WHITE_00 = '#ffffff00'
 export const TRANSPARENT_WHITE_03 = '#ffffff03'
+export const TRANSPARENT_BLACK_10 = '#00000010'
 export const TRANSPARENT_BLACK_26 = '#00000026'
 export const TRANSPARENT_BLACK_66 = '#00000066'
 export const TRANSPARENT_BLACK_99 = '#00000099'
