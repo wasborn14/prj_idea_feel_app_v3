@@ -5,7 +5,7 @@ import { fontStyles } from '@/const/font'
 import Link from 'next/link'
 import { Spacer } from '@/components/atoms/Spacer'
 import { sp } from '@/media'
-import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
+import { LargeButton } from '@/components/atoms/Buttons/First/Button'
 
 export const AlreadyActivated = () => {
   return (
@@ -17,7 +17,7 @@ export const AlreadyActivated = () => {
           </TitleWrapper>
           <Spacer y={32} />
           <Link href='/auth/login' passHref>
-            <GeneralButton width={200}>Return Login Page</GeneralButton>
+            <LargeButton>Return Login Page</LargeButton>
           </Link>
         </MainContents>
       </Container>

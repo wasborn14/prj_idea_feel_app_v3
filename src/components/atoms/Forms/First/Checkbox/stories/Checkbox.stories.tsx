@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { CheckBox } from '..'
 import { useForm } from 'react-hook-form'
-import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
+import { NormalButton } from '@/components/atoms/Buttons/First/Button'
 import { VStack } from '@/components/atoms/Stack/VStack'
 import { HStack } from '@/components/atoms/Stack/HStack'
 
@@ -41,9 +41,9 @@ const CheckBoxWithHooks = () => {
               <CheckBox {...register('check2')} text='check1' />
             </VStack>
           </HStack>
-          <GeneralButton type='submit' width={180} height={36}>
+          <NormalButton type='submit' width={180} height={36}>
             submit
-          </GeneralButton>
+          </NormalButton>
         </VStack>
       </form>
     </>

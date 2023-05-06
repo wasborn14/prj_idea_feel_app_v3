@@ -13,7 +13,7 @@ import { BaseModal } from '@/components/mlecules/BaseModal'
 import { SuccessModal } from '@/components/mlecules/BaseModal/SuccessModal'
 import { ErrorMessage } from '@/components/atoms/Forms/First/ErrorMessage'
 import { Input } from '@/components/atoms/Forms/First/Input/Input'
-import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
+import { NormalButton } from '@/components/atoms/Buttons/First/Button'
 import { useUpdatePassword } from '@/hooks/api/auth'
 import { LoadingCenter } from '@/components/mlecules/Loading'
 
@@ -133,9 +133,7 @@ export const ChangePasswordModal = ({ onClick }: Props) => {
                 />
               </InputWrapper>
               <ButtonWrapper>
-                <GeneralButton width={280} height={40} type='submit'>
-                  Change Password
-                </GeneralButton>
+                <NormalButton type='submit'>Change Password</NormalButton>
               </ButtonWrapper>
             </VStack>
           </MenuContainer>

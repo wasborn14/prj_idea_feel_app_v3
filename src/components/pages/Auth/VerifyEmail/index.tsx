@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Spacer } from '@/components/atoms/Spacer'
 import { sp } from '@/media'
-import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
+import { LargeButton } from '@/components/atoms/Buttons/First/Button'
 import { SuccessModal } from '@/components/mlecules/BaseModal/SuccessModal'
 import { useResendActivation } from '@/hooks/api/auth'
 import { LoadingCenter } from '@/components/mlecules/Loading'
@@ -42,12 +42,10 @@ export const VerifyEmail = () => {
           <Spacer y={8} />
           <Description>メールに添付されたアドレスから本登録を完了してください。</Description>
           <Spacer y={32} />
-          <GeneralButton onClick={sendEmail} width={200}>
-            Resend Email
-          </GeneralButton>
+          <LargeButton onClick={sendEmail}>Resend Email</LargeButton>
           <Spacer y={32} />
           <Link href='/auth/signUp'>
-            <GeneralButton width={200}>Return SignUp</GeneralButton>
+            <LargeButton>Return SignUp</LargeButton>
           </Link>
         </MainContents>
       </Container>

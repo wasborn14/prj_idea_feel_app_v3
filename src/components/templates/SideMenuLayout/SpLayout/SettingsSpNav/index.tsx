@@ -11,7 +11,8 @@ import Cookie from 'universal-cookie'
 import { ChangeEmailModal } from '../../../../organisms/SettingsModal/SettingsAccount/ChangeEmailModal'
 import { ChangeNameModal } from '../../../../organisms/SettingsModal/SettingsAccount/ChangeNameModal'
 import { ChangePasswordModal } from '../../../../organisms/SettingsModal/SettingsAccount/ChangePasswordModal'
-import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
+import { NormalButton } from '@/components/atoms/Buttons/First/Button'
+import { Spacer } from '@/components/atoms/Spacer'
 
 const cookie = new Cookie()
 
@@ -60,9 +61,7 @@ export const SettingsSpAccount = () => {
         <VStack spacing={12}>
           <SubTitle>Email</SubTitle>
           <Context>{userProfile.email}</Context>
-          <GeneralButton width={140} onClick={openEmailModal}>
-            Change Email
-          </GeneralButton>
+          <NormalButton onClick={openEmailModal}>Change Email</NormalButton>
         </VStack>
       </MenuContainer>
       <DividerWrapper>
@@ -72,9 +71,7 @@ export const SettingsSpAccount = () => {
         <VStack spacing={12}>
           <SubTitle>Name</SubTitle>
           <Context>{userProfile.name}</Context>
-          <GeneralButton width={140} onClick={openNameModal}>
-            Change Name
-          </GeneralButton>
+          <NormalButton onClick={openNameModal}>Change Name</NormalButton>
         </VStack>
       </MenuContainer>
       <DividerWrapper>
@@ -83,20 +80,17 @@ export const SettingsSpAccount = () => {
       <MenuContainer>
         <VStack spacing={12}>
           <SubTitle>Password</SubTitle>
-          <GeneralButton width={140} onClick={openPasswordModal}>
-            Change Password
-          </GeneralButton>
+          <NormalButton onClick={openPasswordModal}>Change Password</NormalButton>
         </VStack>
       </MenuContainer>
       <DividerWrapper>
         <Divider color={`${Color.DARK_RED2}`} />
       </DividerWrapper>
+      <Spacer y={24} />
       <TitleContainer>
         <Title>Logout</Title>
         <LogoutButtonWrapper>
-          <GeneralButton width={140} onClick={handleClickLogout}>
-            Logout
-          </GeneralButton>
+          <NormalButton onClick={handleClickLogout}>Logout</NormalButton>
         </LogoutButtonWrapper>
       </TitleContainer>
       {isChangeEmailModalVisible && <ChangeEmailModal onClick={closeEmailModal} />}
@@ -107,7 +101,7 @@ export const SettingsSpAccount = () => {
 }
 
 const Container = styled.div`
-  margin: 16px 16px 32px;
+  margin: 16px 56px 32px;
 `
 
 const DividerWrapper = styled.div`
@@ -122,6 +116,7 @@ const TitleContainer = styled.div`
 const MenuContainer = styled.div`
   display: flex;
   flex-direction: row;
+  /* justify-content: center; */
   margin: 16px;
 `
 

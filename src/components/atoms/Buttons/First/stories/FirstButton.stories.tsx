@@ -1,132 +1,48 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import {
-  ContainedButton,
-  OutlinedButton,
-  ContainedAnchorButton,
-  OutlinedAnchorButton,
-  GeneralButton,
-  OperateButton,
-  DestroyOutlinedButton
-} from '../Button'
+import { ColorShortButton, LargeButton, NormalButton, SelectShortButton, ShortButton } from '../Button'
 
-// More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
-const meta: Meta<typeof ContainedButton> = {
+const meta: Meta<typeof NormalButton> = {
   title: 'Atoms/Button',
-  component: ContainedButton,
+  component: NormalButton,
   tags: ['autodocs']
-  // argTypes: {
-  //   // backgroundColor: {
-  //   //   control: 'color'
-  //   // }
-  //   type: {
-  //     options: ['button', 'submit']
-  //   },
-  //   width: {
-  //     control: 100
-  //   }
-  // }
 }
 
 export default meta
 type Story = StoryObj<
-  | typeof ContainedButton
-  | typeof OutlinedButton
-  | typeof ContainedAnchorButton
-  | typeof OutlinedAnchorButton
-  | typeof GeneralButton
-  | typeof OperateButton
-  | typeof DestroyOutlinedButton
+  typeof NormalButton | typeof ShortButton | typeof LargeButton | typeof ColorShortButton | typeof SelectShortButton
 >
 
-// More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
-
-export const Contained: Story = {
+export const Normal: Story = {
   args: {
-    label: 'Button',
-    width: 160,
-    height: 36
+    label: 'NormalButton'
   },
-  render: ({ label, width, height }) => (
-    <ContainedButton width={width} height={height}>
-      {label}
-    </ContainedButton>
-  )
+  render: ({ label }) => <NormalButton>{label}</NormalButton>
 }
 
-export const Ountline: Story = {
+export const Short: Story = {
   args: {
-    label: 'Button',
-    width: 160,
-    height: 36
+    label: 'ShortButton'
   },
-  render: ({ label, width, height }) => (
-    <OutlinedButton width={width} height={height}>
-      {label}
-    </OutlinedButton>
-  )
+  render: ({ label }) => <ShortButton>{label}</ShortButton>
 }
 
 export const ContainedAnchor: Story = {
   args: {
-    label: 'Button',
-    width: 160,
-    height: 36
+    label: 'LargeButton'
   },
-  render: ({ label, width, height }) => (
-    <ContainedAnchorButton width={width} height={height}>
-      {label}
-    </ContainedAnchorButton>
-  )
+  render: ({ label }) => <LargeButton>{label}</LargeButton>
 }
 
-export const OutlinedAnchor: Story = {
+export const ColorShort: Story = {
   args: {
-    label: 'Button',
-    width: 160,
-    height: 36
+    label: 'ColorShortButton'
   },
-  render: ({ label, width, height }) => (
-    <OutlinedAnchorButton width={width} height={height}>
-      {label}
-    </OutlinedAnchorButton>
-  )
+  render: ({ label }) => <ColorShortButton>{label}</ColorShortButton>
 }
 
-export const General: Story = {
+export const SelectShort: Story = {
   args: {
-    label: 'Button',
-    width: 160,
-    height: 36
+    label: 'SelectShortButton'
   },
-  render: ({ label, width, height }) => (
-    <GeneralButton width={width} height={height}>
-      {label}
-    </GeneralButton>
-  )
-}
-
-export const Operate: Story = {
-  args: {
-    label: 'Button',
-    width: 160,
-    height: 36
-  },
-  render: ({ label, width, height }) => (
-    <OperateButton width={width} height={height}>
-      {label}
-    </OperateButton>
-  )
-}
-
-export const DestroyOutlined: Story = {
-  args: {
-    label: 'Button',
-    width: 160,
-    height: 36
-  },
-  render: ({ label, width, height }) => (
-    <DestroyOutlinedButton width={width} height={height}>
-      {label}
-    </DestroyOutlinedButton>
-  )
+  render: ({ label }) => <SelectShortButton>{label}</SelectShortButton>
 }

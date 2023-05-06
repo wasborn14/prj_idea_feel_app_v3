@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useForm } from 'react-hook-form'
-import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
+import { NormalButton } from '@/components/atoms/Buttons/First/Button'
 import { VStack } from '@/components/atoms/Stack/VStack'
 import { HStack } from '@/components/atoms/Stack/HStack'
 import { Radio } from '..'
@@ -44,9 +44,7 @@ const RadioWithHooks = () => {
             <Radio {...register('job')} value='Thief' text='Tief' />
             <Radio {...register('job')} value='Wizard' text='Wizard' />
           </HStack>
-          <GeneralButton type='submit' width={180} height={36}>
-            submit
-          </GeneralButton>
+          <NormalButton type='submit'>submit</NormalButton>
         </VStack>
       </form>
     </>

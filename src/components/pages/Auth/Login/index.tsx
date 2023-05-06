@@ -15,7 +15,7 @@ import { ERROR_AUTH_EMAIL_OR_PASSWORD_IS_WRONG } from '@/const/errorMessages'
 import { API_ERROR_EMAIL_NOT_VERIFIED } from '@/const/apiErrorMessages'
 import { sp } from '@/media'
 import { Input } from '@/components/atoms/Forms/First/Input/Input'
-import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
+import { LargeButton } from '@/components/atoms/Buttons/First/Button'
 import { ErrorMessage } from '@/components/atoms/Forms/First/ErrorMessage'
 import { useLogin } from '@/hooks/api/auth'
 import { TextAnchor } from '@/components/atoms/Anchors/First/TextAnchor'
@@ -135,9 +135,9 @@ export const Login = () => {
               />
             </InputWrapper>
             <Spacer y={32} />
-            <GeneralButton type='submit' width={200}>
+            <LargeButton type='submit' width={200}>
               Login
-            </GeneralButton>
+            </LargeButton>
             <LinkContainer>
               <Link href='/auth/signUp' passHref>
                 <TextAnchor type='normal' size={18}>

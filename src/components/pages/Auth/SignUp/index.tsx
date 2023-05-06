@@ -11,7 +11,7 @@ import styled from 'styled-components'
 import { Schema, schema } from './schema'
 import { sp } from '@/media'
 import { Layout } from '@/components/templates/Layout'
-import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
+import { LargeButton } from '@/components/atoms/Buttons/First/Button'
 import { Input } from '@/components/atoms/Forms/First/Input/Input'
 import { ErrorMessage } from '@/components/atoms/Forms/First/ErrorMessage'
 import { SuccessModal } from '@/components/mlecules/BaseModal/SuccessModal'
@@ -135,9 +135,7 @@ export const SignUp = () => {
               />
             </InputWrapper>
             <Spacer y={32} />
-            <GeneralButton type='submit' width={200}>
-              SignUp
-            </GeneralButton>
+            <LargeButton type='submit'>SignUp</LargeButton>
             <LinkContainer>
               <Link href='/auth/login' passHref>
                 <TextAnchor type='normal' size={18}>

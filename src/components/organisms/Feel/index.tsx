@@ -23,7 +23,7 @@ import { Color } from '@/const'
 import Annotation from 'chartjs-plugin-annotation'
 import { useIsSp } from '@/hooks/util/useIsSp'
 import { HStack } from '@/components/atoms/Stack/HStack'
-import { GeneralButton, SelectButton } from '@/components/atoms/Buttons/First/Button'
+import { NormalButton, SelectShortButton } from '@/components/atoms/Buttons/First/Button'
 import { useGetFeelList } from '@/hooks/api/feel'
 import { FormDatePicker } from '@/components/atoms/Forms/Second/Date'
 
@@ -219,9 +219,9 @@ export const FeelContents = () => {
         {isSp && (
           <>
             <Spacer y={12} />
-            <GeneralButton width={200} onClick={() => setIsRecordOpen(!isRecordOpen)}>
+            <NormalButton width={200} onClick={() => setIsRecordOpen(!isRecordOpen)}>
               {isRecordOpen ? 'Close' : 'Record'}
-            </GeneralButton>
+            </NormalButton>
           </>
         )}
         {!isSp && <Record baseDate={baseDate} setBaseDate={setBaseDate} isSelectWeek={isSelectWeek} />}
@@ -242,18 +242,13 @@ export const FeelContents = () => {
           {!isSp && (
             <>
               <Spacer x={24} />
-              <SelectButton width={200} height={32} select={isSelectWeek} onClick={() => handleClickSelectButton(true)}>
+              <SelectShortButton select={isSelectWeek} onClick={() => handleClickSelectButton(true)}>
                 Week
-              </SelectButton>
+              </SelectShortButton>
               <Spacer x={12} />
-              <SelectButton
-                width={200}
-                height={32}
-                select={!isSelectWeek}
-                onClick={() => handleClickSelectButton(false)}
-              >
+              <SelectShortButton select={!isSelectWeek} onClick={() => handleClickSelectButton(false)}>
                 Month
-              </SelectButton>
+              </SelectShortButton>
             </>
           )}
         </HStack>

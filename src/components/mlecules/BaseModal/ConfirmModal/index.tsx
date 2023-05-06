@@ -5,7 +5,7 @@ import { Color } from '@/const'
 import { fontStyles } from '@/const/font'
 import styled from 'styled-components'
 import { BaseModal } from '..'
-import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
+import { NormalButton } from '@/components/atoms/Buttons/First/Button'
 
 type Props = {
   description: string
@@ -42,13 +42,9 @@ export const ConfirmModal = ({ description, onApproveClick, onCancelClick }: Pro
         <Description>{description}</Description>
         <Spacer y={32} />
         <HStack>
-          <GeneralButton width={200} onClick={handleClickCancelClick}>
-            Cancel
-          </GeneralButton>
+          <NormalButton onClick={handleClickCancelClick}>Cancel</NormalButton>
           <Spacer x={24} />
-          <GeneralButton width={200} onClick={handleClickApproveClick}>
-            OK
-          </GeneralButton>
+          <NormalButton onClick={handleClickApproveClick}>OK</NormalButton>
         </HStack>
       </Container>
     </BaseModal>
