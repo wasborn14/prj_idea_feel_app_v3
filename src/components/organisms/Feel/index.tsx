@@ -44,12 +44,6 @@ export const FeelContents = () => {
     return `${month}/${day}`
   }, [baseDate])
 
-  // useEffect(() => {
-  //   console.log({ baseDate })
-  //   console.log({ isSelectWeek })
-  //   console.log({ feelListData })
-  // }, [baseDate, isSelectWeek, feelListData])
-
   const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -170,47 +164,8 @@ export const FeelContents = () => {
     setIsSelectWeek(isSp)
   }, [isSp])
 
-  // useEffect(() => {
-  //   const dates = getStartAndEndDate(baseDate, isSelectWeek)
-  //   const getFeelList = () => {
-  //     dispatch(dataActions.setIsLoading({ isLoading: true }))
-  //     fetchFeelList(dates.startDate, dates.endDate)
-  //       .then((res) => {
-  //         dispatch(feelListActions.setFeelListData(res.data))
-  //         dispatch(dataActions.setIsLoading({ isLoading: false }))
-  //       })
-  //       .catch((err) => {
-  //         console.error(err.message)
-  //         dispatch(dataActions.setIsLoading({ isLoading: false }))
-  //       })
-  //   }
-
-  //   getFeelList()
-  // }, [dispatch, baseDate, isSelectWeek])
-
-  // const selectDate = (selectedDate: Date | null) => {
-  //   setBaseDate(selectedDate || Today)
-  //   refetch()
-  //   const dates = getStartAndEndDate(selectedDate ?? Today, isSelectWeek)
-  //   fetchFeelList(dates.startDate, dates.endDate)
-  //     .then((res) => {
-  //       dispatch(feelListActions.setFeelListData(res.data))
-  //     })
-  //     .catch((err) => {
-  //       console.error(err.message)
-  //     })
-  // }
-
   const handleClickSelectButton = (isSelect: boolean) => {
     setIsSelectWeek(isSelect)
-    // const dates = getStartAndEndDate(baseDate, isSelect)
-    // fetchFeelList(dates.startDate, dates.endDate)
-    //   .then((res) => {
-    //     dispatch(feelListActions.setFeelListData(res.data))
-    //   })
-    //   .catch((err) => {
-    //     console.error(err.message)
-    //   })
   }
 
   return (

@@ -38,16 +38,6 @@ export const FeelReasonInput = ({ id, title }: Props) => {
   const { mutate: deleteFeelReasonMutate, isLoading: loadingDeleteFeelReason } = useDeleteFeelReason()
 
   const handleClickPutFeelReason = () => {
-    // const getFeelReasonList = () => {
-    //   fetchFeelReasonList()
-    //     .then((res) => {
-    //       dispatch(feelReasonListActions.setFeelReasonListData(res.data))
-    //     })
-    //     .catch((err) => {
-    //       console.error(err.message)
-    //     })
-    // }
-
     putFeelReasonMutate(
       { id, title: getValues('title') },
       {
@@ -55,30 +45,9 @@ export const FeelReasonInput = ({ id, title }: Props) => {
         onError: (err: any) => console.error({ err })
       }
     )
-
-    // putFeelReason(id, getValues('title'))
-    //   .then(() => {
-    //     getFeelReasonList()
-    //     dispatch(dataActions.setIsLoading({ isLoading: false }))
-    //   })
-    //   .catch(() => {
-    //     dispatch(dataActions.setIsLoading({ isLoading: false }))
-    //   })
   }
 
   const handleClickDeleteFeelReason = () => {
-    // const getFeelReasonList = () => {
-    //   fetchFeelReasonList()
-    //     .then((res) => {
-    //       dispatch(feelReasonListActions.setFeelReasonListData(res.data))
-    //     })
-    //     .catch((err) => {
-    //       console.error(err.message)
-    //     })
-    // }
-
-    // dispatch(dataActions.setIsLoading({ isLoading: true }))
-
     deleteFeelReasonMutate(
       { id },
       {
@@ -86,15 +55,6 @@ export const FeelReasonInput = ({ id, title }: Props) => {
         onError: (err: any) => console.error({ err })
       }
     )
-
-    // deleteFeelReason(id)
-    //   .then(() => {
-    //     getFeelReasonList()
-    //     dispatch(dataActions.setIsLoading({ isLoading: false }))
-    //   })
-    //   .catch(() => {
-    //     dispatch(dataActions.setIsLoading({ isLoading: false }))
-    //   })
   }
 
   return (
