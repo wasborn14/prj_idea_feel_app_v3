@@ -17,7 +17,7 @@ export const useGetIdeaList = (categoryId: string) => {
   const dispatch = useDispatch()
 
   return useQuery(
-    `ideaList_${categoryId}`,
+    [categoryId],
     (): Promise<AxiosResponse> => {
       return api.get(`ideas/${categoryId}`)
     },

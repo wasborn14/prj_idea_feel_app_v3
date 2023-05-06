@@ -13,14 +13,14 @@ export const useGetFeelList = (baseDate: Date, isSelectWeek: boolean) => {
   const dates = getStartAndEndDate(baseDate, isSelectWeek)
   const dispatch = useDispatch()
   return useQuery(
-    `feelList`,
+    // refetch when baseDate or isSelectWeek change
+    [baseDate, isSelectWeek],
     (): Promise<AxiosResponse> => {
       return api.get(`feels/${dates.startDate}/${dates.endDate}`)
     },
     {
       enabled: dates !== undefined,
       onSuccess: (res) => {
-        console.log({ res })
         dispatch(feelListActions.setFeelListData(res.data))
       },
       onError: (err: any) => console.error(err.message)
