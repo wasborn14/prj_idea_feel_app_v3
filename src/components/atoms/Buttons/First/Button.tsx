@@ -118,7 +118,19 @@ const SelectStyle = css<Pick<ButtonProps, 'select' | 'disabled'>>`
   ${({ disabled }) => disabled && DisabledStyle}
 `
 
-const ColorStyle = css<Pick<ButtonProps, 'color' | 'backgroundColor' | 'disabled'>>`
+const ColorStyle = css<ButtonProps>`
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: ${({ width }) => width}px;
+  height: ${({ height }) => height}px;
+  text-decoration: none;
+  font-weight: bold;
+  svg {
+    margin-right: 8px;
+  }
   color: ${({ color }) => `${color}`};
   background: ${({ backgroundColor }) => `${backgroundColor}`};
   ${({ disabled }) => disabled && DisabledStyle}
@@ -165,6 +177,6 @@ export const DestroyOutlinedButton = styled.button`
 `
 
 export const ColorButton = styled.button`
-  ${BaseStyle}
+  /* ${BaseStyle} */
   ${ColorStyle}
 `

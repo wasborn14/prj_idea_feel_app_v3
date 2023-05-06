@@ -10,7 +10,7 @@ import { FeelInput } from './FeelInput'
 import { ReasonSelect } from './ReasonSelect'
 import { MemoInput } from './MemoInput'
 import { useIsSp } from '@/hooks/util/useIsSp'
-import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
+import { ColorButton } from '@/components/atoms/Buttons/First/Button'
 import { useGetFeelList, usePostFeel } from '@/hooks/api/feel'
 
 const DEFAULT_SLIDER_VALUE = 50
@@ -121,26 +121,28 @@ export const Record = ({ baseDate, setBaseDate, isSelectWeek }: Props) => {
         </RecordFunctionsContainer>
         <SubmitButtonContainer isSp={isSp}>
           <ButtonWrapper>
-            <GeneralButton
+            <ColorButton
               width={isSp ? 160 : 200}
               height={36}
               color={`${Color.BLACK}`}
+              backgroundColor={`${Color.PREDICT_COLOR}`}
               type='submit'
               onClick={() => createFeel(true)}
             >
               Predict
-            </GeneralButton>
+            </ColorButton>
           </ButtonWrapper>
           <ButtonWrapper>
-            <GeneralButton
+            <ColorButton
               width={isSp ? 160 : 200}
               height={36}
               color={`${Color.BLACK}`}
+              backgroundColor={`${Color.RECORD_COLOR}`}
               type='submit'
               onClick={() => createFeel(false)}
             >
               Record
-            </GeneralButton>
+            </ColorButton>
           </ButtonWrapper>
         </SubmitButtonContainer>
       </RecordContainer>
