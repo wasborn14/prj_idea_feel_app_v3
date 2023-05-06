@@ -10,7 +10,7 @@ import { useState } from 'react'
 import { Spacer } from '@/components/atoms/Spacer'
 import { sp } from '@/media'
 import { Input } from '@/components/atoms/Forms/First/Input/Input'
-import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
+import { LargeButton } from '@/components/atoms/Buttons/First/Button'
 import { SuccessModal } from '@/components/mlecules/BaseModal/SuccessModal'
 import { ErrorMessage } from '@/components/atoms/Forms/First/ErrorMessage'
 import { useResetPasswordRequest } from '@/hooks/api/auth'
@@ -76,9 +76,7 @@ export const ForgotPassword = () => {
               />
             </InputWrapper>
             <Spacer y={32} />
-            <GeneralButton type='submit' width={200}>
-              Send
-            </GeneralButton>
+            <LargeButton type='submit'>Send</LargeButton>
             <LinkContainer>
               <Link href='/auth/login' passHref>
                 <Text>Return Login</Text>

@@ -14,7 +14,7 @@ import { SuccessModal } from '@/components/mlecules/BaseModal/SuccessModal'
 import { ErrorMessage } from '@/components/atoms/Forms/First/ErrorMessage'
 import { Input } from '@/components/atoms/Forms/First/Input/Input'
 import { Spacer } from '@/components/atoms/Spacer'
-import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
+import { LargeButton } from '@/components/atoms/Buttons/First/Button'
 import { useResetPassword } from '@/hooks/api/auth'
 import { LoadingCenter } from '@/components/mlecules/Loading'
 
@@ -109,9 +109,7 @@ export const ResetPassword = () => {
               />
             </InputWrapper>
             <Spacer y={32} />
-            <GeneralButton type='submit' width={200}>
-              Reset Password
-            </GeneralButton>
+            <LargeButton type='submit'>Reset Password</LargeButton>
             <LinkContainer>
               <Link href='/auth/login' passHref>
                 <Text>Return Login</Text>

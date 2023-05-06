@@ -10,7 +10,7 @@ import styled from 'styled-components'
 import { ChangeEmailModal } from './ChangeEmailModal'
 import { ChangeNameModal } from './ChangeNameModal'
 import { ChangePasswordModal } from './ChangePasswordModal'
-import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
+import { ShortButton } from '@/components/atoms/Buttons/First/Button'
 
 export const SettingsAccount = () => {
   const userProfile = useSelector(profileDataSelector)
@@ -51,9 +51,7 @@ export const SettingsAccount = () => {
           <SubTitle>Email</SubTitle>
           <HStack spacing={32}>
             <Context>{userProfile.email}</Context>
-            <GeneralButton width={140} onClick={openEmailModal}>
-              Change Email
-            </GeneralButton>
+            <ShortButton onClick={openEmailModal}>Change Email</ShortButton>
           </HStack>
         </VStack>
       </MenuContainer>
@@ -65,9 +63,7 @@ export const SettingsAccount = () => {
           <SubTitle>Name</SubTitle>
           <HStack spacing={32}>
             <Context>{userProfile.name}</Context>
-            <GeneralButton width={140} onClick={openNameModal}>
-              Change Name
-            </GeneralButton>
+            <ShortButton onClick={openNameModal}>Change Name</ShortButton>
           </HStack>
         </VStack>
       </MenuContainer>
@@ -78,9 +74,7 @@ export const SettingsAccount = () => {
         <VStack spacing={12}>
           <SubTitle>Password</SubTitle>
           <HStack spacing={32}>
-            <GeneralButton width={140} onClick={openPasswordModal}>
-              Change Password
-            </GeneralButton>
+            <ShortButton onClick={openPasswordModal}>Change Password</ShortButton>
           </HStack>
         </VStack>
       </MenuContainer>

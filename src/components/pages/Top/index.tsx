@@ -8,7 +8,7 @@ import { SimpleLayout } from '@/components/templates/SimpleLayout'
 import Link from 'next/link'
 import { sp } from '@/media'
 import { useIsSp } from '@/hooks/util/useIsSp'
-import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
+import { LargeButton } from '@/components/atoms/Buttons/First/Button'
 
 const TITLE_DESCRIPTION =
   '暮らしていく上での考え方や知識を整理し、\n感情の変化を記録・観察していくことで、\n生活をよりよくする行動をしていくためのアプリ'
@@ -27,9 +27,9 @@ export const Top = () => {
             <Description>{TITLE_DESCRIPTION}</Description>
             <Spacer y={24} />
             <Link href='/auth/login' passHref>
-              <GeneralButton type='submit' width={200}>
+              <LargeButton type='submit' width={200}>
                 Start
-              </GeneralButton>
+              </LargeButton>
             </Link>
           </TitleContainer>
           <ImageWrapper>

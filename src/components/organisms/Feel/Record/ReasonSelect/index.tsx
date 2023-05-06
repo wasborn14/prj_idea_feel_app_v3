@@ -9,8 +9,7 @@ import 'react-dropdown/style.css'
 import { useSelector } from 'react-redux'
 import { feelReasonSelectListDataSelector } from '@/store/domain/feelReasonSelectList'
 import { FeelReasonModal } from '../FeelReasonModal'
-import { useIsSp } from '@/hooks/util/useIsSp'
-import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
+import { ShortButton } from '@/components/atoms/Buttons/First/Button'
 import { FormDropdown } from '@/components/atoms/Forms/Second/FormDropdown'
 import { useGetFeelReasonSelectList } from '@/hooks/api/feel'
 
@@ -22,7 +21,6 @@ type Props = {
 export const ReasonSelect = ({ selectReason, setSelectReason }: Props) => {
   const feelReasonList = useSelector(feelReasonSelectListDataSelector)
   const [isFeelReasonModalVisible, setIsFeelReasonModalVisible] = useState(false)
-  const isSp = useIsSp()
   const { refetch } = useGetFeelReasonSelectList()
 
   const openFeelReasonModal = () => {
@@ -48,9 +46,7 @@ export const ReasonSelect = ({ selectReason, setSelectReason }: Props) => {
         <DescriptionWrapper>
           <Description>Reason</Description>
         </DescriptionWrapper>
-        <GeneralButton width={isSp ? 100 : 200} onClick={openFeelReasonModal}>
-          Create
-        </GeneralButton>
+        <ShortButton onClick={openFeelReasonModal}>Create</ShortButton>
       </ReasonWrapper>
       <FormDropdown width={300} options={feelReasonList} selectReason={selectReason} onChange={setSelectReason} />
     </Container>
