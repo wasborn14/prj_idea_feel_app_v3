@@ -5,7 +5,7 @@ import { fontStyles } from '@/const/font'
 import Link from 'next/link'
 import { Spacer } from '@/components/atoms/Spacer'
 import { sp } from '@/media'
-import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
+import { LargeButton } from '@/components/atoms/Buttons/First/Button'
 
 export const Error = () => {
   return (
@@ -17,7 +17,7 @@ export const Error = () => {
           <Description>申し訳ございませんが再度ログインしてください。</Description>
           <Spacer y={32} />
           <Link href='/auth/login'>
-            <GeneralButton width={200}>Return Login</GeneralButton>
+            <LargeButton>Return Login</LargeButton>
           </Link>
         </MainContents>
       </Container>

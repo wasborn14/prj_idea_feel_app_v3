@@ -14,7 +14,7 @@ import { schema, Schema } from './schema'
 import { BaseModal } from '@/components/mlecules/BaseModal'
 import { SuccessModal } from '@/components/mlecules/BaseModal/SuccessModal'
 import { Input } from '@/components/atoms/Forms/First/Input/Input'
-import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
+import { ShortButton } from '@/components/atoms/Buttons/First/Button'
 import { useGetFeelReasonList, usePostFeelReason } from '@/hooks/api/feel'
 import { LoadingCenter } from '@/components/mlecules/Loading'
 
@@ -135,9 +135,7 @@ export const FeelReasonModal = ({ onClick }: Props) => {
                   />
                 </InputWrapper>
                 <Spacer x={24} />
-                <GeneralButton width={200} type='submit'>
-                  Create
-                </GeneralButton>
+                <ShortButton type='submit'>Create</ShortButton>
               </FeelReasonNewInputContainer>
             </form>
             <Spacer y={24} />

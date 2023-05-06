@@ -32,6 +32,7 @@ export const TRANSPARENT_BLACK_CC = '#000000cc'
 export const DARK_BROWN1 = '#99681d'
 export const DARK_BROWN2 = '#492f08'
 export const DARK_BROWN3 = '#a0540e13'
+export const DARK_BROWN4 = '#b27821'
 
 // 黄色
 export const BRIGHT_YELLOW = '#ffb600'

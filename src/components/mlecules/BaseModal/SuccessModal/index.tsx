@@ -4,7 +4,7 @@ import { Color } from '@/const'
 import { fontStyles } from '@/const/font'
 import styled from 'styled-components'
 import { BaseModal } from '..'
-import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
+import { NormalButton } from '@/components/atoms/Buttons/First/Button'
 
 type Props = {
   successMessage?: string
@@ -36,9 +36,7 @@ export const SuccessModal = ({ successMessage, onClick, description }: Props) =>
         <Spacer y={12} />
         <Description>{description}</Description>
         <Spacer y={24} />
-        <GeneralButton onClick={onClose} width={200}>
-          OK
-        </GeneralButton>
+        <NormalButton onClick={onClose}>OK</NormalButton>
       </Container>
     </BaseModal>
   )

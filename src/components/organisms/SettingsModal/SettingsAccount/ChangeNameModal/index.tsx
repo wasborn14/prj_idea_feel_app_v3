@@ -14,7 +14,7 @@ import { SuccessModal } from '@/components/mlecules/BaseModal/SuccessModal'
 import { BaseModal } from '@/components/mlecules/BaseModal'
 import { ErrorMessage } from '@/components/atoms/Forms/First/ErrorMessage'
 import { Input } from '@/components/atoms/Forms/First/Input/Input'
-import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
+import { NormalButton } from '@/components/atoms/Buttons/First/Button'
 import { useUpdateName } from '@/hooks/api/auth'
 import { LoadingCenter } from '@/components/mlecules/Loading'
 
@@ -98,9 +98,7 @@ export const ChangeNameModal = ({ onClick }: Props) => {
                 />{' '}
               </InputWrapper>
               <ButtonWrapper>
-                <GeneralButton width={280} height={40} type='submit'>
-                  Change Name
-                </GeneralButton>
+                <NormalButton type='submit'>Change Name</NormalButton>
               </ButtonWrapper>
             </VStack>
           </MenuContainer>
