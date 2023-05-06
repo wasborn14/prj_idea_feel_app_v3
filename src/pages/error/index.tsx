@@ -1,1 +1,1 @@
-export { Error as default } from "src/components/pages/Error";
+export { Error as default } from '@/components/pages/Error'

@@ -1,11 +1,11 @@
-import React, { forwardRef, CSSProperties } from "react";
+import React, { forwardRef, CSSProperties } from 'react'
 export interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   active?: {
-    fill: string;
-    background: string;
-  };
-  cursor?: CSSProperties["cursor"];
-  onClick?: () => void;
+    fill: string
+    background: string
+  }
+  cursor?: CSSProperties['cursor']
+  onClick?: () => void
 }
 
 export const Action = forwardRef<HTMLButtonElement, Props>(({ active, cursor, onClick, style, ...props }, ref) => {
@@ -18,11 +18,11 @@ export const Action = forwardRef<HTMLButtonElement, Props>(({ active, cursor, on
         {
           ...style,
           cursor,
-          "--fill": active?.fill,
-          "--background": active?.background,
+          '--fill': active?.fill,
+          '--background': active?.background
         } as CSSProperties
       }
       onClick={onClick}
     />
-  );
-});
+  )
+})
