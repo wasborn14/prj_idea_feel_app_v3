@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useForm } from 'react-hook-form'
-import { GeneralButton } from '@/components/atoms/Buttons/First/Button'
+import { NormalButton } from '@/components/atoms/Buttons/First/Button'
 import { VStack } from '@/components/atoms/Stack/VStack'
 import { HStack } from '@/components/atoms/Stack/HStack'
 import { Input } from '../Input'
@@ -43,9 +43,9 @@ const InputWithHooks = () => {
             <span>Email</span>
             <Input type='text' {...register('email')} width={180} />
           </HStack>
-          <GeneralButton type='submit' width={180} height={36}>
+          <NormalButton type='submit' width={180} height={36}>
             submit
-          </GeneralButton>
+          </NormalButton>
         </VStack>
       </form>
     </>
