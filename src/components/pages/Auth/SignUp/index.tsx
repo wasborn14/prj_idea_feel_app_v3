@@ -29,25 +29,25 @@ export type FormProps = Schema & {}
 
 export const SignUp = () => {
   const router = useRouter()
-  // const defaultValues: FormProps = {
-  //   name: '',
-  //   email: '',
-  //   password: '',
-  //   re_password: ''
-  // }
-  const testValues: FormProps = {
-    name: 'test',
-    email: 'ideafeel.app+2@gmail.com',
-    password: 'password',
-    re_password: 'password'
+  const defaultValues: FormProps = {
+    name: '',
+    email: '',
+    password: '',
+    re_password: ''
   }
+  // const testValues: FormProps = {
+  //   name: 'test',
+  //   email: 'ideafeel.app+2@gmail.com',
+  //   password: 'password',
+  //   re_password: 'password'
+  // }
   const {
     getValues,
     register,
     formState: { errors },
     trigger
   } = useForm({
-    defaultValues: testValues,
+    defaultValues: defaultValues,
     resolver: yupResolver(schema)
   })
   const [emailErrorMessage, setEmailErrorMessage] = useState('')
