@@ -253,7 +253,7 @@ export const CategoryList = ({ collapsible = true, indicator = false, indentatio
     <Container sideWidth={sideWidth}>
       {confirmModalVisible && (
         <ConfirmModal
-          description='test'
+          description='Are you sure you want to delete the child elements?'
           onCancelClick={() => setConfirmModalVisible(false)}
           onApproveClick={() => handleRemove(actionCategoryId)}
         />
