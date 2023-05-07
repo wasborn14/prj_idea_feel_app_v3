@@ -7,6 +7,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLElement> {
   disabled?: boolean
   error?: boolean
   height?: number | string
+  paddingHorizontal?: number
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -23,7 +24,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     restProps.value = fixControlledValue(props.value)
   }
   return (
-    <Wrapper width={restProps.width} height={height}>
+    <Wrapper width={restProps.width} height={height} paddingHorizontal={restProps.paddingHorizontal}>
       <InputWrapper ref={ref} className='input-inner' disabled={disabled} error={error} {...restProps} />
     </Wrapper>
   )
@@ -32,6 +33,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 const Wrapper = styled.div<{
   width?: number | string
   height?: number | string
+  paddingHorizontal?: number
 }>`
   display: flex;
   width: ${({ width }) => width ?? '100%'};
@@ -40,7 +42,14 @@ const Wrapper = styled.div<{
 
   .input-inner {
     width: 100%;
-    padding: 5px 18px;
+    ${({ paddingHorizontal }) =>
+      paddingHorizontal
+        ? css`
+            padding: 5px ${paddingHorizontal}px;
+          `
+        : css`
+            padding: 5px 18px;
+          `}
     ${fontStyles['16px']};
     font-weight: 400;
     color: ${Color.BLACK};

@@ -51,3 +51,12 @@ export const createViewTitle = (title: string) => {
     return title.toString().replace(/IDEA_IDENTIFIER[0-9]{1,10}$/, '')
   }
 }
+
+export const isValidUrl = (url: string) => {
+  try {
+    new URL(url)
+    return true
+  } catch (err) {
+    return false
+  }
+}

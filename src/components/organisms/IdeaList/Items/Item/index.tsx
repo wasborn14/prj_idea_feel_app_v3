@@ -5,8 +5,10 @@ import type { Transform } from '@dnd-kit/utilities'
 import { Handle, Remove } from '@/components/atoms/DndItems'
 import styled from 'styled-components'
 import { ItemInput } from '../ItemInput'
-import { createViewTitle } from '../../utilities'
+import { createViewTitle, isValidUrl } from '../../utilities'
 import { Color } from '@/const'
+import { NewWindow } from '@/components/atoms/DndItems/NewWindow'
+import Link from 'next/link'
 
 export interface Props {
   dragOverlay?: boolean
@@ -69,6 +71,7 @@ export const Item = React.memo(
     ) => {
       const [isEdit, setIsEdit] = useState(false)
       const viewTitle = createViewTitle(value?.toString() ?? '')
+      const isUrl = isValidUrl(viewTitle)
 
       useEffect(() => {
         if (!dragOverlay) {
@@ -124,8 +127,13 @@ export const Item = React.memo(
             >
               <ItemLabel onClick={() => setIsEdit(true)}>{viewTitle}</ItemLabel>
               <Actions>
-                {onRemove ? <Remove onClick={() => onRemove(containerId, value)} /> : null}
-                {handle ? <Handle {...handleProps} {...listeners} /> : null}
+                {isUrl && (
+                  <Link href={viewTitle} target='_blank' passHref>
+                    <NewWindow />
+                  </Link>
+                )}
+                {onRemove && <Remove onClick={() => onRemove(containerId, value)} />}
+                {handle && <Handle {...handleProps} {...listeners} />}
               </Actions>
             </ItemWrapper>
           )}
@@ -149,7 +157,7 @@ const ItemWrapper = styled.div`
   display: flex;
   flex-grow: 1;
   align-items: center;
-  padding: 6px 20px;
+  padding: 6px 10px;
   background-color: ${Color.WHITE};
   box-shadow: 0 0 0 calc(1px / var(--scale-x, 1)) rgba(63, 63, 68, 0.05),
     0 1px calc(3px / var(--scale-x, 1)) 0 rgba(34, 33, 81, 0.15);
@@ -171,6 +179,8 @@ const ItemWrapper = styled.div`
 
 const ItemLabel = styled.div`
   width: 100%;
+  max-width: 210px;
+  word-wrap: break-word;
 `
 
 const Actions = styled.span`
