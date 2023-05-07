@@ -63,17 +63,6 @@ export const Record = ({ baseDate, setBaseDate, isSelectWeek }: Props) => {
 
   const { mutate: postFeelMutate } = usePostFeel()
   const createFeel = (isPredict: boolean) => {
-    // const getFeelList = () => {
-    //   const dates = getStartAndEndDate(baseDate, isSelectWeek)
-    //   fetchFeelList(dates.startDate, dates.endDate)
-    //     .then((res) => {
-    //       dispatch(feelListActions.setFeelListData(res.data))
-    //     })
-    //     .catch((err) => {
-    //       console.error(err.message)
-    //     })
-    // }
-
     const startDate = new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), 0, 0, 0)
     const endDate = new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), 23, 59, 59)
 
@@ -92,22 +81,6 @@ export const Record = ({ baseDate, setBaseDate, isSelectWeek }: Props) => {
         onError: (err: any) => console.error({ err })
       }
     )
-    // postFeel(
-    //   baseDate.toISOString(),
-    //   startDate.toISOString(),
-    //   endDate.toISOString(),
-    //   convertFeelValue(sliderValue),
-    //   Number(selectReason.value),
-    //   memo,
-    //   isPredict
-    // )
-    //   .then(() => {
-    //     // getFeelList()
-    //     refetch()
-    //   })
-    //   .catch(() => {
-    //     console.error('保存失敗')
-    //   })
   }
 
   return (
@@ -159,7 +132,6 @@ const RecordFunctionsContainer = styled.div<{ isSp: boolean }>`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  width: 70%;
 
   ${({ isSp }) =>
     isSp &&

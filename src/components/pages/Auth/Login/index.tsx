@@ -135,9 +135,7 @@ export const Login = () => {
               />
             </InputWrapper>
             <Spacer y={32} />
-            <LargeButton type='submit' width={200}>
-              Login
-            </LargeButton>
+            <LargeButton type='submit'>Login</LargeButton>
             <LinkContainer>
               <Link href='/auth/signUp' passHref>
                 <TextAnchor type='normal' size={18}>
