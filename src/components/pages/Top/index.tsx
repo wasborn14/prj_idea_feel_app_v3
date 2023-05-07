@@ -9,7 +9,7 @@ import Link from 'next/link'
 import { sp } from '@/media'
 import { useIsSp } from '@/hooks/util/useIsSp'
 import { LargeButton } from '@/components/atoms/Buttons/First/Button'
-import { GUID_TITLE_TOP_DESCRIPTION } from '@/const/guideMessages'
+import { GUIDE_SP_TITLE_TOP_DESCRIPTION, GUIDE_TITLE_TOP_DESCRIPTION } from '@/const/guideMessages'
 
 export const Top = () => {
   const isSp = useIsSp()
@@ -22,7 +22,7 @@ export const Top = () => {
           <TitleContainer>
             <Title>Ifee</Title>
             <Spacer y={24} />
-            <Description>{GUID_TITLE_TOP_DESCRIPTION}</Description>
+            <Description>{isSp ? GUIDE_SP_TITLE_TOP_DESCRIPTION : GUIDE_TITLE_TOP_DESCRIPTION}</Description>
             <Spacer y={24} />
             <Link href='/auth/login' passHref>
               <LargeButton type='submit'>Start</LargeButton>
@@ -62,6 +62,7 @@ const Description = styled.p`
   color: ${Color.LIGHT_GRAY2};
   ${fontStyles['18px']}
   ${sp`
+    width: 280px;
     ${fontStyles['14px']}
   `}
   white-space: pre-wrap;

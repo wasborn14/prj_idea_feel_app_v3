@@ -1,10 +1,14 @@
 // ---------------------------- top -------------------------------------
 
-// const GUID_TITLE_TOP_DESCRIPTION =
+// const GUIDE_TITLE_TOP_DESCRIPTION =
 //   '暮らしていく上での考え方や知識を整理し、\n感情の変化を記録・観察していくことで、\n生活をよりよくする行動をしていくためのアプリ'
-export const GUID_TITLE_TOP_DESCRIPTION =
+export const GUIDE_TITLE_TOP_DESCRIPTION =
   'Ifee is designed to help improve your daily life \n by organizing your thoughts and knowledge about \n ' +
   ' how to live, and by recording and observing changes \n in your emotions to encourage positive actions.'
+
+export const GUIDE_SP_TITLE_TOP_DESCRIPTION =
+  'Ifee is designed to help improve your daily life by organizing your thoughts and knowledge about ' +
+  ' how to live, and by recording and observing changes in your emotions to encourage positive actions.'
 
 // export const GUIDE_SUB_CONTENTS_TITLE_1 = '考え方の整理'
 export const GUIDE_SUB_CONTENTS_TITLE_1 = 'Organize your thoughts'
