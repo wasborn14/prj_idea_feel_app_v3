@@ -6,14 +6,15 @@ import Link from 'next/link'
 import { Spacer } from '@/components/atoms/Spacer'
 import { sp } from '@/media'
 import { LargeButton } from '@/components/atoms/Buttons/First/Button'
+import { GUIDE_FAILED_CHANGE_EMAIL, GUIDE_PLEASE_TRY_AGAIN_CHANGE_EMAIL } from '@/const/guideMessages'
 
 export const FailedEmailReset = () => {
   return (
     <Layout meta={{ pageTitle: 'Ifee - CompleteEmailReset' }}>
       <Container>
         <MainContents>
-          <Title>Emailの変更に失敗しました。</Title>
-          <Title>再度Emailの変更を行なってください。</Title>
+          <Title>{GUIDE_FAILED_CHANGE_EMAIL}</Title>
+          <Title>{GUIDE_PLEASE_TRY_AGAIN_CHANGE_EMAIL}</Title>
           <Spacer y={32} />
           <Link href='/auth/login' passHref>
             <LargeButton>Return Login Page</LargeButton>

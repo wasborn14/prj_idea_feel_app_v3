@@ -47,16 +47,6 @@ export const FeelReasonModal = ({ onClick }: Props) => {
   const { mutate: postFeelReason, isLoading } = usePostFeelReason()
 
   const handleClickPostFeelReason = () => {
-    // const getFeelReasonList = () => {
-    //   fetchFeelReasonList()
-    //     .then((res) => {
-    //       dispatch(feelReasonListActions.setFeelReasonListData(res.data))
-    //     })
-    //     .catch((err) => {
-    //       console.error(err.message)
-    //     })
-    // }
-
     postFeelReason(
       { title: getValues('title') },
       {
@@ -64,15 +54,6 @@ export const FeelReasonModal = ({ onClick }: Props) => {
         onError: () => setChangeEmailError('保存できませんでした。')
       }
     )
-    // postFeelReason(getValues('title'))
-    //   .then(() => {
-    //     getFeelReasonList()
-    //     dispatch(dataActions.setIsLoading({ isLoading: false }))
-    //   })
-    //   .catch(() => {
-    //     dispatch(dataActions.setIsLoading({ isLoading: false }))
-    //     setChangeEmailError('保存できませんでした。')
-    //   })
   }
 
   // モーダル開閉処理関連
@@ -91,20 +72,6 @@ export const FeelReasonModal = ({ onClick }: Props) => {
     setIsSuccessModalVisible(false)
     onClick()
   }
-
-  // useEffect(() => {
-  //   const getFeelReasonList = () => {
-  //     fetchFeelReasonList()
-  //       .then((res) => {
-  //         dispatch(feelReasonListActions.setFeelReasonListData(res.data))
-  //       })
-  //       .catch((err) => {
-  //         console.error(err.message)
-  //       })
-  //   }
-
-  //   getFeelReasonList()
-  // }, [dispatch])
 
   return (
     <BaseModal width={1000} color='white' isRadius onClick={onClose}>

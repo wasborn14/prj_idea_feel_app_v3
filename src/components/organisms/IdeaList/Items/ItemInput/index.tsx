@@ -11,6 +11,7 @@ import { createNewTitle, createViewTitle } from '../../utilities'
 import { schema, Schema } from './schema'
 import { Input } from '@/components/atoms/Forms/First/Input/Input'
 import { usePutIdeaList } from '@/hooks/api/idea'
+import { Color } from '@/const'
 
 type Props = {
   isNew?: boolean
@@ -152,8 +153,8 @@ const InputWrapper = styled.div`
   height: 37px;
   width: 100%;
   display: flex;
-  background-color: #fff;
+  background-color: ${Color.WHITE};
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid ${Color.TRANSPARENT_BLACK_10};
 `

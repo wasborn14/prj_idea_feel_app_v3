@@ -3,12 +3,12 @@ import { Color } from '@/const'
 import { fontStyles } from '@/const/font'
 import { sp } from '@/media'
 import { useIsSp } from '@/hooks/util/useIsSp'
-
-const SUB_CONTENTS_DESCRIPTION_1 = '階層構造のメモで思考を整理します'
-
-const SUB_CONTENTS_DESCRIPTION_2 = '感情の上がり下がりの傾向を掴み対策を行います'
-
-// const SUB_CONTENTS_DESCRIPTION_3 = "日々学んだことや記録したいことをまとめます";
+import {
+  GUIDE_SUB_CONTENTS_DESCRIPTION_1,
+  GUIDE_SUB_CONTENTS_DESCRIPTION_2,
+  GUIDE_SUB_CONTENTS_TITLE_1,
+  GUIDE_SUB_CONTENTS_TITLE_2
+} from '@/const/guideMessages'
 
 export const SubContents = () => {
   const isSp = useIsSp()
@@ -25,14 +25,14 @@ export const SubContents = () => {
           />
         </SubContentsImageWrapper>
         <SubContentsTitleContainer>
-          <SubContentsTitle>考え方の整理</SubContentsTitle>
-          <Description>{SUB_CONTENTS_DESCRIPTION_1}</Description>
+          <SubContentsTitle>{GUIDE_SUB_CONTENTS_TITLE_1}</SubContentsTitle>
+          <Description>{GUIDE_SUB_CONTENTS_DESCRIPTION_1}</Description>
         </SubContentsTitleContainer>
       </SubContentsWrapper>
       <SubContentsWrapper>
         <SubContentsTitleContainer>
-          <SubContentsTitle>感情の記録と観察</SubContentsTitle>
-          <Description>{SUB_CONTENTS_DESCRIPTION_2}</Description>
+          <SubContentsTitle>{GUIDE_SUB_CONTENTS_TITLE_2}</SubContentsTitle>
+          <Description>{GUIDE_SUB_CONTENTS_DESCRIPTION_2}</Description>
         </SubContentsTitleContainer>
         <SubContentsImageWrapper>
           <img
@@ -103,9 +103,9 @@ const Description = styled.p`
   margin-top: 24px;
   color: ${Color.LIGHT_GRAY2};
   white-space: pre-wrap;
-  ${fontStyles['16px']}
+  ${fontStyles['18px']}
   ${sp`
     margin-top: 16px;
-    ${fontStyles['12px']}
+    ${fontStyles['14px']}
   `}
 `

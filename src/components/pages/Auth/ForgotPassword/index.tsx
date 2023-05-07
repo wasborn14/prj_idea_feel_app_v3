@@ -15,6 +15,7 @@ import { SuccessModal } from '@/components/mlecules/BaseModal/SuccessModal'
 import { ErrorMessage } from '@/components/atoms/Forms/First/ErrorMessage'
 import { useResetPasswordRequest } from '@/hooks/api/auth'
 import { LoadingCenter } from '@/components/mlecules/Loading'
+import { GUIDE_SENT_YOU_EMAIL_FOR_RESET_PASSWORD } from '@/const/guideMessages'
 
 export type FormProps = Schema & {}
 
@@ -58,7 +59,7 @@ export const ForgotPassword = () => {
         <SuccessModal
           successMessage='Email Send'
           onClick={handleClickCloseSuccessModal}
-          description='パスワードリセット用のメールを送信しました。'
+          description={GUIDE_SENT_YOU_EMAIL_FOR_RESET_PASSWORD}
         />
       )}
       <LoadingCenter isLoading={isLoading} />

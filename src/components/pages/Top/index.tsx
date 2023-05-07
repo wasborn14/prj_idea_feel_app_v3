@@ -9,9 +9,7 @@ import Link from 'next/link'
 import { sp } from '@/media'
 import { useIsSp } from '@/hooks/util/useIsSp'
 import { LargeButton } from '@/components/atoms/Buttons/First/Button'
-
-const TITLE_DESCRIPTION =
-  '暮らしていく上での考え方や知識を整理し、\n感情の変化を記録・観察していくことで、\n生活をよりよくする行動をしていくためのアプリ'
+import { GUID_TITLE_TOP_DESCRIPTION } from '@/const/guideMessages'
 
 export const Top = () => {
   const isSp = useIsSp()
@@ -24,12 +22,10 @@ export const Top = () => {
           <TitleContainer>
             <Title>Ifee</Title>
             <Spacer y={24} />
-            <Description>{TITLE_DESCRIPTION}</Description>
+            <Description>{GUID_TITLE_TOP_DESCRIPTION}</Description>
             <Spacer y={24} />
             <Link href='/auth/login' passHref>
-              <LargeButton type='submit' width={200}>
-                Start
-              </LargeButton>
+              <LargeButton type='submit'>Start</LargeButton>
             </Link>
           </TitleContainer>
           <ImageWrapper>
@@ -64,9 +60,9 @@ const Title = styled.h1`
 
 const Description = styled.p`
   color: ${Color.LIGHT_GRAY2};
-  ${fontStyles['16px']}
+  ${fontStyles['18px']}
   ${sp`
-    ${fontStyles['12px']}
+    ${fontStyles['14px']}
   `}
   white-space: pre-wrap;
 `

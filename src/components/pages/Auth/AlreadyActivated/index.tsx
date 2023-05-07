@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Spacer } from '@/components/atoms/Spacer'
 import { sp } from '@/media'
 import { LargeButton } from '@/components/atoms/Buttons/First/Button'
+import { GUIDE_ALREADY_COMPLETED_REGISTRATION } from '@/const/guideMessages'
 
 export const AlreadyActivated = () => {
   return (
@@ -13,7 +14,7 @@ export const AlreadyActivated = () => {
       <Container>
         <MainContents>
           <TitleWrapper>
-            <Title>こちらのアカウントは既に本登録が完了しています。</Title>
+            <Title>{GUIDE_ALREADY_COMPLETED_REGISTRATION}</Title>
           </TitleWrapper>
           <Spacer y={32} />
           <Link href='/auth/login' passHref>

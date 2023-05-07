@@ -18,6 +18,12 @@ import { SuccessModal } from '@/components/mlecules/BaseModal/SuccessModal'
 import { useSignUpMutation } from '@/hooks/api/auth'
 import { LoadingCenter } from '@/components/mlecules/Loading'
 import { TextAnchor } from '@/components/atoms/Anchors/First/TextAnchor'
+import {
+  CLASS_PREVENT_DOUBLE_CLICK_BUTTON,
+  asyncResetDisableButton,
+  resetDisableButton
+} from '@/components/organisms/Wrapper/PreventDoubleClick'
+import { GUIDE_COMPLETED_TEMPORARY_REGISTRATION } from '@/const/guideMessages'
 
 export type FormProps = Schema & {}
 
@@ -37,9 +43,9 @@ export const SignUp = () => {
   }
   const {
     getValues,
-    handleSubmit,
     register,
-    formState: { errors }
+    formState: { errors },
+    trigger
   } = useForm({
     defaultValues: testValues,
     resolver: yupResolver(schema)
@@ -54,21 +60,29 @@ export const SignUp = () => {
 
   const { mutate: signUpMutate, isLoading } = useSignUpMutation()
 
-  const authUser = () => {
+  const handleClickSignUp = async (button: HTMLButtonElement) => {
+    const validationCheckResult = await trigger()
+    if (!validationCheckResult) {
+      return asyncResetDisableButton(button)
+    }
     if (isDifferentPasswordMatch()) {
       setPasswordErrorMessage(ERROR_AUTH_ENTER_PASSWORD_SAME)
-      return
+      return asyncResetDisableButton(button)
     }
-
     signUpMutate(
       { name: getValues('name'), email: getValues('email'), password: getValues('password') },
       {
-        onSuccess: () => setIsSuccessModalVisible(true),
-        onError: (error: any) => setEmailErrorMessage(error.response.data.email[0])
+        onSuccess: () => {
+          resetDisableButton(button)
+          setIsSuccessModalVisible(true)
+        },
+        onError: (error: any) => {
+          setEmailErrorMessage(error.response.data.email[0])
+          resetDisableButton(button)
+        }
       }
     )
   }
-
   const handleClickCloseSuccessModal = () => {
     setIsSuccessModalVisible(false)
     router.push({ pathname: '/auth/verifyEmail', query: { email: getValues('email') } })
@@ -77,74 +91,79 @@ export const SignUp = () => {
   return (
     <Layout meta={{ pageTitle: 'Ifee - SignUp' }}>
       {isSuccessModalVisible && (
-        <SuccessModal onClick={handleClickCloseSuccessModal} description='仮登録が完了しました。' />
+        <SuccessModal onClick={handleClickCloseSuccessModal} description={GUIDE_COMPLETED_TEMPORARY_REGISTRATION} />
       )}
       <Container>
-        <form onSubmit={handleSubmit(authUser)}>
-          <MainContents>
-            <LoadingCenter isLoading={isLoading} />
-            <Title>SignUp</Title>
-            <InputWrapper>
-              <ErrorMessage errorMessage={errors.name?.message} />
-              <Input
-                {...register('name')}
-                autoComplete='name'
-                placeholder='Name'
-                error={errors.name?.message !== undefined}
-              />
-            </InputWrapper>
-            <InputWrapper>
-              <ErrorMessage errorMessage={errors.email?.message ?? emailErrorMessage} />
-              <Input
-                {...register('email', {
-                  onChange: () => {
-                    setEmailErrorMessage('')
-                  }
-                })}
-                autoComplete='email'
-                placeholder='Email'
-                error={errors.email?.message !== undefined}
-              />
-            </InputWrapper>
-            <InputWrapper>
-              <ErrorMessage errorMessage={errors.password?.message} />
-              <Input
-                {...register('password', {
-                  onChange: () => {
-                    setPasswordErrorMessage('')
-                  }
-                })}
-                autoComplete='current-password'
-                placeholder='Password'
-                type='password'
-                error={errors.password?.message !== undefined}
-              />
-            </InputWrapper>
-            <InputWrapper>
-              <ErrorMessage errorMessage={errors.password?.message ?? passwordErrorMessage} />
-              <Input
-                {...register('re_password', {
-                  onChange: () => {
-                    setPasswordErrorMessage('')
-                  }
-                })}
-                autoComplete='current-password'
-                placeholder='Confirm Password'
-                type='password'
-                error={errors.password?.message !== undefined}
-              />
-            </InputWrapper>
-            <Spacer y={32} />
-            <LargeButton type='submit'>SignUp</LargeButton>
-            <LinkContainer>
-              <Link href='/auth/login' passHref>
-                <TextAnchor type='normal' size={18}>
-                  Return Login
-                </TextAnchor>
-              </Link>
-            </LinkContainer>
-          </MainContents>
-        </form>
+        <MainContents>
+          <LoadingCenter isLoading={isLoading} />
+          <Title>SignUp</Title>
+          <InputWrapper>
+            <ErrorMessage errorMessage={errors.name?.message} />
+            <Input
+              {...register('name')}
+              autoComplete='name'
+              placeholder='Name'
+              error={errors.name?.message !== undefined}
+            />
+          </InputWrapper>
+          <InputWrapper>
+            <ErrorMessage errorMessage={errors.email?.message ?? emailErrorMessage} />
+            <Input
+              {...register('email', {
+                onChange: () => {
+                  setEmailErrorMessage('')
+                }
+              })}
+              autoComplete='email'
+              placeholder='Email'
+              error={errors.email?.message !== undefined}
+            />
+          </InputWrapper>
+          <InputWrapper>
+            <ErrorMessage errorMessage={errors.password?.message} />
+            <Input
+              {...register('password', {
+                onChange: () => {
+                  setPasswordErrorMessage('')
+                }
+              })}
+              autoComplete='current-password'
+              placeholder='Password'
+              type='password'
+              error={errors.password?.message !== undefined}
+            />
+          </InputWrapper>
+          <InputWrapper>
+            <ErrorMessage errorMessage={errors.re_password?.message ?? passwordErrorMessage} />
+            <Input
+              {...register('re_password', {
+                onChange: () => {
+                  setPasswordErrorMessage('')
+                }
+              })}
+              autoComplete='current-password'
+              placeholder='Confirm Password'
+              type='password'
+              error={errors.password?.message !== undefined}
+            />
+          </InputWrapper>
+          <Spacer y={32} />
+          <LargeButton
+            onClick={(e) => {
+              handleClickSignUp(e.target as HTMLButtonElement)
+            }}
+            className={CLASS_PREVENT_DOUBLE_CLICK_BUTTON}
+          >
+            SignUp
+          </LargeButton>
+          <LinkContainer>
+            <Link href='/auth/login' passHref>
+              <TextAnchor type='normal' size={18}>
+                Return Login
+              </TextAnchor>
+            </Link>
+          </LinkContainer>
+        </MainContents>
       </Container>
     </Layout>
   )

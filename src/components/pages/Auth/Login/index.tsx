@@ -21,7 +21,7 @@ import { useLogin } from '@/hooks/api/auth'
 import { TextAnchor } from '@/components/atoms/Anchors/First/TextAnchor'
 import { LoadingCenter } from '@/components/mlecules/Loading'
 
-// ローカルストレージに変えることも検討
+// TODO:ローカルストレージに変えることも検討
 const cookie = new Cookie()
 
 export type FormProps = Schema & {}
@@ -135,9 +135,7 @@ export const Login = () => {
               />
             </InputWrapper>
             <Spacer y={32} />
-            <LargeButton type='submit' width={200}>
-              Login
-            </LargeButton>
+            <LargeButton type='submit'>Login</LargeButton>
             <LinkContainer>
               <Link href='/auth/signUp' passHref>
                 <TextAnchor type='normal' size={18}>
