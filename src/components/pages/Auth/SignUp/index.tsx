@@ -23,6 +23,7 @@ import {
   asyncResetDisableButton,
   resetDisableButton
 } from '@/components/organisms/Wrapper/PreventDoubleClick'
+import { GUIDE_COMPLETED_TEMPORARY_REGISTRATION } from '@/const/guideMessages'
 
 export type FormProps = Schema & {}
 
@@ -90,7 +91,7 @@ export const SignUp = () => {
   return (
     <Layout meta={{ pageTitle: 'Ifee - SignUp' }}>
       {isSuccessModalVisible && (
-        <SuccessModal onClick={handleClickCloseSuccessModal} description='仮登録が完了しました。' />
+        <SuccessModal onClick={handleClickCloseSuccessModal} description={GUIDE_COMPLETED_TEMPORARY_REGISTRATION} />
       )}
       <Container>
         <MainContents>

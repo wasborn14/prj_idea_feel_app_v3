@@ -21,7 +21,7 @@ import { useLogin } from '@/hooks/api/auth'
 import { TextAnchor } from '@/components/atoms/Anchors/First/TextAnchor'
 import { LoadingCenter } from '@/components/mlecules/Loading'
 
-// ローカルストレージに変えることも検討
+// TODO:ローカルストレージに変えることも検討
 const cookie = new Cookie()
 
 export type FormProps = Schema & {}

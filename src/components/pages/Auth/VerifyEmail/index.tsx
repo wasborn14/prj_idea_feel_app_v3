@@ -11,6 +11,11 @@ import { LargeButton } from '@/components/atoms/Buttons/First/Button'
 import { SuccessModal } from '@/components/mlecules/BaseModal/SuccessModal'
 import { useResendActivation } from '@/hooks/api/auth'
 import { LoadingCenter } from '@/components/mlecules/Loading'
+import {
+  GUIDE_COMPLETED_SEND_EMAIL_FOR_ACTIVATE,
+  GUIDE_EMAIL_VERIFY_REQUIRED,
+  GUIDE_PLEASE_ACTIVATE_FROM_ADDRESS_ATTACHED_EMAIL
+} from '@/const/guideMessages'
 
 export const VerifyEmail = () => {
   const [isResendVerifyEmail, setIsResendVerifyEmail] = useState(false)
@@ -33,14 +38,17 @@ export const VerifyEmail = () => {
   return (
     <Layout meta={{ pageTitle: 'Ifee - VerifyEmail' }}>
       {isResendVerifyEmail && (
-        <SuccessModal onClick={() => setIsResendVerifyEmail(false)} description='メールの送信が完了しました。' />
+        <SuccessModal
+          onClick={() => setIsResendVerifyEmail(false)}
+          description={GUIDE_COMPLETED_SEND_EMAIL_FOR_ACTIVATE}
+        />
       )}
       <Container>
         <LoadingCenter isLoading={isLoading} />
         <MainContents>
-          <Title>Emailの認証が必要です</Title>
+          <Title>{GUIDE_EMAIL_VERIFY_REQUIRED}</Title>
           <Spacer y={8} />
-          <Description>メールに添付されたアドレスから本登録を完了してください。</Description>
+          <Description>{GUIDE_PLEASE_ACTIVATE_FROM_ADDRESS_ATTACHED_EMAIL}</Description>
           <Spacer y={32} />
           <LargeButton onClick={sendEmail}>Resend Email</LargeButton>
           <Spacer y={32} />
