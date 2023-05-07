@@ -13,7 +13,8 @@ export const ERROR_AUTH_ENTER_EMAIL_SAME = 'Enter same email'
 // export const ERROR_AUTH_ENTER_EMAIL = "Please enter your email";
 // export const ERROR_AUTH_ENTER_PASSWORD = 'パスワードを入力してください'
 export const ERROR_AUTH_ENTER_PASSWORD = 'Please enter your password'
-export const ERROR_AUTH_ENTER_NEW_PASSWORD = '新しいパスワードを入力してください'
+// export const ERROR_AUTH_ENTER_NEW_PASSWORD = '新しいパスワードを入力してください'
+export const ERROR_AUTH_ENTER_NEW_PASSWORD = 'Enter new password'
 // export const ERROR_AUTH_ENTER_PASSWORD_SAME = '同じパスワードを入力してください'
 export const ERROR_AUTH_ENTER_PASSWORD_SAME = 'Enter same password'
 

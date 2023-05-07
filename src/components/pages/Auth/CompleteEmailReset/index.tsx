@@ -6,14 +6,15 @@ import Link from 'next/link'
 import { Spacer } from '@/components/atoms/Spacer'
 import { sp } from '@/media'
 import { LargeButton } from '@/components/atoms/Buttons/First/Button'
+import { GUIDE_COMPLETED_CHANGE_EMAIL, GUIDE_PLEASE_LOGIN_BY_CHANGED_EMAIL } from '@/const/guideMessages'
 
 export const CompleteEmailReset = () => {
   return (
     <Layout meta={{ pageTitle: 'Ifee - CompleteEmailReset' }}>
       <Container>
         <MainContents>
-          <Title>Emailの変更が完了しました。</Title>
-          <Title>変更後のアドレスでログインしてください。</Title>
+          <Title>{GUIDE_COMPLETED_CHANGE_EMAIL}</Title>
+          <Title>{GUIDE_PLEASE_LOGIN_BY_CHANGED_EMAIL}</Title>
           <Spacer y={32} />
           <Link href='/auth/login' passHref>
             <LargeButton>Return Login Page</LargeButton>

@@ -6,13 +6,14 @@ import Link from 'next/link'
 import { Spacer } from '@/components/atoms/Spacer'
 import { sp } from '@/media'
 import { LargeButton } from '@/components/atoms/Buttons/First/Button'
+import { GUIDE_COMPLETED_REGISTRATION } from '@/const/guideMessages'
 
 export const Activated = () => {
   return (
     <Layout meta={{ pageTitle: 'Ifee - Activated' }}>
       <Container>
         <MainContents>
-          <Title>本登録が完了しました。</Title>
+          <Title>{GUIDE_COMPLETED_REGISTRATION}</Title>
           <Spacer y={32} />
           <Link href='/auth/login' passHref>
             <LargeButton>Return Login Page</LargeButton>

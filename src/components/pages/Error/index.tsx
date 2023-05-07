@@ -6,15 +6,16 @@ import Link from 'next/link'
 import { Spacer } from '@/components/atoms/Spacer'
 import { sp } from '@/media'
 import { LargeButton } from '@/components/atoms/Buttons/First/Button'
+import { GUIDE_AN_ERROR_HAS_OCCURRED, GUIDE_PLEASE_TRY_AGAIN_LOGIN } from '@/const/guideMessages'
 
 export const Error = () => {
   return (
     <Layout meta={{ pageTitle: 'Ifee - Error' }}>
       <Container>
         <MainContents>
-          <Title>エラーが発生しました。</Title>
+          <Title>{GUIDE_AN_ERROR_HAS_OCCURRED}</Title>
           <Spacer y={8} />
-          <Description>申し訳ございませんが再度ログインしてください。</Description>
+          <Description>{GUIDE_PLEASE_TRY_AGAIN_LOGIN}</Description>
           <Spacer y={32} />
           <Link href='/auth/login'>
             <LargeButton>Return Login</LargeButton>
