@@ -174,7 +174,7 @@ export const FeelContents = () => {
         {isSp && (
           <>
             <Spacer y={12} />
-            <NormalButton width={200} onClick={() => setIsRecordOpen(!isRecordOpen)}>
+            <NormalButton onClick={() => setIsRecordOpen(!isRecordOpen)}>
               {isRecordOpen ? 'Close' : 'Record'}
             </NormalButton>
           </>

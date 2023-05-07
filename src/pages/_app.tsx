@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import { ReactNode } from 'react'
 import { Provider } from 'react-redux'
 import { store } from '@/store'
+import { PreventDoubleClick } from '@/components/organisms/Wrapper/PreventDoubleClick'
 
 const Providers = ({ children }: { children: ReactNode }) => {
   const queryClient = new QueryClient()
@@ -12,7 +13,9 @@ const Providers = ({ children }: { children: ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalStyles />
-      <Provider store={store}>{children}</Provider>
+      <PreventDoubleClick>
+        <Provider store={store}>{children}</Provider>
+      </PreventDoubleClick>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   )

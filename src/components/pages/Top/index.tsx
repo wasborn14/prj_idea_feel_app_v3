@@ -27,9 +27,7 @@ export const Top = () => {
             <Description>{TITLE_DESCRIPTION}</Description>
             <Spacer y={24} />
             <Link href='/auth/login' passHref>
-              <LargeButton type='submit' width={200}>
-                Start
-              </LargeButton>
+              <LargeButton type='submit'>Start</LargeButton>
             </Link>
           </TitleContainer>
           <ImageWrapper>
