@@ -35,12 +35,6 @@ export const SignUp = () => {
     password: '',
     re_password: ''
   }
-  // const testValues: FormProps = {
-  //   name: 'test',
-  //   email: 'ideafeel.app+2@gmail.com',
-  //   password: 'password',
-  //   re_password: 'password'
-  // }
   const {
     getValues,
     register,
