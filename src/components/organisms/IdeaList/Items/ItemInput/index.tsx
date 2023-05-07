@@ -138,6 +138,7 @@ export const ItemInput = ({ isNew, value, containerId, onInputClose }: Props) =>
             autoComplete='text'
             placeholder='Enter Title ...'
             autoFocus
+            paddingHorizontal={8}
           />
         </InputWrapper>
       </form>
