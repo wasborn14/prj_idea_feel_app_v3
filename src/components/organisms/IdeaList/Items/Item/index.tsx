@@ -3,7 +3,7 @@ import type { DraggableSyntheticListeners, UniqueIdentifier } from '@dnd-kit/cor
 import type { Transform } from '@dnd-kit/utilities'
 
 import { Handle, Remove } from '@/components/atoms/DndItems'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { ItemInput } from '../ItemInput'
 import { createViewTitle, isValidUrl } from '../../utilities'
 import { Color } from '@/const'
@@ -125,7 +125,9 @@ export const Item = React.memo(
               {...props}
               tabIndex={!handle ? 0 : undefined}
             >
-              <ItemLabel onClick={() => setIsEdit(true)}>{viewTitle}</ItemLabel>
+              <ItemLabel onClick={() => setIsEdit(true)} isUrl={isUrl}>
+                {viewTitle}
+              </ItemLabel>
               <Actions>
                 {isUrl && (
                   <Link href={viewTitle} target='_blank' passHref>
@@ -177,9 +179,14 @@ const ItemWrapper = styled.div`
   transition: box-shadow 200ms cubic-bezier(0.18, 0.67, 0.6, 1.22);
 `
 
-const ItemLabel = styled.div`
+const ItemLabel = styled.div<{ isUrl: boolean }>`
   width: 100%;
   max-width: 210px;
+  ${({ isUrl }) =>
+    !isUrl &&
+    css`
+      max-width: 230px;
+    `}
   word-wrap: break-word;
 `
 
