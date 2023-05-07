@@ -1,11 +1,12 @@
 import { useRef } from 'react'
 import { Spacer } from '@/components/atoms/Spacer'
-import { HStack } from '@/components/atoms/Stack/HStack'
 import { Color } from '@/const'
 import { fontStyles } from '@/const/font'
 import styled from 'styled-components'
 import { BaseModal } from '..'
 import { NormalButton } from '@/components/atoms/Buttons/First/Button'
+import { useIsSp } from '@/hooks/util/useIsSp'
+import { sp } from '@/media'
 
 type Props = {
   description: string
@@ -15,6 +16,7 @@ type Props = {
 
 export const ConfirmModal = ({ description, onApproveClick, onCancelClick }: Props) => {
   const isInnerClick = useRef(false)
+  const isSp = useIsSp()
 
   // モーダル開閉処理関連
   const onInnerClick = () => {
@@ -37,15 +39,29 @@ export const ConfirmModal = ({ description, onApproveClick, onCancelClick }: Pro
   }
 
   return (
-    <BaseModal width={580} color='white' isRadius onClick={handleClickCancelClick} wrapperId='confirm-modal'>
+    <BaseModal
+      width={isSp ? 350 : 580}
+      color='white'
+      isRadius
+      onClick={handleClickCancelClick}
+      wrapperId='confirm-modal'
+    >
       <Container onClick={onInnerClick}>
         <Description>{description}</Description>
         <Spacer y={32} />
-        <HStack>
-          <NormalButton onClick={handleClickCancelClick}>Cancel</NormalButton>
-          <Spacer x={24} />
-          <NormalButton onClick={handleClickApproveClick}>OK</NormalButton>
-        </HStack>
+        {isSp ? (
+          <ButtonWrapper>
+            <NormalButton onClick={handleClickApproveClick}>OK</NormalButton>
+            <Spacer y={12} />
+            <NormalButton onClick={handleClickCancelClick}>Cancel</NormalButton>
+          </ButtonWrapper>
+        ) : (
+          <ButtonWrapper>
+            <NormalButton onClick={handleClickCancelClick}>Cancel</NormalButton>
+            <Spacer x={24} />
+            <NormalButton onClick={handleClickApproveClick}>OK</NormalButton>
+          </ButtonWrapper>
+        )}
       </Container>
     </BaseModal>
   )
@@ -61,4 +77,13 @@ const Container = styled.div`
 const Description = styled.p`
   color: ${Color.LIGHT_GRAY2};
   ${fontStyles['16px']}
+`
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  ${sp`
+    flex-direction:column;
+  `}
 `
