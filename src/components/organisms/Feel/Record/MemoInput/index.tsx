@@ -3,7 +3,7 @@ import { fontStyles } from '@/const/font'
 import styled, { css } from 'styled-components'
 import { Dispatch, SetStateAction } from 'react'
 import { useIsSp } from '@/hooks/util/useIsSp'
-import { TextArea } from '@/components/atoms/Forms/First/TextArea'
+import { TextArea } from '@/components/atoms/Forms/TextArea'
 
 type Props = {
   setMemo: Dispatch<SetStateAction<string>>

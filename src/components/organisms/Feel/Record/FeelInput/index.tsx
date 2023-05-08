@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction } from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
 import 'rc-slider/assets/index.css'
 import { useIsSp } from '@/hooks/util/useIsSp'
-import { FormSlider } from '@/components/atoms/Forms/Second/FormSlider'
+import { FormSlider } from '@/components/atoms/Forms/FormSlider'
 
 type Props = {
   sliderValue: number

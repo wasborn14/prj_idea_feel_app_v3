@@ -3,7 +3,7 @@ import { fontStyles } from '@/const/font'
 import styled from 'styled-components'
 import { Dispatch, SetStateAction } from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
-import { FormDatePicker } from '@/components/atoms/Forms/Second/Date'
+import { FormDatePicker } from '@/components/atoms/Forms/Date'
 
 type Props = {
   baseDate: Date

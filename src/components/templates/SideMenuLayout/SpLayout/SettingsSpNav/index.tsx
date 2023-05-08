@@ -11,7 +11,7 @@ import Cookie from 'universal-cookie'
 import { ChangeEmailModal } from '../../../../organisms/SettingsModal/SettingsAccount/ChangeEmailModal'
 import { ChangeNameModal } from '../../../../organisms/SettingsModal/SettingsAccount/ChangeNameModal'
 import { ChangePasswordModal } from '../../../../organisms/SettingsModal/SettingsAccount/ChangePasswordModal'
-import { NormalButton } from '@/components/atoms/Buttons/First/Button'
+import { NormalButton } from '@/components/atoms/Buttons/Button'
 import { Spacer } from '@/components/atoms/Spacer'
 
 const cookie = new Cookie()

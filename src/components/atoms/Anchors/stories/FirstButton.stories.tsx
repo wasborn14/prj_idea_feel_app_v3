@@ -1,28 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { TextAnchor } from '../TextAnchor'
 
-// More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta: Meta<typeof TextAnchor> = {
   title: 'Atoms/Anchor',
   component: TextAnchor,
-  tags: ['autodocs']
-  // argTypes: {
-  //   // backgroundColor: {
-  //   //   control: 'color'
-  //   // }
-  //   type: {
-  //     options: ['button', 'submit']
-  //   },
-  //   width: {
-  //     control: 100
-  //   }
-  // }
+  tags: ['autodocs'],
+  argTypes: {
+    type: {
+      options: ['normal', 'error']
+    }
+  }
 }
 
 export default meta
 type Story = StoryObj<typeof TextAnchor>
-
-// More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 
 export const Anchor: Story = {
   args: {

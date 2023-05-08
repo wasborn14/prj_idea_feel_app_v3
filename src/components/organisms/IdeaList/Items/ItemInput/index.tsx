@@ -9,7 +9,7 @@ import { actions as ideaListActions, ideaListDataSelector } from '@/store/domain
 import styled from 'styled-components'
 import { createNewTitle, createViewTitle } from '../../utilities'
 import { schema, Schema } from './schema'
-import { Input } from '@/components/atoms/Forms/First/Input/Input'
+import { Input } from '@/components/atoms/Forms/Input/Input'
 import { usePutIdeaList } from '@/hooks/api/idea'
 import { Color } from '@/const'
 
