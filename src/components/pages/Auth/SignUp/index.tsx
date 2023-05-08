@@ -11,13 +11,13 @@ import styled from 'styled-components'
 import { Schema, schema } from './schema'
 import { sp } from '@/media'
 import { Layout } from '@/components/templates/Layout'
-import { LargeButton } from '@/components/atoms/Buttons/First/Button'
-import { Input } from '@/components/atoms/Forms/First/Input/Input'
-import { ErrorMessage } from '@/components/atoms/Forms/First/ErrorMessage'
+import { LargeButton } from '@/components/atoms/Buttons/Button'
+import { Input } from '@/components/atoms/Forms/Input/Input'
+import { ErrorMessage } from '@/components/atoms/Forms/ErrorMessage'
 import { SuccessModal } from '@/components/mlecules/BaseModal/SuccessModal'
 import { useSignUpMutation } from '@/hooks/api/auth'
 import { LoadingCenter } from '@/components/mlecules/Loading'
-import { TextAnchor } from '@/components/atoms/Anchors/First/TextAnchor'
+import { TextAnchor } from '@/components/atoms/Anchors/TextAnchor'
 import {
   CLASS_PREVENT_DOUBLE_CLICK_BUTTON,
   asyncResetDisableButton,

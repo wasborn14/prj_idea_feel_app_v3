@@ -8,7 +8,7 @@ import { SimpleLayout } from '@/components/templates/SimpleLayout'
 import Link from 'next/link'
 import { sp } from '@/media'
 import { useIsSp } from '@/hooks/util/useIsSp'
-import { LargeButton } from '@/components/atoms/Buttons/First/Button'
+import { LargeButton } from '@/components/atoms/Buttons/Button'
 import { GUIDE_SP_TITLE_TOP_DESCRIPTION, GUIDE_TITLE_TOP_DESCRIPTION } from '@/const/guideMessages'
 
 export const Top = () => {

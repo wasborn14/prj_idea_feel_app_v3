@@ -4,7 +4,7 @@ import { Color } from '@/const'
 import { fontStyles } from '@/const/font'
 import styled from 'styled-components'
 import { BaseModal } from '..'
-import { NormalButton } from '@/components/atoms/Buttons/First/Button'
+import { NormalButton } from '@/components/atoms/Buttons/Button'
 import { useIsSp } from '@/hooks/util/useIsSp'
 import { sp } from '@/media'
 

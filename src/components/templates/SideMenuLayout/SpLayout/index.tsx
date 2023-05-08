@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Header } from './Header'
 import { SideMenu } from './SideMenu'
 import { SettingsMenu } from './SettingsMenu'
-import { DeleteIcon } from '@/components/atoms/Icons/Shared/DeleteIcon'
+import { DeleteIcon } from '@/components/atoms/Icons/DeleteIcon'
 import { SettingsSpAccount } from '@/components/templates/SideMenuLayout/SpLayout/SettingsSpNav'
 
 type Props = {

@@ -9,8 +9,8 @@ import 'react-dropdown/style.css'
 import { useSelector } from 'react-redux'
 import { feelReasonSelectListDataSelector } from '@/store/domain/feelReasonSelectList'
 import { FeelReasonModal } from '../FeelReasonModal'
-import { ShortButton } from '@/components/atoms/Buttons/First/Button'
-import { FormDropdown } from '@/components/atoms/Forms/Second/FormDropdown'
+import { ShortButton } from '@/components/atoms/Buttons/Button'
+import { FormDropdown } from '@/components/atoms/Forms/FormDropdown'
 import { useGetFeelReasonSelectList } from '@/hooks/api/feel'
 
 type Props = {

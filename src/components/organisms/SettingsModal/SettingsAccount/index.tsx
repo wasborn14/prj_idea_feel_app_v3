@@ -10,7 +10,7 @@ import styled from 'styled-components'
 import { ChangeEmailModal } from './ChangeEmailModal'
 import { ChangeNameModal } from './ChangeNameModal'
 import { ChangePasswordModal } from './ChangePasswordModal'
-import { ShortButton } from '@/components/atoms/Buttons/First/Button'
+import { ShortButton } from '@/components/atoms/Buttons/Button'
 
 export const SettingsAccount = () => {
   const userProfile = useSelector(profileDataSelector)

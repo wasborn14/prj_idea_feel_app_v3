@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { pc } from '@/media'
 import styled from 'styled-components'
 import { schema, Schema } from '../../schema'
-import { CategoryInput } from '@/components/atoms/Forms/Second/CategoryInput'
+import { CategoryInput } from '@/components/atoms/Forms/CategoryInput'
 import { Color } from '@/const'
 
 export interface Props extends Omit<HTMLAttributes<HTMLLIElement>, 'id'> {

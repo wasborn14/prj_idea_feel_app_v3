@@ -9,7 +9,7 @@ import { IdeaListModel } from '@/store/domain/ideaList/types'
 import styled from 'styled-components'
 import { Schema, schema } from './schema'
 import { createNewTitle, createViewTitle } from '../../utilities'
-import { Input } from '@/components/atoms/Forms/First/Input/Input'
+import { Input } from '@/components/atoms/Forms/Input/Input'
 import { usePutIdeaList } from '@/hooks/api/idea'
 
 type Props = {
