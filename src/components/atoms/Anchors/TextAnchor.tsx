@@ -21,19 +21,7 @@ const styleByType: Record<TextAnchorType, CSSProperties> = {
   }
 }
 
-export const TextAnchor = ({ preventDefaultClickEvent = false, ...props }) => (
-  <Anchor
-    {...props}
-    onClick={(e) => {
-      if (props.onClick) {
-        if (preventDefaultClickEvent) e.preventDefault()
-        props.onClick(e)
-      }
-    }}
-  >
-    {props.children}
-  </Anchor>
-)
+export const TextAnchor = ({ ...props }) => <Anchor {...props}>{props.children}</Anchor>
 
 const Anchor = styled.div<{
   type?: TextAnchorType

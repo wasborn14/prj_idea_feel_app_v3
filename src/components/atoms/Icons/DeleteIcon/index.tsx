@@ -1,5 +1,5 @@
-import { Color } from '@/const'
 import { ImCross } from 'react-icons/im' // 最初の2文字でインポートする
+import { Color } from '@/const'
 import styled from 'styled-components'
 
 type Props = {

@@ -10,7 +10,7 @@ import { FeelInput } from './FeelInput'
 import { ReasonSelect } from './ReasonSelect'
 import { MemoInput } from './MemoInput'
 import { useIsSp } from '@/hooks/util/useIsSp'
-import { ColorShortButton } from '@/components/atoms/Buttons/First/Button'
+import { ColorShortButton } from '@/components/atoms/Buttons/Button'
 import { useGetFeelList, usePostFeel } from '@/hooks/api/feel'
 
 const DEFAULT_SLIDER_VALUE = 50

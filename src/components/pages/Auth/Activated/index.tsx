@@ -5,7 +5,7 @@ import { fontStyles } from '@/const/font'
 import Link from 'next/link'
 import { Spacer } from '@/components/atoms/Spacer'
 import { sp } from '@/media'
-import { LargeButton } from '@/components/atoms/Buttons/First/Button'
+import { LargeButton } from '@/components/atoms/Buttons/Button'
 import { GUIDE_COMPLETED_REGISTRATION } from '@/const/guideMessages'
 
 export const Activated = () => {

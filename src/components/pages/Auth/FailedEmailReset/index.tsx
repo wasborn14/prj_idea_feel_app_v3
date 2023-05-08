@@ -5,7 +5,7 @@ import { fontStyles } from '@/const/font'
 import Link from 'next/link'
 import { Spacer } from '@/components/atoms/Spacer'
 import { sp } from '@/media'
-import { LargeButton } from '@/components/atoms/Buttons/First/Button'
+import { LargeButton } from '@/components/atoms/Buttons/Button'
 import { GUIDE_FAILED_CHANGE_EMAIL, GUIDE_PLEASE_TRY_AGAIN_CHANGE_EMAIL } from '@/const/guideMessages'
 
 export const FailedEmailReset = () => {
