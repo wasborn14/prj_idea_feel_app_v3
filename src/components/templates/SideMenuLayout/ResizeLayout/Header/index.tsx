@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 // import { HamburgerIcon } from "@/components/atoms/Icons/HamburgerIcon";
 import { SettingIcon } from '@/components/atoms/Icons/SettingIcon'
-import { Color } from '@/const'
+import { Color, ZIndex } from '@/const'
 import { fontStyles } from '@/const/font'
 import { pageTitleSelector } from '@/store/app/page'
 import styled from 'styled-components'
@@ -36,6 +36,7 @@ const Container = styled.div`
   background-color: ${Color.WHITE};
   position: fixed;
   top: 0;
+  z-index: ${ZIndex.Header};
 `
 
 const ContainerColorOverWrite = styled.div`
