@@ -5,6 +5,7 @@ import { useIsSp } from '@/hooks/util/useIsSp'
 import { SpLayout } from './SpLayout'
 import { CategoryList } from '@/components/organisms/CategoryList'
 import { SideMainMenu } from '@/components/organisms/SideMainMenu'
+import { Spacer } from '@/components/atoms/Spacer'
 
 type Props = {
   children: ReactNode
@@ -20,6 +21,7 @@ export const SideMenuLayout = ({ children }: Props) => {
           sideNavContents={
             <>
               <SideMainMenu />
+              <Spacer y={80} />
               <CategoryList />
             </>
           }
@@ -31,6 +33,7 @@ export const SideMenuLayout = ({ children }: Props) => {
           sideNavContents={
             <>
               <SideMainMenu />
+              <Spacer y={80} />
               <CategoryList />
             </>
           }
