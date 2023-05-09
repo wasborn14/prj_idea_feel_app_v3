@@ -1,26 +1,22 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { SelectItem } from './SelectItem'
 import { SideProfile } from './SideProfile'
-import { useSelector } from 'react-redux'
-import { sideWidthSelector } from '@/store/app/window'
 
 export const SideMainMenu = () => {
-  const width = useSelector(sideWidthSelector)
-
   return (
-    <Container width={width}>
+    <Container>
       <SideProfile />
       <SelectItem />
     </Container>
   )
 }
 
-const Container = styled.div<{ width: number }>`
-  // TODO:　position:fixedではなく、スクロール禁止にする
+const Container = styled.div`
   position: fixed;
-  ${({ width }) =>
-    width &&
-    css`
-      width: ${width}px;
-    `}
+  height: 100vh;
+  overflow-y: scroll;
+  /*スクロールバー非表示（Chrome・Safari）*/
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `
