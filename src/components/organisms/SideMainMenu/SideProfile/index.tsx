@@ -44,14 +44,14 @@ export const SideProfile = () => {
       {isSettingsModalVisible && <SettingsModal onClick={() => setIsSettingsModalVisible(false)} />}
       <Wrapper onClick={(event) => handleContextMenu(event)}>
         <Text>{userProfile.name}</Text>
-        <Menu id={PROFILE_MENU_ID}>
-          <Item id='settings' onClick={() => setIsSettingsModalVisible(true)}>
-            Settings
-          </Item>
-          <Separator />
-          <Item onClick={handleClickLogout}>Logout</Item>
-        </Menu>
       </Wrapper>
+      <Menu id={PROFILE_MENU_ID}>
+        <Item id='settings' onClick={() => setIsSettingsModalVisible(true)}>
+          Settings
+        </Item>
+        <Separator />
+        <Item onClick={handleClickLogout}>Logout</Item>
+      </Menu>
     </>
   )
 }
