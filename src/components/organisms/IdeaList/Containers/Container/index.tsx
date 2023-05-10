@@ -123,7 +123,7 @@ const ContainerHeader = styled.div`
 `
 
 const ContainerLabel = styled.div`
-  width: 100%;
+  max-width: 240px;
 `
 
 const ContainerActions = styled.div`
