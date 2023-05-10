@@ -32,9 +32,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { actionCategoryIdSelector, actions, haveChildActionCategoryIdSelector } from '@/store/app/category'
 import { Menu, Item, Separator } from 'react-contexify'
 import 'react-contexify/ReactContexify.css'
-import styled from 'styled-components'
-import { sideWidthSelector } from '@/store/app/window'
-import { pc, sp } from '@/media'
 import { Spacer } from '@/components/atoms/Spacer'
 import { ConfirmModal } from '@/components/mlecules/BaseModal/ConfirmModal'
 import { useGetCategory, usePutCategory } from '@/hooks/api/category'
@@ -54,7 +51,6 @@ export const CategoryList = ({ collapsible = true, indicator = false, indentatio
   const dispatch = useDispatch()
   const actionCategoryId = useSelector(actionCategoryIdSelector)
   const haveChildActionCategoryId = useSelector(haveChildActionCategoryIdSelector)
-  const sideWidth = useSelector(sideWidthSelector)
   const [items, setItems] = useState<TreeItems>([])
   const [activeId, setActiveId] = useState<string | null>(null)
   const [activeTitle, setActiveTitle] = useState<string | null>(null)
@@ -250,7 +246,7 @@ export const CategoryList = ({ collapsible = true, indicator = false, indentatio
   }
 
   return (
-    <Container sideWidth={sideWidth}>
+    <>
       {confirmModalVisible && (
         <ConfirmModal
           description='Are you sure you want to delete the child elements?'
@@ -316,22 +312,6 @@ export const CategoryList = ({ collapsible = true, indicator = false, indentatio
         </Menu>
       </DndContext>
       <Spacer y={200} />
-    </Container>
+    </>
   )
 }
-
-const Container = styled.div<{ sideWidth: number }>`
-  width: ${({ sideWidth }) => sideWidth}px;
-  ${pc`
-    position: fixed;
-    height: 100vh;
-    overflow-y: scroll;
-    /*スクロールバー非表示（Chrome・Safari）*/
-    &::-webkit-scrollbar{
-      display:none;
-    }
-  `}
-  ${sp`
-    width: 100%;
-  `}
-`
