@@ -6,6 +6,11 @@ import { SpLayout } from './SpLayout'
 import { CategoryList } from '@/components/organisms/CategoryList'
 import { SideMainMenu } from '@/components/organisms/SideMainMenu'
 import { Spacer } from '@/components/atoms/Spacer'
+import styled from 'styled-components'
+import { pc, sp } from '@/media'
+import { useSelector } from 'react-redux'
+import { sideWidthSelector } from '@/store/app/window'
+import { ZIndex } from '@/const'
 
 type Props = {
   children: ReactNode
@@ -13,6 +18,7 @@ type Props = {
 
 export const SideMenuLayout = ({ children }: Props) => {
   const isSp = useIsSp()
+  const sideWidth = useSelector(sideWidthSelector)
 
   return (
     <Layout meta={{ pageTitle: 'Ifee - MyPage' }}>
@@ -31,11 +37,10 @@ export const SideMenuLayout = ({ children }: Props) => {
       ) : (
         <ResizeLayout
           sideNavContents={
-            <>
+            <PcWrapper sideWidth={sideWidth}>
               <SideMainMenu />
-              <Spacer y={80} />
               <CategoryList />
-            </>
+            </PcWrapper>
           }
         >
           {children}
@@ -44,3 +49,20 @@ export const SideMenuLayout = ({ children }: Props) => {
     </Layout>
   )
 }
+
+const PcWrapper = styled.div<{ sideWidth: number }>`
+  z-index: ${ZIndex.Modal};
+  width: ${({ sideWidth }) => sideWidth}px;
+  ${pc`
+    position: fixed;
+    height: 100vh;
+    overflow-y: scroll;
+    /*スクロールバー非表示（Chrome・Safari）*/
+    &::-webkit-scrollbar{
+      display:none;
+    }
+  `}
+  ${sp`
+    width: 100%;
+  `}
+`
