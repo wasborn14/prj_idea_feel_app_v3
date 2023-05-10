@@ -51,7 +51,7 @@ export const SideMenuLayout = ({ children }: Props) => {
 }
 
 const PcWrapper = styled.div<{ sideWidth: number }>`
-  z-index: ${ZIndex.Modal};
+  z-index: ${ZIndex.SideMenuContent};
   width: ${({ sideWidth }) => sideWidth}px;
   ${pc`
     position: fixed;
