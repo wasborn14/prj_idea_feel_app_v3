@@ -5,7 +5,6 @@ import { useIsSp } from '@/hooks/util/useIsSp'
 import { SpLayout } from './SpLayout'
 import { CategoryList } from '@/components/organisms/CategoryList'
 import { SideMainMenu } from '@/components/organisms/SideMainMenu'
-import { Spacer } from '@/components/atoms/Spacer'
 import styled from 'styled-components'
 import { pc, sp } from '@/media'
 import { useSelector } from 'react-redux'
@@ -27,7 +26,6 @@ export const SideMenuLayout = ({ children }: Props) => {
           sideNavContents={
             <>
               <SideMainMenu />
-              <Spacer y={80} />
               <CategoryList />
             </>
           }
