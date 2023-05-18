@@ -13,6 +13,7 @@ import { ChangeNameModal } from '../../../../organisms/SettingsModal/SettingsAcc
 import { ChangePasswordModal } from '../../../../organisms/SettingsModal/SettingsAccount/ChangePasswordModal'
 import { NormalButton } from '@/components/atoms/Buttons/Button'
 import { Spacer } from '@/components/atoms/Spacer'
+import { useSession, signOut } from 'next-auth/react'
 
 const cookie = new Cookie()
 
@@ -22,6 +23,7 @@ export const SettingsSpAccount = () => {
   const [isChangeEmailModalVisible, setIsChangeEmailModalVisible] = useState(false)
   const [isChangeNameModalVisible, setIsChangeNameModalVisible] = useState(false)
   const [isChangePasswordModalVisible, setIsChangePasswordModalVisible] = useState(false)
+  const { data: session } = useSession()
 
   const openEmailModal = () => {
     setIsChangeEmailModalVisible(true)
@@ -45,7 +47,11 @@ export const SettingsSpAccount = () => {
   const handleClickLogout = () => {
     const options = { path: '/' }
     cookie.remove('access_token', options)
-    router.push('/auth/login')
+    if (session) {
+      signOut({ callbackUrl: '/auth/login' })
+    } else {
+      router.replace('/auth/login')
+    }
   }
 
   return (

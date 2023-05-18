@@ -13,9 +13,18 @@ export const useSignUpMutation = () => {
 }
 
 export const useLogin = () => {
-  return useMutation((data: { email: string; password: string }): Promise<AxiosResponse> => {
-    return gestApi.post('auth/login', { email: data.email, password: data.password })
-  })
+  // Set Email Login: email, password
+  // Set OAuth Login: email, name, provider
+  return useMutation(
+    (data: { email: string; password?: string; name?: string; provider?: string }): Promise<AxiosResponse> => {
+      return gestApi.post('auth/login', {
+        email: data.email,
+        password: data.password,
+        name: data.name,
+        provider: data.provider
+      })
+    }
+  )
 }
 
 export const useResendActivation = () => {

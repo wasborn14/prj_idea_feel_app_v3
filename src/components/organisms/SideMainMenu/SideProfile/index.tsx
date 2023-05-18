@@ -9,6 +9,7 @@ import styled from 'styled-components'
 import Cookie from 'universal-cookie'
 import { useGetUserStatus } from '@/hooks/api/auth'
 import { SettingsModal } from '../../SettingsModal'
+import { signOut, useSession } from 'next-auth/react'
 
 const cookie = new Cookie()
 
@@ -22,6 +23,7 @@ export const SideProfile = () => {
   })
   const [isSettingsModalVisible, setIsSettingsModalVisible] = useState(false)
   const router = useRouter()
+  const { data: session } = useSession()
 
   const handleContextMenu = (event: TriggerEvent) => {
     if (!isSp) {
@@ -34,7 +36,11 @@ export const SideProfile = () => {
   const handleClickLogout = () => {
     const options = { path: '/' }
     cookie.remove('access_token', options)
-    router.push('/auth/login')
+    if (session) {
+      signOut({ callbackUrl: '/auth/login' })
+    } else {
+      router.replace('/auth/login')
+    }
   }
 
   useGetUserStatus()
