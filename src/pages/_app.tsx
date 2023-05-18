@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import { store } from '@/store'
 import { PreventDoubleClick } from '@/components/organisms/Wrapper/PreventDoubleClick'
 import { SessionProvider } from 'next-auth/react'
+import { CheckOAuthSessionWrapper } from './wrapper/checkOAuthSessionWrapper'
 
 const Providers = ({ children }: { children: ReactNode }) => {
   const queryClient = new QueryClient()
@@ -26,7 +27,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <Providers>
       <SessionProvider session={session}>
-        <Component {...pageProps} />
+        <CheckOAuthSessionWrapper>
+          <Component {...pageProps} />
+        </CheckOAuthSessionWrapper>
       </SessionProvider>
     </Providers>
   )

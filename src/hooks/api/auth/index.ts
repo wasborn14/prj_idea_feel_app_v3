@@ -66,7 +66,12 @@ export const useGetUserStatus = () => {
     (): Promise<AxiosResponse> => {
       return api.get('auth/me')
     },
-    { onSuccess: (res) => dispatch(profileActions.setProfileData({ name: res.data.name, email: res.data.email })) }
+    {
+      onSuccess: (res) =>
+        dispatch(
+          profileActions.setProfileData({ name: res.data.name, email: res.data.email, provider: res.data.provider })
+        )
+    }
   )
 }
 
