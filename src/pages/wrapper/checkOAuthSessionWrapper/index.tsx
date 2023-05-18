@@ -3,7 +3,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useCheckOAuthUser } from '@/hooks/util/useCheckOAuthUser'
 
-export const CheckOAuthSessionWrapper = ({ children }: { children: ReactNode }) => {
+const CheckOAuthSessionWrapper = ({ children }: { children: ReactNode }) => {
   const { status } = useSession()
   const router = useRouter()
   const isOAuthUser = useCheckOAuthUser()
@@ -17,3 +17,5 @@ export const CheckOAuthSessionWrapper = ({ children }: { children: ReactNode }) 
 
   return <>{children}</>
 }
+
+export default CheckOAuthSessionWrapper
