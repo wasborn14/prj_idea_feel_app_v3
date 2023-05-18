@@ -5,25 +5,29 @@ import { AllState } from '@/store'
 
 const initialState: types.ProfileState = {
   name: '',
-  email: ''
+  email: '',
+  provider: ''
 }
 
 const setProfileData: types.SetProfileData = (state, { payload }) =>
   (state = {
     name: payload.name ?? state.name,
-    email: payload.email ?? state.email
+    email: payload.email ?? state.email,
+    provider: payload.provider ?? state.provider
   })
 
 const setUserNameData: types.SetProfileData = (state, { payload }) =>
   (state = {
     name: payload.name ?? state.name,
-    email: state.email
+    email: state.email,
+    provider: payload.provider ?? state.provider
   })
 
 const setUserEmailData: types.SetProfileData = (state, { payload }) =>
   (state = {
     name: state.name,
-    email: payload.email ?? state.email
+    email: payload.email ?? state.email,
+    provider: payload.provider ?? state.provider
   })
 
 export const { actions, reducer } = createSlice({
@@ -39,3 +43,4 @@ export const { actions, reducer } = createSlice({
 const rootSelector = (state: AllState): types.ProfileState => state.domain.profile
 
 export const profileDataSelector = createSelector(rootSelector, (state) => state)
+export const providerDataSelector = createSelector(rootSelector, (state) => state.provider)
