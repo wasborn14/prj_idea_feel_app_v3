@@ -109,26 +109,24 @@ export const Login = () => {
   }
 
   useEffect(() => {
-    return () => {
-      if (status && status === 'authenticated') {
-        const email = session.user?.email
-        const name = session.user?.name
-        if (!(typeof email === 'string') || !(typeof name === 'string')) {
-          return
-        }
-        loginMutate(
-          { email: email, name: name, provider: 'google' },
-          {
-            onSuccess: (res) => {
-              setAccessStatus(res)
-              router.push('/category/feel')
-            },
-            onError: (error: any) => {
-              setLoginError(error.response.data.error)
-            }
-          }
-        )
+    if (status && status === 'authenticated') {
+      const email = session.user?.email
+      const name = session.user?.name
+      if (!(typeof email === 'string') || !(typeof name === 'string')) {
+        return
       }
+      loginMutate(
+        { email: email, name: name, provider: 'google' },
+        {
+          onSuccess: (res) => {
+            setAccessStatus(res)
+            router.push('/category/feel')
+          },
+          onError: (error: any) => {
+            setLoginError(error.response.data.error)
+          }
+        }
+      )
     }
   }, [status, session, loginMutate, router])
 
