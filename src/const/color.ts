@@ -67,6 +67,7 @@ export const OVERLAP_BROWN_COLOR = '#e196001f'
 export const TEXT_FIRST = '#333333'
 export const TEXT_SECOND = '#666666'
 export const TEXT_THIRD = '#999999'
+export const TEXT_GOOGLE_SIGN_IN = 'rgba(0, 0, 0, 0.54)'
 
 // イベント
 export const ERROR_COLOR = '#ef4040'
