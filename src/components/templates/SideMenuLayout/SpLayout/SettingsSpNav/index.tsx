@@ -13,6 +13,8 @@ import { ChangeNameModal } from '../../../../organisms/SettingsModal/SettingsAcc
 import { ChangePasswordModal } from '../../../../organisms/SettingsModal/SettingsAccount/ChangePasswordModal'
 import { NormalButton } from '@/components/atoms/Buttons/Button'
 import { Spacer } from '@/components/atoms/Spacer'
+import { useSession, signOut } from 'next-auth/react'
+import { useCheckOAuthUser } from '@/hooks/util/useCheckOAuthUser'
 
 const cookie = new Cookie()
 
@@ -22,6 +24,8 @@ export const SettingsSpAccount = () => {
   const [isChangeEmailModalVisible, setIsChangeEmailModalVisible] = useState(false)
   const [isChangeNameModalVisible, setIsChangeNameModalVisible] = useState(false)
   const [isChangePasswordModalVisible, setIsChangePasswordModalVisible] = useState(false)
+  const { data: session } = useSession()
+  const isOAuthUser = useCheckOAuthUser()
 
   const openEmailModal = () => {
     setIsChangeEmailModalVisible(true)
@@ -45,7 +49,11 @@ export const SettingsSpAccount = () => {
   const handleClickLogout = () => {
     const options = { path: '/' }
     cookie.remove('access_token', options)
-    router.push('/auth/login')
+    if (session) {
+      signOut({ callbackUrl: '/auth/login' })
+    } else {
+      router.replace('/auth/login')
+    }
   }
 
   return (
@@ -59,16 +67,6 @@ export const SettingsSpAccount = () => {
       </DividerWrapper>
       <MenuContainer>
         <VStack spacing={12}>
-          <SubTitle>Email</SubTitle>
-          <Context>{userProfile.email}</Context>
-          <NormalButton onClick={openEmailModal}>Change Email</NormalButton>
-        </VStack>
-      </MenuContainer>
-      <DividerWrapper>
-        <Divider color={`${Color.DARK_RED2}`} />
-      </DividerWrapper>
-      <MenuContainer>
-        <VStack spacing={12}>
           <SubTitle>Name</SubTitle>
           <Context>{userProfile.name}</Context>
           <NormalButton onClick={openNameModal}>Change Name</NormalButton>
@@ -77,15 +75,29 @@ export const SettingsSpAccount = () => {
       <DividerWrapper>
         <Divider color={`${Color.DARK_RED2}`} />
       </DividerWrapper>
-      <MenuContainer>
-        <VStack spacing={12}>
-          <SubTitle>Password</SubTitle>
-          <NormalButton onClick={openPasswordModal}>Change Password</NormalButton>
-        </VStack>
-      </MenuContainer>
-      <DividerWrapper>
-        <Divider color={`${Color.DARK_RED2}`} />
-      </DividerWrapper>
+      {!isOAuthUser && (
+        <>
+          <MenuContainer>
+            <VStack spacing={12}>
+              <SubTitle>Email</SubTitle>
+              <Context>{userProfile.email}</Context>
+              <NormalButton onClick={openEmailModal}>Change Email</NormalButton>
+            </VStack>
+          </MenuContainer>
+          <DividerWrapper>
+            <Divider color={`${Color.DARK_RED2}`} />
+          </DividerWrapper>
+          <MenuContainer>
+            <VStack spacing={12}>
+              <SubTitle>Password</SubTitle>
+              <NormalButton onClick={openPasswordModal}>Change Password</NormalButton>
+            </VStack>
+          </MenuContainer>
+          <DividerWrapper>
+            <Divider color={`${Color.DARK_RED2}`} />
+          </DividerWrapper>
+        </>
+      )}
       <Spacer y={24} />
       <TitleContainer>
         <Title>Logout</Title>

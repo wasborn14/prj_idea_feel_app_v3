@@ -11,12 +11,14 @@ import { ChangeEmailModal } from './ChangeEmailModal'
 import { ChangeNameModal } from './ChangeNameModal'
 import { ChangePasswordModal } from './ChangePasswordModal'
 import { ShortButton } from '@/components/atoms/Buttons/Button'
+import { useCheckOAuthUser } from '@/hooks/util/useCheckOAuthUser'
 
 export const SettingsAccount = () => {
   const userProfile = useSelector(profileDataSelector)
   const [isChangeEmailModalVisible, setIsChangeEmailModalVisible] = useState(false)
   const [isChangeNameModalVisible, setIsChangeNameModalVisible] = useState(false)
   const [isChangePasswordModalVisible, setIsChangePasswordModalVisible] = useState(false)
+  const isOAuthUser = useCheckOAuthUser()
 
   const openEmailModal = () => {
     setIsChangeEmailModalVisible(true)
@@ -48,18 +50,6 @@ export const SettingsAccount = () => {
       </DividerWrapper>
       <MenuContainer>
         <VStack spacing={12}>
-          <SubTitle>Email</SubTitle>
-          <HStack spacing={32}>
-            <Context>{userProfile.email}</Context>
-            <ShortButton onClick={openEmailModal}>Change Email</ShortButton>
-          </HStack>
-        </VStack>
-      </MenuContainer>
-      <DividerWrapper>
-        <Divider color={`${Color.DARK_RED2}`} />
-      </DividerWrapper>
-      <MenuContainer>
-        <VStack spacing={12}>
           <SubTitle>Name</SubTitle>
           <HStack spacing={32}>
             <Context>{userProfile.name}</Context>
@@ -67,17 +57,33 @@ export const SettingsAccount = () => {
           </HStack>
         </VStack>
       </MenuContainer>
-      <DividerWrapper>
-        <Divider color={`${Color.DARK_RED2}`} />
-      </DividerWrapper>
-      <MenuContainer>
-        <VStack spacing={12}>
-          <SubTitle>Password</SubTitle>
-          <HStack spacing={32}>
-            <ShortButton onClick={openPasswordModal}>Change Password</ShortButton>
-          </HStack>
-        </VStack>
-      </MenuContainer>
+      {!isOAuthUser && (
+        <>
+          <DividerWrapper>
+            <Divider color={`${Color.DARK_RED2}`} />
+          </DividerWrapper>
+          <MenuContainer>
+            <VStack spacing={12}>
+              <SubTitle>Email</SubTitle>
+              <HStack spacing={32}>
+                <Context>{userProfile.email}</Context>
+                <ShortButton onClick={openEmailModal}>Change Email</ShortButton>
+              </HStack>
+            </VStack>
+          </MenuContainer>
+          <DividerWrapper>
+            <Divider color={`${Color.DARK_RED2}`} />
+          </DividerWrapper>
+          <MenuContainer>
+            <VStack spacing={12}>
+              <SubTitle>Password</SubTitle>
+              <HStack spacing={32}>
+                <ShortButton onClick={openPasswordModal}>Change Password</ShortButton>
+              </HStack>
+            </VStack>
+          </MenuContainer>
+        </>
+      )}
       {isChangeEmailModalVisible && <ChangeEmailModal onClick={closeEmailModal} />}
       {isChangeNameModalVisible && <ChangeNameModal onClick={closeNameModal} />}
       {isChangePasswordModalVisible && <ChangePasswordModal onClick={closePasswordModal} />}

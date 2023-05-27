@@ -7,8 +7,11 @@ import { Spacer } from '@/components/atoms/Spacer'
 import { sp } from '@/media'
 import { LargeButton } from '@/components/atoms/Buttons/Button'
 import { GUIDE_AN_ERROR_HAS_OCCURRED, GUIDE_PLEASE_TRY_AGAIN_LOGIN } from '@/const/guideMessages'
+import { useResetUserProfile } from '@/hooks/util/useResetUserProfile'
 
 export const Error = () => {
+  useResetUserProfile()
+
   return (
     <Layout meta={{ pageTitle: 'Ifee - Error' }}>
       <Container>

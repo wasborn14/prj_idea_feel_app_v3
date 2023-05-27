@@ -10,7 +10,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { fontStyles } from '@/const/font'
 import { Spacer } from '@/components/atoms/Spacer'
 import { AxiosResponse } from 'axios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ERROR_AUTH_EMAIL_OR_PASSWORD_IS_WRONG } from '@/const/errorMessages'
 import { API_ERROR_EMAIL_NOT_VERIFIED } from '@/const/apiErrorMessages'
 import { sp } from '@/media'
@@ -20,6 +20,8 @@ import { ErrorMessage } from '@/components/atoms/Forms/ErrorMessage'
 import { useLogin } from '@/hooks/api/auth'
 import { TextAnchor } from '@/components/atoms/Anchors/TextAnchor'
 import { LoadingCenter } from '@/components/mlecules/Loading'
+import { signIn, useSession } from 'next-auth/react'
+import { GoogleSignInButton } from '@/components/atoms/Buttons/GoogleSignInButton'
 
 // TODO:ローカルストレージに変えることも検討
 const cookie = new Cookie()
@@ -36,6 +38,11 @@ export const Login = () => {
     email: '',
     password: ''
   }
+  const { data: session, status } = useSession()
+
+  useEffect(() => {
+    console.log({ status })
+  }, [status])
 
   const {
     getValues,
@@ -60,7 +67,6 @@ export const Login = () => {
       { email: getValues('email'), password: getValues('password') },
       {
         onSuccess: (res) => {
-          console.log({ res })
           setAccessStatus(res)
           router.push('/category/feel')
         },
@@ -102,67 +108,94 @@ export const Login = () => {
     )
   }
 
+  useEffect(() => {
+    if (status && status === 'authenticated') {
+      const email = session.user?.email
+      const name = session.user?.name
+      if (!(typeof email === 'string') || !(typeof name === 'string')) {
+        return
+      }
+      loginMutate(
+        { email: email, name: name, provider: 'google' },
+        {
+          onSuccess: (res) => {
+            setAccessStatus(res)
+            router.push('/category/feel')
+          },
+          onError: (error: any) => {
+            setLoginError(error.response.data.error)
+          }
+        }
+      )
+    }
+  }, [status, session, loginMutate, router])
+
   return (
     <Layout meta={{ pageTitle: 'Ifee - Login' }}>
       <Container>
         <LoadingCenter isLoading={isLoading} />
-        <form onSubmit={handleSubmit(handleClickLogin)}>
-          <MainContents>
-            <Title>Login</Title>
-            <InputWrapper>
-              <ErrorMessage errorMessage={errors.email?.message ?? loginError} />
-              <Input
-                {...register('email', {
-                  onChange: () => {
-                    setLoginError('')
-                  }
-                })}
-                autoComplete='email'
-                placeholder='Email'
-                error={errors.email?.message !== undefined}
-              />
-            </InputWrapper>
-            <InputWrapper>
-              <ErrorMessage errorMessage={errors.password?.message} />
-              <Input
-                {...register('password', {
-                  onChange: () => setLoginError('')
-                })}
-                autoComplete='current-password'
-                placeholder='Password'
-                type='password'
-                error={errors.password?.message !== undefined}
-              />
-            </InputWrapper>
-            <Spacer y={32} />
-            <LargeButton type='submit'>Login</LargeButton>
-            <LinkContainer>
-              <Link href='/auth/signUp' passHref>
-                <TextAnchor type='normal' size={18}>
-                  Create Account
-                </TextAnchor>
-              </Link>
-              <Spacer y={4} />
-              <Link href='/auth/forgotPassword' passHref>
-                <TextAnchor type='normal' size={18}>
-                  Forgot Password?
-                </TextAnchor>
-              </Link>
-              <Spacer y={4} />
-              <Link href='/top' passHref>
-                <TextAnchor type='normal' size={18}>
-                  Return Top
-                </TextAnchor>
-              </Link>
-              <Spacer y={4} />
-              <GuestTextWrapper onClick={handleClickGuestLogin}>
-                <TextAnchor type='red' size={18}>
-                  Guest Login
-                </TextAnchor>
-              </GuestTextWrapper>
-            </LinkContainer>
-          </MainContents>
-        </form>
+        <MainContents>
+          <Title>Login</Title>
+          <form onSubmit={handleSubmit(handleClickLogin)}>
+            <FormWrapper>
+              <InputWrapper>
+                <ErrorMessage errorMessage={errors.email?.message ?? loginError} />
+                <Input
+                  {...register('email', {
+                    onChange: () => {
+                      setLoginError('')
+                    }
+                  })}
+                  autoComplete='email'
+                  placeholder='Email'
+                  error={errors.email?.message !== undefined}
+                />
+              </InputWrapper>
+              <InputWrapper>
+                <ErrorMessage errorMessage={errors.password?.message} />
+                <Input
+                  {...register('password', {
+                    onChange: () => setLoginError('')
+                  })}
+                  autoComplete='current-password'
+                  placeholder='Password'
+                  type='password'
+                  error={errors.password?.message !== undefined}
+                />
+              </InputWrapper>
+              <Spacer y={32} />
+              <LargeButton type='submit'>Login</LargeButton>
+            </FormWrapper>
+          </form>
+          <Spacer y={20} />
+          <GoogleSignInButton onClick={() => signIn('google')} />
+          <Spacer y={12} />
+          <LinkContainer>
+            <Link href='/auth/signUp' passHref>
+              <TextAnchor type='normal' size={18}>
+                Create Account
+              </TextAnchor>
+            </Link>
+            <Spacer y={4} />
+            <Link href='/auth/forgotPassword' passHref>
+              <TextAnchor type='normal' size={18}>
+                Forgot Password?
+              </TextAnchor>
+            </Link>
+            <Spacer y={4} />
+            <Link href='/top' passHref>
+              <TextAnchor type='normal' size={18}>
+                Return Top
+              </TextAnchor>
+            </Link>
+            <Spacer y={4} />
+            <GuestTextWrapper onClick={handleClickGuestLogin}>
+              <TextAnchor type='red' size={18}>
+                Guest Login
+              </TextAnchor>
+            </GuestTextWrapper>
+          </LinkContainer>
+        </MainContents>
       </Container>
     </Layout>
   )
@@ -187,6 +220,12 @@ const MainContents = styled.div`
 const Title = styled.h1`
   ${fontStyles['42px']}
   color: ${Color.DARK_BROWN2};
+`
+
+const FormWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const InputWrapper = styled.div`

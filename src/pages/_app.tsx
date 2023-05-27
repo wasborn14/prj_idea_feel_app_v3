@@ -6,6 +6,8 @@ import { ReactNode } from 'react'
 import { Provider } from 'react-redux'
 import { store } from '@/store'
 import { PreventDoubleClick } from '@/components/organisms/Wrapper/PreventDoubleClick'
+import { SessionProvider } from 'next-auth/react'
+import CheckOAuthSessionWrapper from './wrapper/checkOAuthSessionWrapper'
 
 const Providers = ({ children }: { children: ReactNode }) => {
   const queryClient = new QueryClient()
@@ -21,10 +23,14 @@ const Providers = ({ children }: { children: ReactNode }) => {
   )
 }
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <Providers>
-      <Component {...pageProps} />
+      <SessionProvider session={session}>
+        <CheckOAuthSessionWrapper>
+          <Component {...pageProps} />
+        </CheckOAuthSessionWrapper>
+      </SessionProvider>
     </Providers>
   )
 }
