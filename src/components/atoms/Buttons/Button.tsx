@@ -103,6 +103,15 @@ export const LargeButton = styled.button`
   ${LargeStyle}
 `
 
+export const WhiteLargeButton = styled.button`
+  ${BaseStyle}
+  ${LargeStyle}
+  ${ColorStyle}
+  border: 2px solid ${Color.GRAY_DD};
+  color: ${Color.TEXT_GOOGLE_SIGN_IN};
+  background-color: ${Color.WHITE};
+`
+
 export const ColorShortButton = styled.button`
   ${BaseStyle}
   ${ShortStyle}
