@@ -108,7 +108,7 @@ export const WhiteLargeButton = styled.button`
   ${LargeStyle}
   ${ColorStyle}
   border: 2px solid ${Color.GRAY_DD};
-  color: ${Color.BLACK};
+  color: ${Color.TEXT_GOOGLE_SIGN_IN};
   background-color: ${Color.WHITE};
 `
 
