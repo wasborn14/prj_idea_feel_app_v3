@@ -41,7 +41,7 @@ export const SpLayout = ({ sideNavContents, children }: Props) => {
 const SettingsMenuHeader = styled.div`
   display: flex;
   flex-direction: row-reverse;
-  padding: 8px;
+  padding: 14px;
 `
 
 const MainContents = styled.div`
