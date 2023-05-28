@@ -25,7 +25,7 @@ export const SpLayout = ({ sideNavContents, children }: Props) => {
         onOverLayClick={() => setIsSettingsMenuActive(!isSettingsMenuActive)}
       >
         <SettingsMenuHeader onClick={() => setIsSettingsMenuActive(!isSettingsMenuActive)}>
-          <DeleteIcon size={24} />
+          <DeleteIcon size={20} />
         </SettingsMenuHeader>
         <SettingsSpAccount />
       </SettingsMenu>
