@@ -1,11 +1,12 @@
 import React, { forwardRef, useState } from 'react'
 
-import { Handle, Remove } from '@/components/atoms/DndItems'
+import { Handle } from '@/components/atoms/DndItems'
 import { Addition } from '@/components/atoms/DndItems/Addition'
 import { Color } from '@/const'
 import styled from 'styled-components'
 import { createViewTitle } from '../../utilities'
 import { ContainerInput } from '../ContainerInput'
+import { Trash } from '@/components/atoms/DndItems/Trash'
 export interface ContainerProps {
   children: React.ReactNode
   columns?: number
@@ -63,17 +64,25 @@ export const Container = forwardRef<HTMLDivElement, ContainerProps>(
             ) : (
               <ContainerHeader>
                 <ContainerLabel onClick={() => setIsEdit(true)}>{viewTitle}</ContainerLabel>
-                <ContainerActions>
-                  <Addition
-                    onClick={() => {
-                      onAdditionClick && onAdditionClick(label)
-                    }}
-                  />
-                  {onRemove ? <Remove onClick={onRemove} /> : undefined}
+                <ContainerActionWrapper>
                   <Handle {...handleProps} onClick={() => {}} />
-                </ContainerActions>
+                </ContainerActionWrapper>
               </ContainerHeader>
             )}
+            <AdditionWrapper>
+              <Addition
+                onClick={() => {
+                  onAdditionClick && onAdditionClick(label)
+                }}
+              />
+            </AdditionWrapper>
+            <DeleteWrapper
+              onClick={() => {
+                onAdditionClick && onAdditionClick(label)
+              }}
+            >
+              <Trash onClick={onRemove} />
+            </DeleteWrapper>
           </>
         ) : null}
         {placeholder ? children : <ul>{children}</ul>}
@@ -83,6 +92,7 @@ export const Container = forwardRef<HTMLDivElement, ContainerProps>(
 )
 
 const Component = styled.button`
+  position: relative;
   display: flex;
   flex-direction: column;
   grid-auto-rows: max-content;
@@ -92,6 +102,7 @@ const Component = styled.button`
   outline: none;
   min-width: 320px;
   margin: 10px;
+  padding-bottom: 24px;
   border-radius: 5px;
   min-height: 200px;
   transition: background-color 350ms ease;
@@ -105,7 +116,7 @@ const Component = styled.button`
     grid-gap: 10px;
     grid-template-columns: repeat(var(--columns, 1), 1fr);
     list-style: none;
-    padding: 20px;
+    padding: 20px 0px 20px 20px;
     margin: 0;
   }
 `
@@ -123,9 +134,26 @@ const ContainerHeader = styled.div`
 `
 
 const ContainerLabel = styled.div`
-  max-width: 240px;
+  width: 100%;
+  max-width: 260px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `
 
-const ContainerActions = styled.div`
+const ContainerActionWrapper = styled.div`
   display: flex;
+`
+
+const AdditionWrapper = styled.div`
+  position: absolute;
+  bottom: 4px;
+  right: 8px;
+  opacity: 0.5;
+`
+
+const DeleteWrapper = styled.div`
+  position: absolute;
+  bottom: 4px;
+  left: 8px;
+  opacity: 0.5;
 `
