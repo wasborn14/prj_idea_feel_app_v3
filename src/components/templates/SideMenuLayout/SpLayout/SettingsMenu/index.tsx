@@ -21,7 +21,6 @@ export const SettingsMenu = ({ isMenuActive, onOverLayClick, children }: Props) 
 
 const Container = styled.aside<{ isMenuActive: boolean }>`
   position: fixed;
-  right: 0;
   top: 0;
   width: 100%;
   height: 100%;
@@ -39,8 +38,6 @@ const Container = styled.aside<{ isMenuActive: boolean }>`
 const SideMenuOverlay = styled.div<{ isMenuActive: boolean }>`
   position: absolute;
   display: block;
-  top: 0;
-  right: 0;
   height: 100%;
   width: 100%;
   background-color: black;
@@ -58,15 +55,13 @@ const SideMenuContent = styled.div<{ isMenuActive: boolean }>`
   box-sizing: border-box;
   position: relative;
   top: 0;
-  /* right: 0; */
+  left: 15%;
   z-index: ${ZIndex.SideMenuContent};
   height: 100%;
-  width: 100%;
-  /* max-width: 30rem; */
+  width: 85%;
 
   background-color: ${Color.WHITE};
   box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
-  /* transform: translateX(-103%); */
   transform: translateX(203%);
   transition: transform 300ms linear;
 
