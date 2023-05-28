@@ -148,6 +148,7 @@ export const ItemInput = ({ isNew, value, containerId, onInputClose }: Props) =>
 
 const Wrapper = styled.div`
   width: 100%;
+  padding-right: 24px;
 `
 
 const InputWrapper = styled.div`
