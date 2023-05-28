@@ -20,6 +20,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   :hover {
-    background-color: #1909091f;
+    background-color: ${Color.TRANSPARENT_BLACK_OTHER_1};
   }
 `

@@ -16,4 +16,5 @@ export const Handle = forwardRef<HTMLButtonElement, ActionProps>((props, ref) =>
 
 const Wrapper = styled.div`
   margin-top: 2px;
+  opacity: 0.3;
 `

@@ -128,16 +128,20 @@ export const Item = React.memo(
               <ItemLabel onClick={() => setIsEdit(true)} isUrl={isUrl}>
                 {viewTitle}
               </ItemLabel>
-              <Actions>
+              <ActionWrapper>
                 {isUrl && (
                   <Link href={viewTitle} target='_blank' passHref>
                     <NewWindow />
                   </Link>
                 )}
-                {onRemove && <Remove onClick={() => onRemove(containerId, value)} />}
                 {handle && <Handle {...handleProps} {...listeners} />}
-              </Actions>
+              </ActionWrapper>
             </ItemWrapper>
+          )}
+          {onRemove && (
+            <RemoveWrapper>
+              <Remove onClick={() => onRemove(containerId, value)} />
+            </RemoveWrapper>
           )}
         </Wrapper>
       )
@@ -147,6 +151,7 @@ export const Item = React.memo(
 
 const Wrapper = styled.li`
   display: flex;
+  align-items: center;
   box-sizing: border-box;
   transform: translate3d(var(--translate-x, 0), var(--translate-y, 0), 0) scaleX(var(--scale-x, 1))
     scaleY(var(--scale-y, 1));
@@ -190,10 +195,13 @@ const ItemLabel = styled.div<{ isUrl: boolean }>`
   word-wrap: break-word;
 `
 
-const Actions = styled.span`
+const ActionWrapper = styled.span`
   display: flex;
-  margin-top: -12px;
+  margin-top: -15px;
   margin-left: auto;
   margin-bottom: -15px;
-  margin-right: -10px;
+`
+
+const RemoveWrapper = styled.div`
+  opacity: 0.2;
 `

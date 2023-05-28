@@ -10,6 +10,7 @@ import Cookie from 'universal-cookie'
 import { useGetUserStatus } from '@/hooks/api/auth'
 import { SettingsModal } from '../../SettingsModal'
 import { signOut, useSession } from 'next-auth/react'
+import { Color } from '@/const'
 
 const cookie = new Cookie()
 
@@ -70,7 +71,7 @@ const UserNameWrapper = styled.div`
   `}
   ${pc` 
     &:hover {
-      background-color: #a0540e13;
+      background-color: ${Color.DARK_BROWN3};
     }
   `}
 `

@@ -1,0 +1,1 @@
+export { AdditionIcon } from './AdditionIcon'
