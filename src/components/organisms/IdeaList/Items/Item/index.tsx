@@ -9,6 +9,7 @@ import { createViewTitle, isValidUrl } from '../../utilities'
 import { Color } from '@/const'
 import { NewWindow } from '@/components/atoms/DndItems/NewWindow'
 import Link from 'next/link'
+import { pc } from '@/media'
 
 export interface Props {
   dragOverlay?: boolean
@@ -70,6 +71,7 @@ export const Item = React.memo(
       ref
     ) => {
       const [isEdit, setIsEdit] = useState(false)
+      const [isHover, setIsHover] = useState(false)
       const viewTitle = createViewTitle(value?.toString() ?? '')
       const isUrl = isValidUrl(viewTitle)
 
@@ -114,6 +116,8 @@ export const Item = React.memo(
             } as React.CSSProperties
           }
           ref={ref}
+          onMouseOver={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
         >
           {isEdit ? (
             <ItemInput value={value} containerId={containerId} onInputClose={() => setIsEdit(false)} />
@@ -139,7 +143,7 @@ export const Item = React.memo(
             </ItemWrapper>
           )}
           {onRemove && (
-            <RemoveWrapper>
+            <RemoveWrapper isHover={isHover}>
               <Remove onClick={() => onRemove(containerId, value)} />
             </RemoveWrapper>
           )}
@@ -186,11 +190,11 @@ const ItemWrapper = styled.div`
 
 const ItemLabel = styled.div<{ isUrl: boolean }>`
   width: 100%;
-  max-width: 210px;
+  max-width: 260px;
   ${({ isUrl }) =>
     !isUrl &&
     css`
-      max-width: 230px;
+      max-width: 280px;
     `}
   word-wrap: break-word;
 `
@@ -202,6 +206,15 @@ const ActionWrapper = styled.span`
   margin-bottom: -15px;
 `
 
-const RemoveWrapper = styled.div`
+const RemoveWrapper = styled.div<{ isHover: boolean }>`
   opacity: 0.2;
+  // show hide by hover at pc
+  ${({ isHover }) =>
+    isHover
+      ? pc`
+          opacity: 0.2;
+        `
+      : pc`
+          opacity: 0;
+        `}
 `
