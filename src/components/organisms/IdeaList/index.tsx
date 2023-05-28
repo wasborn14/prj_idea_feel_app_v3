@@ -548,7 +548,9 @@ export const IdeaList = ({
                 })}
               </SortableContext>
               {newItemContainerId === containerId && (
-                <ItemInput isNew containerId={containerId} onInputClose={() => setNewItemContainerId(null)} />
+                <NewInputWrapper>
+                  <ItemInput isNew containerId={containerId} onInputClose={() => setNewItemContainerId(null)} />
+                </NewInputWrapper>
               )}
             </DroppableContainer>
           ))}
@@ -593,4 +595,8 @@ const GridContainer = styled.div<{ isPc: boolean; mainContentsWidth: number }>`
       `
     }
   }}
+`
+
+const NewInputWrapper = styled.div`
+  margin-right: 24px;
 `
