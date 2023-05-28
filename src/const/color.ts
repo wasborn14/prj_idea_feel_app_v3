@@ -28,6 +28,7 @@ export const TRANSPARENT_BLACK_66 = '#00000066'
 export const TRANSPARENT_BLACK_99 = '#00000099'
 export const TRANSPARENT_BLACK_B3 = '#000000b3'
 export const TRANSPARENT_BLACK_CC = '#000000cc'
+export const TRANSPARENT_BLACK_OTHER_1 = '#1909091f'
 
 // 茶色
 export const DARK_BROWN1 = '#99681d'

@@ -5,6 +5,7 @@ import { sp } from '@/media'
 import styled from 'styled-components'
 import { actions as pageTitleActions } from '@/store/app/page'
 import { actions as categoryActions, RESET_CATEGORY_ID } from '@/store/app/category'
+import { Color } from '@/const'
 
 export const SelectItem = () => {
   const dispatch = useDispatch()
@@ -28,7 +29,7 @@ const Wrapper = styled.div`
     padding: 12px 10px;
   `}
   &:hover {
-    background-color: #a0540e13;
+    background-color: ${Color.DARK_BROWN3};
   }
 `
 
