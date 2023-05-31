@@ -182,7 +182,7 @@ const Wrapper = styled.li<{
   ${({ clone }) =>
     clone &&
     css`
-      background-color: ${Color.LIGHT_BROWN3};
+      background-color: ${Color.LIGHT_BROWN4};
       display: inline-block;
       pointer-events: none;
       padding: 0;
