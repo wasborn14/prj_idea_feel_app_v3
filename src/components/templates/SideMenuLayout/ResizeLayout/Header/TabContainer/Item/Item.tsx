@@ -2,10 +2,10 @@ import React, { useEffect } from 'react'
 import type { DraggableSyntheticListeners } from '@dnd-kit/core'
 import type { Transform } from '@dnd-kit/utilities'
 
-// import { Handle, Remove } from './components'
 import styled, { css } from 'styled-components'
 import { fontStyles } from '@/const/font'
 import { Color } from '@/const'
+import { Remove } from '@/components/atoms/DndItems'
 
 export interface Props {
   dragOverlay?: boolean
@@ -22,6 +22,7 @@ export interface Props {
   value: React.ReactNode
   title: string
   selected?: boolean
+  onSelect?(): void
   onRemove?(): void
 }
 
@@ -30,18 +31,14 @@ export const Item = React.memo(
     (
       {
         dragOverlay,
-        dragging,
-        disabled,
-        fadeIn,
         handle = true,
         handleProps,
         index,
         listeners,
+        onSelect,
         onRemove,
-        sorting,
         transition,
         transform,
-        value,
         title,
         selected,
         ...props
@@ -85,11 +82,10 @@ export const Item = React.memo(
             selected={selected}
             dragOverlay={dragOverlay}
           >
-            {title}
-            {/* <span className={styles.Actions}>
-              {onRemove ? <Remove className={styles.Remove} onClick={onRemove} /> : null}
-              {handle ? <Handle {...handleProps} {...listeners} /> : null}
-            </span> */}
+            <TitleWrapper onClick={onSelect}>{title}</TitleWrapper>
+            <IconWrapper onClick={onRemove}>
+              <Remove />
+            </IconWrapper>
           </ItemWrapper>
         </List>
       )
@@ -121,7 +117,6 @@ const ItemWrapper = styled.div<{
   flex-grow: 1;
   align-items: center;
   ${fontStyles['16px']}
-  padding: 18px 20px;
   border-radius: calc(4px / var(--scale-x, 1));
   box-sizing: border-box;
   transform-origin: 50% 50%;
@@ -147,4 +142,19 @@ const ItemWrapper = styled.div<{
       opacity: 1;
       z-index: 100;
     `}
+`
+
+const TitleWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  padding-right: 8px;
+`
+
+const IconWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
 `

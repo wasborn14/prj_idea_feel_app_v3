@@ -36,6 +36,7 @@ import { SortableItem } from './SotableItem'
 import { useGetTabList, usePutTabList } from '@/hooks/api/tab'
 import { useDispatch, useSelector } from 'react-redux'
 import { actions, tabListDataSelector } from '@/store/domain/tabList'
+import { changeTabListSelectStatus } from './utils'
 
 export interface SortableProps {
   activationConstraint?: PointerActivationConstraint
@@ -95,7 +96,6 @@ export function Sortable({
   handle = false,
   measuring,
   modifiers,
-  removable,
   reorderItems = arrayMove,
   strategy = horizontalListSortingStrategy,
   useDragOverlay = true
@@ -106,7 +106,10 @@ export function Sortable({
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
   const sensors = useSensors(
     useSensor(MouseSensor, {
-      activationConstraint
+      // set distance to separate onclick
+      activationConstraint: {
+        distance: 8
+      }
     }),
     useSensor(TouchSensor, {
       activationConstraint
@@ -123,7 +126,14 @@ export function Sortable({
   // const handleRemove = removable
   //   ? (id: UniqueIdentifier) => setItems((targetItems) => targetItems.filter((item) => item.id !== id))
   //   : undefined
-  const handleRemove = () => {}
+  const handleRemove = (id: UniqueIdentifier) => {
+    const removedTagList = tabList.filter((tab) => tab.id !== id)
+    putTabMutate({ tab_list: removedTagList })
+  }
+  const handleSelect = (id: UniqueIdentifier) => {
+    const changedTabList = changeTabListSelectStatus(tabList, id)
+    putTabMutate({ tab_list: changedTabList })
+  }
 
   const dispatch = useDispatch()
 
@@ -164,6 +174,7 @@ export function Sortable({
               selected={value.selected}
               handle={handle}
               index={index}
+              onSelect={handleSelect}
               onRemove={handleRemove}
               animateLayoutChanges={animateLayoutChanges}
               useDragOverlay={useDragOverlay}

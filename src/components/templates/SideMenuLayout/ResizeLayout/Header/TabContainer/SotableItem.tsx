@@ -13,6 +13,7 @@ interface SortableItemProps {
   index: number
   handle: boolean
   useDragOverlay?: boolean
+  onSelect?(id: UniqueIdentifier): void
   onRemove?(id: UniqueIdentifier): void
 }
 
@@ -24,6 +25,7 @@ export const SortableItem = ({
   title,
   selected,
   index,
+  onSelect,
   onRemove,
   useDragOverlay
 }: SortableItemProps) => {
@@ -51,6 +53,7 @@ export const SortableItem = ({
           : undefined
       }
       index={index}
+      onSelect={onSelect ? () => onSelect(id) : undefined}
       onRemove={onRemove ? () => onRemove(id) : undefined}
       transform={transform}
       transition={transition}
