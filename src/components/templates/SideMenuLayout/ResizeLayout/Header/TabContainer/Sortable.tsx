@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { createPortal } from 'react-dom'
 
 import {
@@ -33,6 +33,9 @@ import {
 import { Item } from './Item'
 import styled from 'styled-components'
 import { SortableItem } from './SotableItem'
+import { useGetTabList, usePutTabList } from '@/hooks/api/tab'
+import { useDispatch, useSelector } from 'react-redux'
+import { actions, tabListDataSelector } from '@/store/domain/tabList'
 
 export interface SortableProps {
   activationConstraint?: PointerActivationConstraint
@@ -73,15 +76,14 @@ const screenReaderInstructions: ScreenReaderInstructions = {
   `
 }
 
-type Item = { id: string; title: string; selected: boolean }
-
-const initialItems: Item[] = [
-  { id: '1', title: 'Title1', selected: false },
-  { id: '2', title: 'Title2', selected: true },
-  { id: '3', title: 'Title3', selected: false },
-  { id: '4', title: 'Title4', selected: false },
-  { id: '5', title: 'Title5', selected: false }
-]
+// example data
+// const initialItems: TabList = [
+//   { id: '1', title: 'Title1', selected: false },
+//   { id: '2', title: 'Title2', selected: true },
+//   { id: '3', title: 'Title3', selected: false },
+//   { id: '4', title: 'Title4', selected: false },
+//   { id: '5', title: 'Title5', selected: false }
+// ]
 
 export function Sortable({
   activationConstraint,
@@ -98,10 +100,9 @@ export function Sortable({
   strategy = horizontalListSortingStrategy,
   useDragOverlay = true
 }: SortableProps) {
-  const [items, setItems] = useState<Item[]>(initialItems)
-  useEffect(() => {
-    console.log({ items })
-  })
+  useGetTabList()
+  const tabList = useSelector(tabListDataSelector)
+  const { mutate: putTabMutate } = usePutTabList()
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
   const sensors = useSensors(
     useSensor(MouseSensor, {
@@ -117,11 +118,14 @@ export function Sortable({
     })
   )
   //   const getIndex = (id: UniqueIdentifier) => items.indexOf(id)
-  const getIndex = (id: UniqueIdentifier) => items.findIndex((item) => item.id === id)
+  const getIndex = (id: UniqueIdentifier) => tabList.findIndex((item) => item.id === id)
   const activeIndex = activeId ? getIndex(activeId) : -1
-  const handleRemove = removable
-    ? (id: UniqueIdentifier) => setItems((targetItems) => targetItems.filter((item) => item.id !== id))
-    : undefined
+  // const handleRemove = removable
+  //   ? (id: UniqueIdentifier) => setItems((targetItems) => targetItems.filter((item) => item.id !== id))
+  //   : undefined
+  const handleRemove = () => {}
+
+  const dispatch = useDispatch()
 
   return (
     <DndContext
@@ -137,12 +141,12 @@ export function Sortable({
         setActiveId(active.id)
       }}
       onDragEnd={({ over }) => {
-        console.log({ over })
         setActiveId(null)
         if (over) {
           const overIndex = getIndex(over.id)
           if (activeIndex !== overIndex) {
-            setItems((targetItems) => reorderItems(targetItems, activeIndex, overIndex))
+            dispatch(actions.setTabListData({ tabList: reorderItems(tabList, activeIndex, overIndex) }))
+            putTabMutate({ tab_list: reorderItems(tabList, activeIndex, overIndex) })
           }
         }
       }}
@@ -150,9 +154,9 @@ export function Sortable({
       measuring={measuring}
       modifiers={modifiers}
     >
-      <SortableContext items={items} strategy={strategy}>
+      <SortableContext items={tabList} strategy={strategy}>
         <List>
-          {items.map((value, index) => (
+          {tabList.map((value, index) => (
             <SortableItem
               key={`tab_${value.id}`}
               id={value.id}
@@ -172,7 +176,7 @@ export function Sortable({
         ? createPortal(
             <DragOverlay dropAnimation={dropAnimation}>
               {activeId ? (
-                <Item value={items[activeIndex].id} title={items[activeIndex].title} handle={handle} dragOverlay />
+                <Item value={tabList[activeIndex].id} title={tabList[activeIndex].title} handle={handle} dragOverlay />
               ) : null}
             </DragOverlay>,
             document.body
