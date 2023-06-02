@@ -35,9 +35,10 @@ import styled from 'styled-components'
 import { SortableItem } from './Item/SotableItem'
 import { useGetTabList, usePutTabList } from '@/hooks/api/tab'
 import { useDispatch, useSelector } from 'react-redux'
-import { actions, tabListDataSelector } from '@/store/domain/tabList'
+import { actions as tabActions, tabListDataSelector } from '@/store/domain/tabList'
 import { changeTabListSelectStatus } from './utils'
 import { useRouter } from 'next/router'
+import { actions } from '@/store/app/category'
 
 export interface SortableProps {
   activationConstraint?: PointerActivationConstraint
@@ -97,6 +98,7 @@ export function Sortable({
   const { mutate: putTabMutate } = usePutTabList()
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
   const router = useRouter()
+  const dispatch = useDispatch()
   const sensors = useSensors(
     useSensor(MouseSensor, {
       // set distance to separate onclick
@@ -126,12 +128,11 @@ export function Sortable({
   const handleSelect = (id: UniqueIdentifier) => {
     const changedTabList = changeTabListSelectStatus(tabList, id)
     putTabMutate({ tab_list: changedTabList })
+    dispatch(actions.setSelectCategoryId({ selectCategoryId: id as string }))
     router.push({
       pathname: `/category/idea/${id}`
     })
   }
-
-  const dispatch = useDispatch()
 
   return (
     <DndContext
@@ -151,7 +152,7 @@ export function Sortable({
         if (over) {
           const overIndex = getIndex(over.id)
           if (activeIndex !== overIndex) {
-            dispatch(actions.setTabListData({ tabList: reorderItems(tabList, activeIndex, overIndex) }))
+            dispatch(tabActions.setTabListData({ tabList: reorderItems(tabList, activeIndex, overIndex) }))
             putTabMutate({ tab_list: reorderItems(tabList, activeIndex, overIndex) })
           }
         }
