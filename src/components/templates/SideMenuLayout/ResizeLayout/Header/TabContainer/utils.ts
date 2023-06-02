@@ -16,3 +16,11 @@ export const changeTabListSelectStatus = (tabList: TabList, id: UniqueIdentifier
   })
   return newTabList
 }
+
+export const clearSelectStatusTabList = (tabList: TabList): TabList => {
+  const newTabList: TabList = []
+  tabList.forEach((tab) => {
+    newTabList.push({ id: tab.id, title: tab.title, selected: false })
+  })
+  return newTabList
+}
