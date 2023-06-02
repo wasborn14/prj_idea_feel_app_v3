@@ -37,9 +37,11 @@ import { ConfirmModal } from '@/components/mlecules/BaseModal/ConfirmModal'
 import { useGetCategory, usePutCategory } from '@/hooks/api/category'
 import { usePostIdeaList } from '@/hooks/api/idea'
 import { useTabList } from '@/hooks/domain/tab'
+import { useRouter } from 'next/router'
 
 export const RESET_IDEA_ID = ''
 const MENU_ID = 'category_context_menu'
+const UNTITLED = 'Untitled'
 
 interface Props {
   collapsible?: boolean
@@ -62,6 +64,7 @@ export const CategoryList = ({ collapsible = true, indicator = false, indentatio
   const { data: categoryListData } = useGetCategory()
   const { mutate: putCategoryList } = usePutCategory()
   const { editTab, deleteTab } = useTabList()
+  const router = useRouter()
 
   const flattenedItems = useMemo(() => {
     const flattenedTree = flattenTree(items)
@@ -183,10 +186,16 @@ export const CategoryList = ({ collapsible = true, indicator = false, indentatio
 
         setItems(newItems)
         putCategoryList({ category_list: newItems })
+        router.push({
+          pathname: `/category/idea/${newId}`
+        })
+        addTab(newId, title)
+        dispatch(actions.setSelectCategoryId({ selectCategoryId: newId }))
       }
     })
   }
 
+  const { addTab } = useTabList()
   const handleAdd = (parentId: string) => {
     const clonedItems: FlattenedItem[] = JSON.parse(JSON.stringify(flattenTree(items)))
     const parentIndex = clonedItems.findIndex(({ id }) => id === parentId)
@@ -205,7 +214,7 @@ export const CategoryList = ({ collapsible = true, indicator = false, indentatio
         const newId = res.data
         const newItem = {
           id: newId,
-          title: 'Untitled',
+          title: UNTITLED,
           children: [],
           collapsed: false,
           depth: depth + 1,
@@ -219,6 +228,10 @@ export const CategoryList = ({ collapsible = true, indicator = false, indentatio
         setItems(newItems)
         putCategoryList({ category_list: newItems })
         dispatch(actions.setEditCategoryId({ editCategoryId: newId }))
+        router.push({
+          pathname: `/category/idea/${newId}`
+        })
+        addTab(newId, UNTITLED)
       },
       onError: (err) => {
         console.error({ err })
