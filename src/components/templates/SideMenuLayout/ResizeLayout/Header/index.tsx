@@ -1,12 +1,12 @@
 import { Color, ZIndex } from '@/const'
 import styled from 'styled-components'
-import { TabContainer } from './TabContainer'
+import { TabList } from '../../../../organisms/TabList'
 
 export const Header = () => {
   return (
     <Container>
       <ContainerColorOverWrite>
-        <TabContainer />
+        <TabList />
       </ContainerColorOverWrite>
     </Container>
   )

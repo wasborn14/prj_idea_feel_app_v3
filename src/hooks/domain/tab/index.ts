@@ -1,5 +1,5 @@
-import { changeTabListSelectStatus } from '@/components/templates/SideMenuLayout/ResizeLayout/Header/TabContainer/utils'
-import { clearSelectStatusTabList } from '@/components/templates/SideMenuLayout/ResizeLayout/Header/TabContainer/utils'
+import { changeTabListSelectStatus } from '@/components/organisms/TabList/utils'
+import { clearSelectStatusTabList } from '@/components/organisms/TabList/utils'
 import { usePutTabList } from '@/hooks/api/tab'
 import { actions, tabListDataSelector } from '@/store/domain/tabList'
 import { TabList } from '@/store/domain/tabList/types'

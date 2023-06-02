@@ -1,7 +1,7 @@
 import React from 'react'
 import { Sortable } from './Sortable'
 
-export const TabContainer = () => {
+export const TabList = () => {
   return (
     <>
       <Sortable />
