@@ -61,8 +61,6 @@ export const Item = React.memo(
         <List
           style={
             {
-              height: 36,
-              width: 150,
               transition: [transition].filter(Boolean).join(', '),
               '--translate-x': transform ? `${Math.round(transform.x)}px` : undefined,
               '--translate-y': transform ? `${Math.round(transform.y)}px` : undefined,
@@ -94,6 +92,8 @@ export const Item = React.memo(
 )
 
 const List = styled.li`
+  height: 28px;
+  width: 150px;
   font-weight: 400;
   border-color: #efefef;
   color: #333;
