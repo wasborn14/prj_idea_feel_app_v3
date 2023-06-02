@@ -36,6 +36,7 @@ import { Spacer } from '@/components/atoms/Spacer'
 import { ConfirmModal } from '@/components/mlecules/BaseModal/ConfirmModal'
 import { useGetCategory, usePutCategory } from '@/hooks/api/category'
 import { usePostIdeaList } from '@/hooks/api/idea'
+import { useTabList } from '@/hooks/domain/tab'
 
 export const RESET_IDEA_ID = ''
 const MENU_ID = 'category_context_menu'
@@ -60,6 +61,7 @@ export const CategoryList = ({ collapsible = true, indicator = false, indentatio
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor))
   const { data: categoryListData } = useGetCategory()
   const { mutate: putCategoryList } = usePutCategory()
+  const { editTab, deleteTab } = useTabList()
 
   const flattenedItems = useMemo(() => {
     const flattenedTree = flattenTree(items)
@@ -143,6 +145,7 @@ export const CategoryList = ({ collapsible = true, indicator = false, indentatio
   const handleRemove = (id: string) => {
     // TODO:ideaのdelete処理追加
     setItems(() => removeItem(items, id))
+    deleteTab(id)
     putCategoryList({ category_list: removeItem(items, id) })
     setConfirmModalVisible(false)
   }
@@ -228,6 +231,7 @@ export const CategoryList = ({ collapsible = true, indicator = false, indentatio
       return title
     })
     setItems(changedItems)
+    editTab(id, title)
     putCategoryList({ category_list: changedItems })
   }
 

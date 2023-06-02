@@ -9,12 +9,6 @@ export const useGetCategory = () => {
   })
 }
 
-export const usePostCategory = () => {
-  return useMutation((data: { category_list: TreeItems }): Promise<AxiosResponse> => {
-    return api.post('categories', { category_list: data.category_list })
-  })
-}
-
 export const usePutCategory = () => {
   return useMutation((data: { category_list: TreeItems }): Promise<AxiosResponse> => {
     return api.put('categories', { category_list: data.category_list })
