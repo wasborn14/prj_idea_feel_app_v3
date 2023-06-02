@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import { actions as ideaListActions } from '@/store/domain/ideaList'
 import { UniqueIdentifier } from '@dnd-kit/core'
 
+// create empty idea list
 export const usePostIdeaList = () => {
   return useMutation((): Promise<AxiosResponse> => {
     return api.post('ideas')
