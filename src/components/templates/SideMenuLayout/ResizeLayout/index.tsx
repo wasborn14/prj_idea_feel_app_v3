@@ -37,7 +37,7 @@ const ResizeLayout = ({ sideNavContents, children }: Props): JSX.Element => {
       <SideNavWrapper width={sideWidth}>{sideNavContents}</SideNavWrapper>
       <ResizeSplitter isDragging={isFileDragging} {...fileDragBarProps} />
       <MainContents>
-        <Header onClick={() => {}} />
+        <Header />
         <Spacer y={24} />
         {children}
       </MainContents>

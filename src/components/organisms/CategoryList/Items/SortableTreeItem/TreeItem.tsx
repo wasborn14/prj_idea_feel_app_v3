@@ -15,6 +15,7 @@ import { Color } from '@/const'
 import { useRouter } from 'next/router'
 import { actions } from '@/store/app/page'
 import { sp } from '@/media'
+import { useTabList } from '@/hooks/domain/tab'
 
 const MENU_ID = 'category_context_menu'
 
@@ -66,6 +67,7 @@ export const TreeItem = forwardRef<HTMLDivElement, Props>(
     const router = useRouter()
     const editCategoryId = useSelector(editCategoryIdSelector)
     const selectCategoryId = useSelector(selectCategoryIdSelector)
+    const { addTab } = useTabList()
 
     const handleCloseInput = () => {
       dispatch(categoryActions.setEditCategoryId({ editCategoryId: RESET_CATEGORY_ID }))
@@ -90,6 +92,7 @@ export const TreeItem = forwardRef<HTMLDivElement, Props>(
     const handleSelectItem = () => {
       dispatch(categoryActions.setSelectCategoryId({ selectCategoryId: id }))
       dispatch(actions.setPageTitle({ title: value }))
+      addTab(id, value)
       router.push({
         pathname: `/category/idea/${id}`
       })
@@ -182,7 +185,7 @@ const Wrapper = styled.li<{
   ${({ clone }) =>
     clone &&
     css`
-      background-color: ${Color.LIGHT_BROWN3};
+      background-color: ${Color.LIGHT_BROWN4};
       display: inline-block;
       pointer-events: none;
       padding: 0;

@@ -42,6 +42,7 @@ export const LIGHT_YELLOW = '#ffbb0039'
 export const LIGHT_BROWN = '#d3870e60'
 export const LIGHT_BROWN2 = '#c98217d2'
 export const LIGHT_BROWN3 = '#f0cc8e'
+export const LIGHT_BROWN4 = ' #fde8b2;'
 
 // 赤
 export const DARK_RED1 = '#8b0000'
