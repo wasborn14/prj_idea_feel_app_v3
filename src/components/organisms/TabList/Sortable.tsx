@@ -37,6 +37,7 @@ import { useGetTabList, usePutTabList } from '@/hooks/api/tab'
 import { useDispatch, useSelector } from 'react-redux'
 import { actions, tabListDataSelector } from '@/store/domain/tabList'
 import { changeTabListSelectStatus } from './utils'
+import { useRouter } from 'next/router'
 
 export interface SortableProps {
   activationConstraint?: PointerActivationConstraint
@@ -95,6 +96,7 @@ export function Sortable({
   const tabList = useSelector(tabListDataSelector)
   const { mutate: putTabMutate } = usePutTabList()
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
+  const router = useRouter()
   const sensors = useSensors(
     useSensor(MouseSensor, {
       // set distance to separate onclick
@@ -124,6 +126,9 @@ export function Sortable({
   const handleSelect = (id: UniqueIdentifier) => {
     const changedTabList = changeTabListSelectStatus(tabList, id)
     putTabMutate({ tab_list: changedTabList })
+    router.push({
+      pathname: `/category/idea/${id}`
+    })
   }
 
   const dispatch = useDispatch()
