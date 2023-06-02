@@ -2,7 +2,7 @@ import React from 'react'
 
 import { UniqueIdentifier } from '@dnd-kit/core'
 import { useSortable, AnimateLayoutChanges, NewIndexGetter } from '@dnd-kit/sortable'
-import { Item } from './Item'
+import { Item } from '.'
 
 interface SortableItemProps {
   animateLayoutChanges?: AnimateLayoutChanges

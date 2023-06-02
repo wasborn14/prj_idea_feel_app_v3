@@ -32,7 +32,7 @@ import {
 
 import { Item } from './Item'
 import styled from 'styled-components'
-import { SortableItem } from './SotableItem'
+import { SortableItem } from './Item/SotableItem'
 import { useGetTabList, usePutTabList } from '@/hooks/api/tab'
 import { useDispatch, useSelector } from 'react-redux'
 import { actions, tabListDataSelector } from '@/store/domain/tabList'
@@ -76,15 +76,6 @@ const screenReaderInstructions: ScreenReaderInstructions = {
     Press space again to drop the item in its new position, or press escape to cancel.
   `
 }
-
-// example data
-// const initialItems: TabList = [
-//   { id: '1', title: 'Title1', selected: false },
-//   { id: '2', title: 'Title2', selected: true },
-//   { id: '3', title: 'Title3', selected: false },
-//   { id: '4', title: 'Title4', selected: false },
-//   { id: '5', title: 'Title5', selected: false }
-// ]
 
 export function Sortable({
   activationConstraint,
