@@ -83,7 +83,7 @@ export const FeelContents = () => {
             if (feel_data) {
               // TODO: Error回避
               // @ts-ignore
-              const feel = ' Feel : ' + feel_data.detail.feel
+              const feel = ' Feel : ' + feel_data.detail.value
               // @ts-ignore
               const reason = ' Reason : ' + feel_data.detail.reason
               // @ts-ignore
@@ -107,11 +107,26 @@ export const FeelContents = () => {
     scales: {
       y: {
         display: true,
-        suggestedMin: -5,
+        suggestedMin: 1,
         suggestedMax: 5,
-        beginAtZero: true,
         ticks: {
-          stepSize: 1
+          stepSize: 1,
+          callback: function (value: number) {
+            switch (value) {
+              case 1:
+                return 'very unhappy'
+              case 2:
+                return 'unhappy'
+              case 3:
+                return 'normal'
+              case 4:
+                return 'happy'
+              case 5:
+                return 'very happy'
+              default:
+                return ''
+            }
+          }
         }
       }
     },
@@ -137,7 +152,7 @@ export const FeelContents = () => {
         lineTension: 0.4,
         parsing: {
           xAxisKey: 'date',
-          yAxisKey: 'detail.feel'
+          yAxisKey: 'detail.value'
         },
         radius: 8
       },
@@ -150,7 +165,7 @@ export const FeelContents = () => {
         lineTension: 0.4,
         parsing: {
           xAxisKey: 'date',
-          yAxisKey: 'detail.feel'
+          yAxisKey: 'detail.value'
         },
         radius: 8
       }
@@ -220,6 +235,8 @@ const ContentWrapper = styled.div`
 `
 
 const LineWrapper = styled.div<{ isSp: boolean }>`
+  display: flex;
+  flex-direction: row;
   width: 80%;
   height: 500px;
   ${({ isSp }) =>
@@ -228,6 +245,21 @@ const LineWrapper = styled.div<{ isSp: boolean }>`
       height: 450px;
       width: 350px;
     `}
+`
+
+const YAxisContainer = styled.div`
+  padding-top: 14px;
+  width: 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`
+
+const IconWrapper = styled.div`
+  height: 98%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `
 
 const InputWrapper = styled.div<{ isSp: boolean }>`

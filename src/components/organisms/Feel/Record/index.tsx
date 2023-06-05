@@ -33,32 +33,21 @@ export const Record = ({ baseDate, setBaseDate, isSelectWeek }: Props) => {
   const [memo, setMemo] = useState('')
   const { refetch } = useGetFeelList(baseDate, isSelectWeek)
 
-  const convertFeelValue = (feel: number): number => {
-    switch (feel) {
+  const convertFeelValue = (value: number): number => {
+    switch (value) {
       case 0:
-        return -5
-      case 10:
-        return -4
-      case 20:
-        return -3
-      case 30:
-        return -2
-      case 40:
-        return -1
-      case 50:
-        return 0
-      case 60:
         return 1
-      case 70:
+      case 25:
         return 2
-      case 80:
+      case 50:
         return 3
-      case 90:
+      case 75:
         return 4
       case 100:
         return 5
+      default:
+        return 0
     }
-    return 0
   }
 
   const { mutate: postFeelMutate } = usePostFeel()
@@ -71,7 +60,7 @@ export const Record = ({ baseDate, setBaseDate, isSelectWeek }: Props) => {
         date: baseDate.toISOString(),
         start_date: startDate.toISOString(),
         end_date: endDate.toISOString(),
-        feel: convertFeelValue(sliderValue),
+        value: convertFeelValue(sliderValue),
         reason: Number(selectReason.value),
         memo: memo,
         is_predict: isPredict
