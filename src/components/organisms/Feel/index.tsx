@@ -114,15 +114,15 @@ export const FeelContents = () => {
           callback: function (value: number) {
             switch (value) {
               case 1:
-                return 'very unhappy'
+                return isSp ? '' : 'very unhappy'
               case 2:
-                return 'unhappy'
+                return isSp ? '' : 'unhappy'
               case 3:
-                return 'normal'
+                return isSp ? '' : 'normal'
               case 4:
-                return 'happy'
+                return isSp ? '' : 'happy'
               case 5:
-                return 'very happy'
+                return isSp ? '' : 'very happy'
               default:
                 return ''
             }
