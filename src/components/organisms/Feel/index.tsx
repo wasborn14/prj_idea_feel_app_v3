@@ -247,21 +247,6 @@ const LineWrapper = styled.div<{ isSp: boolean }>`
     `}
 `
 
-const YAxisContainer = styled.div`
-  padding-top: 14px;
-  width: 30px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-`
-
-const IconWrapper = styled.div`
-  height: 98%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`
-
 const InputWrapper = styled.div<{ isSp: boolean }>`
   width: 300px;
 
