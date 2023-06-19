@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Dispatch, SetStateAction } from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
 import { FormDatePicker } from '@/components/atoms/Forms/Date'
+import { Spacer } from '@/components/atoms/Spacer'
 
 type Props = {
   baseDate: Date
@@ -16,19 +17,17 @@ export const DateInput = ({ baseDate, setBaseDate }: Props) => {
       <DescriptionWrapper>
         <Description>Date</Description>
       </DescriptionWrapper>
+      <Spacer y={16} />
       <FormDatePicker baseDate={baseDate} setBaseDate={setBaseDate} />
     </Container>
   )
 }
 
-const Container = styled.div`
-  margin-top: 12px;
-  margin-left: 24px;
-`
+const Container = styled.div``
 
 const DescriptionWrapper = styled.div`
   margin-left: 4px;
-  margin-bottom: 4px;
+  margin-top: 18px;
 `
 
 const Description = styled.p`

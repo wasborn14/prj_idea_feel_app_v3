@@ -34,7 +34,7 @@ export const usePostFeel = () => {
       date: string
       start_date: string
       end_date: string
-      feel: number
+      value: number
       reason: number
       memo: string
       is_predict: boolean
@@ -43,7 +43,7 @@ export const usePostFeel = () => {
         date: data.date,
         start_date: data.start_date,
         end_date: data.end_date,
-        feel: data.feel,
+        value: data.value,
         reason: data.reason,
         memo: data.memo,
         is_predict: data.is_predict

@@ -4,68 +4,80 @@ import 'react-datepicker/dist/react-datepicker.css'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 import { useIsSp } from '@/hooks/util/useIsSp'
+import { fontStyles } from '@/const/font'
+
+const TextWrapper = styled.div`
+  position: relative;
+`
+
+const Text = styled.div`
+  position: absolute;
+  top: 14px;
+  left: -20px;
+  transform: rotate(-8deg);
+  ${fontStyles['14px']}
+  font-weight: bold;
+`
+
+const TwoLineText = styled.div`
+  position: absolute;
+  top: 4px;
+  left: -20px;
+  transform: rotate(-8deg);
+  ${fontStyles['14px']}
+  font-weight: bold;
+`
 
 const marks = {
   0: {
     style: {
       color: '#39a0b7'
     },
-    label: <strong>-5</strong>
+    label: (
+      <TextWrapper>
+        <TwoLineText>very unhappy</TwoLineText>
+      </TextWrapper>
+    )
   },
-  10: {
+  25: {
     style: {
       color: '#39a0b7'
     },
-    label: <strong>-4</strong>
+    label: (
+      <TextWrapper>
+        <Text>unhappy</Text>
+      </TextWrapper>
+    )
   },
-  20: {
+  50: {
     style: {
-      color: '#39a0b7'
+      color: 'green'
     },
-    label: <strong>-3</strong>
+    label: (
+      <TextWrapper>
+        <Text>normal</Text>
+      </TextWrapper>
+    )
   },
-  30: {
-    style: {
-      color: '#39a0b7'
-    },
-    label: <strong>-2</strong>
-  },
-  40: {
-    style: {
-      color: '#39a0b7'
-    },
-    label: <strong>-1</strong>
-  },
-  50: '0',
-  60: {
+  75: {
     style: {
       color: 'orange'
     },
-    label: <strong>1</strong>
-  },
-  70: {
-    style: {
-      color: 'orange'
-    },
-    label: <strong>2</strong>
-  },
-  80: {
-    style: {
-      color: 'orange'
-    },
-    label: <strong>3</strong>
-  },
-  90: {
-    style: {
-      color: 'orange'
-    },
-    label: <strong>4</strong>
+    label: (
+      <TextWrapper>
+        <Text>happy</Text>
+      </TextWrapper>
+    )
   },
   100: {
     style: {
       color: 'orange'
     },
-    label: <strong>5</strong>
+    label: (
+      <TextWrapper>
+        <TwoLineText>very happy</TwoLineText>
+      </TextWrapper>
+    )
   }
 }
 
@@ -95,12 +107,12 @@ export const FormSlider = ({ sliderValue, onChange }: Props) => {
 }
 
 const Container = styled.div<{ isSp: boolean }>`
-  width: 340px;
+  width: 400px;
 
   ${({ isSp }) =>
     isSp &&
     css`
-      width: 320px;
+      width: 250px;
     `}
 
   .rc-slider-rail {

@@ -1,9 +1,9 @@
 import { CaseReducer, PayloadAction } from '@reduxjs/toolkit'
 
 export type FeelModel = {
-  feel: number
+  date: string
   detail: {
-    date: string
+    value: number
     reason: number
     memo: string
   }
