@@ -1,13 +1,16 @@
 import { Color, ZIndex } from '@/const'
 import styled from 'styled-components'
 import { TabList } from '../../../../organisms/TabList'
+import { useRouter } from 'next/router'
+import { fontStyles } from '@/const/font'
 
 export const Header = () => {
+  const router = useRouter()
+  const isFeel = router.query['category'] === 'feel' ? true : false
+
   return (
     <Container>
-      <ContainerColorOverWrite>
-        <TabList />
-      </ContainerColorOverWrite>
+      <ContainerColorOverWrite>{isFeel ? <TitleWrapper>Feel</TitleWrapper> : <TabList />}</ContainerColorOverWrite>
     </Container>
   )
 }
@@ -28,4 +31,8 @@ const ContainerColorOverWrite = styled.div`
   padding-top: 8px;
   align-items: center;
   background-color: ${Color.BACKGROUND_COLOR1};
+`
+
+const TitleWrapper = styled.div`
+  ${fontStyles['24px']}
 `

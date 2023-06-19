@@ -12,6 +12,8 @@ import { FeelReasonModal } from '../FeelReasonModal'
 import { ShortButton } from '@/components/atoms/Buttons/Button'
 import { FormDropdown } from '@/components/atoms/Forms/FormDropdown'
 import { useGetFeelReasonSelectList } from '@/hooks/api/feel'
+import { pc, sp } from '@/media'
+import { useIsSp } from '@/hooks/util/useIsSp'
 
 type Props = {
   selectReason: Option
@@ -22,6 +24,7 @@ export const ReasonSelect = ({ selectReason, setSelectReason }: Props) => {
   const feelReasonList = useSelector(feelReasonSelectListDataSelector)
   const [isFeelReasonModalVisible, setIsFeelReasonModalVisible] = useState(false)
   const { refetch } = useGetFeelReasonSelectList()
+  const isSp = useIsSp()
 
   const openFeelReasonModal = () => {
     setIsFeelReasonModalVisible(true)
@@ -48,10 +51,25 @@ export const ReasonSelect = ({ selectReason, setSelectReason }: Props) => {
         </DescriptionWrapper>
         <ShortButton onClick={openFeelReasonModal}>Create</ShortButton>
       </ReasonWrapper>
-      <FormDropdown width={300} options={feelReasonList} selectReason={selectReason} onChange={setSelectReason} />
+      <FormDropdown
+        width={isSp ? 280 : 300}
+        options={feelReasonList}
+        selectReason={selectReason}
+        onChange={setSelectReason}
+      />
     </Container>
   )
 }
+
+const Container = styled.div`
+  ${pc`
+      margin-top: 12px;
+      margin-left: 24px;
+  `}
+  ${sp`
+    margin-top: 24px;
+  `}
+`
 
 const DescriptionWrapper = styled.div`
   margin-top: 4px;
@@ -70,10 +88,4 @@ const ReasonWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-`
-
-const Container = styled.div`
-  margin-top: 12px;
-  margin-left: 24px;
-  align-items: center;
 `

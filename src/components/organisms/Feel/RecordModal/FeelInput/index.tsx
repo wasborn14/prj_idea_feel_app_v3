@@ -1,11 +1,12 @@
 import { Color } from '@/const'
 import { fontStyles } from '@/const/font'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { Dispatch, SetStateAction } from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
 import 'rc-slider/assets/index.css'
 import { useIsSp } from '@/hooks/util/useIsSp'
 import { FormSlider } from '@/components/atoms/Forms/FormSlider'
+import { pc, sp } from '@/media'
 
 type Props = {
   sliderValue: number
@@ -28,12 +29,18 @@ export const FeelInput = ({ sliderValue, setSliderValue }: Props) => {
 }
 
 const Container = styled.div`
-  margin: 12px 10px 4px 24px;
+  ${pc`
+    margin: 12px 10px 4px 24px;
+  `}
 `
 
 const DescriptionWrapper = styled.div`
-  margin-left: 4px;
   margin-bottom: 4px;
+  ${sp`
+    margin-left: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  `}
 `
 
 const Description = styled.p`
@@ -42,11 +49,5 @@ const Description = styled.p`
 `
 
 const FormSliderWrapper = styled.div<{ isSp: boolean }>`
-  margin: 10px 10px 30px;
-
-  ${({ isSp }) =>
-    isSp &&
-    css`
-      margin: 10px 0px 30px;
-    `}
+  margin: 10px 20px 30px;
 `
