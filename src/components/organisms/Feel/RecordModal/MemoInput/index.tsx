@@ -18,7 +18,7 @@ export const MemoInput = ({ setMemo }: Props) => {
         <Description>Memo</Description>
       </DescriptionWrapper>
       <TextArea
-        heightPx={56}
+        heightPx={200}
         onChange={(e) => {
           setMemo(e.target.value)
         }}
@@ -28,13 +28,13 @@ export const MemoInput = ({ setMemo }: Props) => {
 }
 
 const MemoWrapper = styled.div<{ isSp: boolean }>`
-  width: 100%;
+  width: 90%;
   margin: 12px 10px 4px 24px;
 
   ${({ isSp }) =>
     isSp &&
     css`
-      width: 80%;
+      width: 90%;
     `}
 `
 

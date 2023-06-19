@@ -1,6 +1,6 @@
 import { Color } from '@/const'
 import styled, { css } from 'styled-components'
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useRef, useState } from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
 import 'rc-slider/assets/index.css'
 import { Option } from 'react-dropdown'
@@ -12,6 +12,9 @@ import { MemoInput } from './MemoInput'
 import { useIsSp } from '@/hooks/util/useIsSp'
 import { ColorShortButton } from '@/components/atoms/Buttons/Button'
 import { useGetFeelList, usePostFeel } from '@/hooks/api/feel'
+import { BaseModal } from '@/components/mlecules/BaseModal'
+import { Spacer } from '@/components/atoms/Spacer'
+import { pc } from '@/media'
 
 const DEFAULT_SLIDER_VALUE = 50
 
@@ -24,14 +27,16 @@ type Props = {
   baseDate: Date
   setBaseDate: Dispatch<SetStateAction<Date>>
   isSelectWeek: boolean
+  onClick: () => void
 }
 
-export const Record = ({ baseDate, setBaseDate, isSelectWeek }: Props) => {
+export const RecordModal = ({ baseDate, setBaseDate, isSelectWeek, onClick }: Props) => {
   const isSp = useIsSp()
   const [sliderValue, setSliderValue] = useState(DEFAULT_SLIDER_VALUE)
   const [selectReason, setSelectReason] = useState(DEFAULT_OPTION)
   const [memo, setMemo] = useState('')
   const { refetch } = useGetFeelList(baseDate, isSelectWeek)
+  const isInnerClick = useRef(false)
 
   const convertFeelValue = (value: number): number => {
     switch (value) {
@@ -66,21 +71,40 @@ export const Record = ({ baseDate, setBaseDate, isSelectWeek }: Props) => {
         is_predict: isPredict
       },
       {
-        onSuccess: () => refetch(),
+        onSuccess: () => {
+          refetch()
+          onClick()
+        },
         onError: (err: any) => console.error({ err })
       }
     )
   }
 
+  // モーダル開閉処理関連
+  const onInnerClick = () => {
+    isInnerClick.current = true
+  }
+  const onClose = () => {
+    // Modalの中をクリックした際は閉じないようにする
+    if (!isInnerClick.current) {
+      onClick()
+    }
+    isInnerClick.current = false
+  }
+
   return (
-    <Container>
-      <RecordContainer>
-        <RecordFunctionsContainer isSp={isSp}>
+    <BaseModal width={isSp ? 320 : 650} color='white' onClick={onClose} wrapperId='success-modal' isRadius>
+      <Container onClick={onInnerClick}>
+        <FunctionsContainer isSp={isSp}>
           <DateInput baseDate={baseDate} setBaseDate={setBaseDate} />
-          <FeelInput sliderValue={sliderValue} setSliderValue={setSliderValue} />
+          <Spacer x={12} />
           <ReasonSelect selectReason={selectReason} setSelectReason={setSelectReason} />
-          <MemoInput setMemo={setMemo} />
-        </RecordFunctionsContainer>
+        </FunctionsContainer>
+        <Spacer y={12} />
+        <FeelInput sliderValue={sliderValue} setSliderValue={setSliderValue} />
+        <Spacer y={24} />
+        <MemoInput setMemo={setMemo} />
+        <Spacer y={12} />
         <SubmitButtonContainer isSp={isSp}>
           <ButtonWrapper>
             <ColorShortButton
@@ -94,6 +118,7 @@ export const Record = ({ baseDate, setBaseDate, isSelectWeek }: Props) => {
               Predict
             </ColorShortButton>
           </ButtonWrapper>
+          <Spacer x={isSp ? 12 : 24} />
           <ButtonWrapper>
             <ColorShortButton
               width={isSp ? 160 : 200}
@@ -107,49 +132,48 @@ export const Record = ({ baseDate, setBaseDate, isSelectWeek }: Props) => {
             </ColorShortButton>
           </ButtonWrapper>
         </SubmitButtonContainer>
-      </RecordContainer>
-    </Container>
+      </Container>
+    </BaseModal>
   )
 }
 
 const Container = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 `
-const RecordFunctionsContainer = styled.div<{ isSp: boolean }>`
+
+const FunctionsContainer = styled.div<{ isSp: boolean }>`
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 
   ${({ isSp }) =>
     isSp &&
     css`
+      flex-direction: column;
+      align-items: flex-start;
       width: 100%;
     `}
 `
 
-const RecordContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-`
-
 const SubmitButtonContainer = styled.div<{ isSp: boolean }>`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-left: 32px;
 
   ${({ isSp }) =>
     isSp &&
     css`
-      margin-left: 16px;
-      flex-direction: row;
+      margin-left: 4px;
       justify-content: center;
       align-items: center;
     `}
 `
 
 const ButtonWrapper = styled.div`
-  margin: 8px;
+  ${pc`
+    margin: 8px;
+  `}
 `

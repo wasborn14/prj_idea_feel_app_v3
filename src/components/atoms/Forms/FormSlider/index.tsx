@@ -107,12 +107,12 @@ export const FormSlider = ({ sliderValue, onChange }: Props) => {
 }
 
 const Container = styled.div<{ isSp: boolean }>`
-  width: 340px;
+  width: 400px;
 
   ${({ isSp }) =>
     isSp &&
     css`
-      width: 320px;
+      width: 250px;
     `}
 
   .rc-slider-rail {
