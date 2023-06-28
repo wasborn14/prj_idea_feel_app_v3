@@ -3,13 +3,13 @@ import { useMutation, useQuery } from 'react-query'
 import { api } from '..'
 import { useDispatch } from 'react-redux'
 import { actions as feelReasonSelectListActions } from '@/store/domain/feelReasonSelectList'
-import { actions as feelListActions } from '@/store/domain/feelList'
+import { actions as feelGraphActions } from '@/store/domain/feelGraph'
 import { getStartAndEndDate } from '@/utils/diffDate'
 import { actions as feelReasonListActions } from '@/store/domain/feelReasonList'
 
 // -------------------- feel list ----------------------
 
-export const useGetFeelList = (baseDate: Date, isSelectWeek: boolean) => {
+export const useGetFeelGraphData = (baseDate: Date, isSelectWeek: boolean) => {
   const dates = getStartAndEndDate(baseDate, isSelectWeek)
   const dispatch = useDispatch()
   return useQuery(
@@ -21,7 +21,7 @@ export const useGetFeelList = (baseDate: Date, isSelectWeek: boolean) => {
     {
       enabled: dates !== undefined,
       onSuccess: (res) => {
-        dispatch(feelListActions.setFeelListData(res.data))
+        dispatch(feelGraphActions.setFeelGraphData(res.data))
       },
       onError: (err: any) => console.error(err.message)
     }

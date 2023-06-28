@@ -11,7 +11,7 @@ import { ReasonSelect } from './ReasonSelect'
 import { MemoInput } from './MemoInput'
 import { useIsSp } from '@/hooks/util/useIsSp'
 import { ColorShortButton } from '@/components/atoms/Buttons/Button'
-import { useGetFeelList, usePostFeel } from '@/hooks/api/feel'
+import { useGetFeelGraphData, usePostFeel } from '@/hooks/api/feel'
 import { BaseModal } from '@/components/mlecules/BaseModal'
 import { Spacer } from '@/components/atoms/Spacer'
 import { pc } from '@/media'
@@ -35,7 +35,7 @@ export const RecordModal = ({ baseDate, setBaseDate, isSelectWeek, onClick }: Pr
   const [sliderValue, setSliderValue] = useState(DEFAULT_SLIDER_VALUE)
   const [selectReason, setSelectReason] = useState(DEFAULT_OPTION)
   const [memo, setMemo] = useState('')
-  const { refetch } = useGetFeelList(baseDate, isSelectWeek)
+  const { refetch } = useGetFeelGraphData(baseDate, isSelectWeek)
   const isInnerClick = useRef(false)
 
   const convertFeelValue = (value: number): number => {
