@@ -26,6 +26,7 @@ import { useGetFeelList } from '@/hooks/api/feel'
 import { FormDatePicker } from '@/components/atoms/Forms/Date'
 import { RecordModal } from './RecordModal'
 import { mainContentsWidthSelector } from '@/store/app/window'
+import { FeelList } from './FeelList'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, zoomPlugin, Annotation)
 
@@ -186,8 +187,7 @@ export const FeelContents = () => {
   }
 
   return (
-    <ContentWrapper>
-      {/* {!isSp && <Record baseDate={baseDate} setBaseDate={setBaseDate} isSelectWeek={isSelectWeek} />} */}
+    <Container>
       {isRecordOpen && (
         <RecordModal
           baseDate={baseDate}
@@ -206,6 +206,12 @@ export const FeelContents = () => {
       </LineWrapper>
       <Spacer y={40} />
       <HStack>
+        {!isSp && (
+          <>
+            <ShortButton onClick={() => setIsRecordOpen(!isRecordOpen)}>Create</ShortButton>
+            <Spacer x={80} />
+          </>
+        )}
         <InputWrapper isSp={isSp}>
           <FormDatePicker baseDate={baseDate} setBaseDate={setBaseDate} />
         </InputWrapper>
@@ -221,24 +227,20 @@ export const FeelContents = () => {
             </SelectShortButton>
           </>
         )}
-        {!isSp && (
-          <>
-            <Spacer x={80} />
-            <ShortButton onClick={() => setIsRecordOpen(!isRecordOpen)}>Record</ShortButton>
-          </>
-        )}
       </HStack>
       {isSp && (
         <>
           <Spacer x={80} />
-          <ShortButton onClick={() => setIsRecordOpen(!isRecordOpen)}>Record</ShortButton>
+          <ShortButton onClick={() => setIsRecordOpen(!isRecordOpen)}>Create</ShortButton>
         </>
       )}
-    </ContentWrapper>
+      <Spacer y={42} />
+      {!isSp && <FeelList />}
+    </Container>
   )
 }
 
-const ContentWrapper = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -249,7 +251,6 @@ const LineWrapper = styled.div<{
   isSp: boolean
   pcMargin: number
 }>`
-  margin-top: 100px;
   display: flex;
   width: 1200px;
   height: 500px;
