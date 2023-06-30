@@ -75,5 +75,12 @@ export const TEXT_GOOGLE_SIGN_IN = 'rgba(0, 0, 0, 0.54)'
 export const ERROR_COLOR = '#ef4040'
 export const ERROR_LIGHT_COLOR = '#ffdede'
 
+// feel value
+export const FEEL_VERY_UNHAPPY_COLOR = '#0000FF'
+export const FEEL_UNHAPPY_COLOR = '#39a0b7'
+export const FEEL_NORMAL_COLOR = '#008000'
+export const FEEL_HAPPY_COLOR = '#FFA500'
+export const FEEL_VERY_HAPPY_COLOR = '#f2654f'
+
 // 色のリセット
 export const TRANSPARENT_COLOR = 'rgba(0, 0, 0, 0)' // 元の色コードFAC864
