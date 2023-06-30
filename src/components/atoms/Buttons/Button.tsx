@@ -72,6 +72,17 @@ const ShortStyle = css<ButtonProps>`
   `}
 `
 
+const VeryShortStyle = css<ButtonProps>`
+  ${sp`
+    width: 120px;
+    height: 32px;
+  `}
+  ${pc`
+    width: 120px;
+    height: 32px;
+  `}
+`
+
 const ColorStyle = css<ButtonProps>`
   color: ${({ color }) => `${color}`};
   background: ${({ backgroundColor }) => `${backgroundColor}`};
@@ -120,6 +131,6 @@ export const ColorShortButton = styled.button`
 
 export const SelectShortButton = styled.button`
   ${BaseStyle}
-  ${ShortStyle}
+  ${VeryShortStyle}
   ${SelectStyle}
 `
