@@ -1,7 +1,7 @@
-import { FeelValue, feelValue } from '@/const/feel'
+import { FeelValue, feelColor, feelValue } from '@/const/feel'
 import { useGetFeelListData } from '@/hooks/api/feel'
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 type FeelItem = {
   date: string
@@ -27,7 +27,7 @@ export const FeelList = () => {
         feelListItems.map((feelItem, index) => (
           <ListItem key={index}>
             <Item>{feelItem.date}</Item>
-            <Item>{feelValue[feelItem.value as FeelValue]}</Item>
+            <FeelItem color={feelColor[feelItem.value as FeelValue]}>{feelValue[feelItem.value as FeelValue]}</FeelItem>
             <ReasonItem>{feelItem.reason.length > 0 ? feelItem.reason : '-'}</ReasonItem>
             <MemoItem>{feelItem.memo}</MemoItem>
           </ListItem>
@@ -71,6 +71,13 @@ const ListItem = styled.div`
 
 const Item = styled.div`
   width: 200px;
+`
+
+const FeelItem = styled.div<{ color: string }>`
+  width: 200px;
+  ${({ color }) => css`
+    color: ${color};
+  `}
 `
 
 const ReasonItem = styled.div`

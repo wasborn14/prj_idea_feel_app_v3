@@ -31,7 +31,7 @@ const TwoLineText = styled.div`
 const marks = {
   0: {
     style: {
-      color: '#39a0b7'
+      color: `${Color.FEEL_VERY_UNHAPPY_COLOR}`
     },
     label: (
       <TextWrapper>
@@ -41,7 +41,7 @@ const marks = {
   },
   25: {
     style: {
-      color: '#39a0b7'
+      color: `${Color.FEEL_UNHAPPY_COLOR}`
     },
     label: (
       <TextWrapper>
@@ -51,7 +51,7 @@ const marks = {
   },
   50: {
     style: {
-      color: 'green'
+      color: `${Color.FEEL_NORMAL_COLOR}`
     },
     label: (
       <TextWrapper>
@@ -61,7 +61,7 @@ const marks = {
   },
   75: {
     style: {
-      color: 'orange'
+      color: `${Color.FEEL_HAPPY_COLOR}`
     },
     label: (
       <TextWrapper>
@@ -71,7 +71,7 @@ const marks = {
   },
   100: {
     style: {
-      color: 'orange'
+      color: `${Color.FEEL_VERY_HAPPY_COLOR}`
     },
     label: (
       <TextWrapper>
