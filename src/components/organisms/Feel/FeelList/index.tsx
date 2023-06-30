@@ -1,21 +1,19 @@
+import { FeelValue, feelValue } from '@/const/feel'
+import { useGetFeelListData } from '@/hooks/api/feel'
 import React from 'react'
 import styled from 'styled-components'
 
+type FeelItem = {
+  date: string
+  value: number
+  reason: string
+  is_predict: boolean
+  memo: string
+}
+
 export const FeelList = () => {
-  const items = [
-    { date: '2023/06/21', value: 'normal', reason: '--', memo: '特別に嬉しいことがあった' },
-    { date: '2023/06/22', value: 'normal', reason: '--', memo: '楽しみにしていたゲームの発売日' },
-    { date: '2023/06/23', value: 'very happy', reason: '--', memo: '789 Oak St' },
-    { date: '2023/06/21', value: 'normal', reason: '--', memo: '特別に嬉しいことがあった' },
-    { date: '2023/06/22', value: 'normal', reason: '--', memo: '楽しみにしていたゲームの発売日' },
-    { date: '2023/06/23', value: 'very happy', reason: '--', memo: '789 Oak St' },
-    { date: '2023/06/21', value: 'normal', reason: '--', memo: '特別に嬉しいことがあった' },
-    { date: '2023/06/22', value: 'normal', reason: '--', memo: '楽しみにしていたゲームの発売日' },
-    { date: '2023/06/23', value: 'very happy', reason: '--', memo: '789 Oak St' },
-    { date: '2023/06/21', value: 'normal', reason: '--', memo: '特別に嬉しいことがあった' },
-    { date: '2023/06/22', value: 'normal', reason: '--', memo: '楽しみにしていたゲームの発売日' },
-    { date: '2023/06/23', value: 'very happy', reason: '--', memo: '789 Oak St' }
-  ]
+  const { data: feelListData, status } = useGetFeelListData()
+  const feelListItems: FeelItem[] = feelListData?.data ?? []
 
   return (
     <ListContainer>
@@ -23,16 +21,17 @@ export const FeelList = () => {
         <HeaderItem>Date</HeaderItem>
         <HeaderItem>Feel</HeaderItem>
         <HeaderItem>Reason</HeaderItem>
-        <HeaderMemoItem>Memo</HeaderMemoItem>
+        <HeaderMemoItem>Diary</HeaderMemoItem>
       </ListHeader>
-      {items.map((item, index) => (
-        <ListItem key={index}>
-          <Item>{item.date}</Item>
-          <Item>{item.value}</Item>
-          <Item>{item.reason}</Item>
-          <MemoItem>{item.memo}</MemoItem>
-        </ListItem>
-      ))}
+      {status === 'success' &&
+        feelListItems.map((feelItem, index) => (
+          <ListItem key={index}>
+            <Item>{feelItem.date}</Item>
+            <Item>{feelValue[feelItem.value as FeelValue]}</Item>
+            <ReasonItem>{feelItem.reason.length > 0 ? feelItem.reason : '-'}</ReasonItem>
+            <MemoItem>{feelItem.memo}</MemoItem>
+          </ListItem>
+        ))}
     </ListContainer>
   )
 }
@@ -72,6 +71,11 @@ const ListItem = styled.div`
 
 const Item = styled.div`
   width: 200px;
+`
+
+const ReasonItem = styled.div`
+  width: 200px;
+  padding-left: 30px;
 `
 
 const MemoItem = styled.div`

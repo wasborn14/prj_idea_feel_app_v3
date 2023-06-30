@@ -9,6 +9,20 @@ import { actions as feelReasonListActions } from '@/store/domain/feelReasonList'
 
 // -------------------- feel list ----------------------
 
+export const useGetFeelListData = () => {
+  // const dispatch = useDispatch()
+  return useQuery(
+    // refetch when baseDate or isSelectWeek change
+    'feelList',
+    (): Promise<AxiosResponse> => {
+      return api.get(`feel/list`)
+    },
+    {
+      onError: (err: any) => console.error(err.message)
+    }
+  )
+}
+
 export const useGetFeelGraphData = (baseDate: Date, isSelectWeek: boolean) => {
   const dates = getStartAndEndDate(baseDate, isSelectWeek)
   const dispatch = useDispatch()
@@ -16,7 +30,7 @@ export const useGetFeelGraphData = (baseDate: Date, isSelectWeek: boolean) => {
     // refetch when baseDate or isSelectWeek change
     [baseDate, isSelectWeek],
     (): Promise<AxiosResponse> => {
-      return api.get(`feels/${dates.startDate}/${dates.endDate}`)
+      return api.get(`feel/graph/${dates.startDate}/${dates.endDate}`)
     },
     {
       enabled: dates !== undefined,
