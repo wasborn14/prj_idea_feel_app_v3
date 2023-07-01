@@ -1,3 +1,4 @@
+import { Color } from '@/const'
 import { FeelValue, feelColor, feelValue } from '@/const/feel'
 import { useGetFeelListData } from '@/hooks/api/feel'
 import React from 'react'
@@ -18,6 +19,7 @@ export const FeelList = () => {
   return (
     <ListContainer>
       <ListHeader>
+        <HeaderTypeItem>Type</HeaderTypeItem>
         <HeaderItem>Date</HeaderItem>
         <HeaderItem>Feel</HeaderItem>
         <HeaderItem>Reason</HeaderItem>
@@ -26,6 +28,7 @@ export const FeelList = () => {
       {status === 'success' &&
         feelListItems.map((feelItem, index) => (
           <ListItem key={index}>
+            <TypeItem is_predict={feelItem.is_predict}>{feelItem.is_predict ? 'will' : 'record'}</TypeItem>
             <Item>{feelItem.date}</Item>
             <FeelItem color={feelColor[feelItem.value as FeelValue]}>{feelValue[feelItem.value as FeelValue]}</FeelItem>
             <ReasonItem>{feelItem.reason.length > 0 ? feelItem.reason : '-'}</ReasonItem>
@@ -57,6 +60,11 @@ const HeaderItem = styled.div`
   padding: 10px;
 `
 
+const HeaderTypeItem = styled.div`
+  width: 150px;
+  padding: 10px;
+`
+
 const HeaderMemoItem = styled.div`
   width: 600px;
   padding: 10px;
@@ -71,6 +79,13 @@ const ListItem = styled.div`
 
 const Item = styled.div`
   width: 200px;
+`
+
+const TypeItem = styled.div<{ is_predict: boolean }>`
+  width: 150px;
+  ${({ is_predict }) => css`
+    color: ${is_predict ? `${Color.PREDICT_COLOR}` : `${Color.RECORD_COLOR}`};
+  `}
 `
 
 const FeelItem = styled.div<{ color: string }>`
