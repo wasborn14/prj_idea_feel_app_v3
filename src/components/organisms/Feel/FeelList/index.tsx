@@ -43,16 +43,14 @@ const ListContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid ${Color.DARK_RED1};
   border-radius: 5px;
-  background-color: #f8f8f8;
 `
 
 const ListHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: #eee;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid ${Color.DARK_RED1};
 `
 
 const HeaderItem = styled.div`
@@ -74,7 +72,7 @@ const ListItem = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid ${Color.DARK_RED1};
 `
 
 const Item = styled.div`
