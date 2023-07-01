@@ -148,7 +148,7 @@ export const FeelContents = () => {
     datasets: [
       {
         spanGaps: true,
-        label: ' Predict ( 予測 ) ',
+        label: ' Will ( 予測 ) ',
         data: predictListData,
         borderColor: `${Color.PREDICT_COLOR}`,
         backgroundColor: `${Color.PREDICT_COLOR}`,
