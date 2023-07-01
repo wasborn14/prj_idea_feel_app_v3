@@ -115,7 +115,7 @@ export const RecordModal = ({ baseDate, setBaseDate, isSelectWeek, onClick }: Pr
               type='submit'
               onClick={() => createFeel(true)}
             >
-              Predict
+              Will
             </ColorShortButton>
           </ButtonWrapper>
           <Spacer x={isSp ? 12 : 24} />
