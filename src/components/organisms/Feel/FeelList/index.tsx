@@ -28,9 +28,15 @@ export const FeelList = () => {
       {status === 'success' &&
         feelListItems.map((feelItem, index) => (
           <ListItem key={index}>
-            <TypeItem is_predict={feelItem.is_predict}>{feelItem.is_predict ? 'will' : 'record'}</TypeItem>
+            <ItemWrapper>
+              <TypeItem is_predict={feelItem.is_predict}>{feelItem.is_predict ? 'will' : 'record'}</TypeItem>
+            </ItemWrapper>
             <Item>{feelItem.date}</Item>
-            <FeelItem color={feelColor[feelItem.value as FeelValue]}>{feelValue[feelItem.value as FeelValue]}</FeelItem>
+            <ItemWrapper>
+              <FeelItem color={feelColor[feelItem.value as FeelValue]}>
+                {feelValue[feelItem.value as FeelValue]}
+              </FeelItem>
+            </ItemWrapper>
             <ReasonItem>{feelItem.reason.length > 0 ? feelItem.reason : '-'}</ReasonItem>
             <MemoItem>{feelItem.memo}</MemoItem>
           </ListItem>
@@ -79,23 +85,40 @@ const Item = styled.div`
   width: 200px;
 `
 
-const TypeItem = styled.div<{ is_predict: boolean }>`
+const ItemWrapper = styled.div`
   width: 150px;
+`
+
+const TypeItem = styled.div<{ is_predict: boolean }>`
+  width: 70px;
+  border-radius: 4px;
+  text-align: center;
+  color: white;
   ${({ is_predict }) => css`
-    color: ${is_predict ? `${Color.PREDICT_COLOR}` : `${Color.RECORD_COLOR}`};
+    background-color: ${is_predict ? `${Color.PREDICT_COLOR}` : `${Color.RECORD_COLOR}`};
   `}
 `
 
 const FeelItem = styled.div<{ color: string }>`
-  width: 200px;
+  width: 100px;
+  border-radius: 4px;
+  text-align: center;
+  color: white;
   ${({ color }) => css`
-    color: ${color};
+    background-color: ${color};
   `}
 `
 
+// const FeelItem = styled.div<{ color: string }>`
+//   width: 200px;
+//   ${({ color }) => css`
+//     color: ${color};
+//   `}
+// `
+
 const ReasonItem = styled.div`
   width: 200px;
-  padding-left: 30px;
+  padding-left: 40px;
 `
 
 const MemoItem = styled.div`
