@@ -109,6 +109,12 @@ export const ShortButton = styled.button`
   ${ShortStyle}
 `
 
+export const VeryShortButton = styled.button`
+  ${BaseStyle}
+  ${VeryShortStyle}
+  ${ShortStyle}
+`
+
 export const LargeButton = styled.button`
   ${BaseStyle}
   ${LargeStyle}
