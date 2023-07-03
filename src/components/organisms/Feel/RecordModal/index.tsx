@@ -15,6 +15,7 @@ import { useGetFeelGraphData, usePostFeel } from '@/hooks/api/feel'
 import { BaseModal } from '@/components/mlecules/BaseModal'
 import { Spacer } from '@/components/atoms/Spacer'
 import { pc } from '@/media'
+import { DeleteIcon } from '@/components/atoms/Icons/DeleteIcon'
 
 const DEFAULT_SLIDER_VALUE = 50
 
@@ -93,8 +94,11 @@ export const RecordModal = ({ baseDate, setBaseDate, isSelectWeek, onClick }: Pr
   }
 
   return (
-    <BaseModal width={isSp ? 320 : 650} color='white' onClick={onClose} wrapperId='success-modal' isRadius>
+    <BaseModal width={isSp ? 340 : 650} color='white' onClick={onClose} wrapperId='success-modal' isRadius>
       <Container onClick={onInnerClick}>
+        <DeleteIconWrapper onClick={onClose}>
+          <DeleteIcon size={16} />
+        </DeleteIconWrapper>
         <FunctionsContainer isSp={isSp}>
           <DateInput baseDate={baseDate} setBaseDate={setBaseDate} />
           <Spacer x={12} />
@@ -108,7 +112,7 @@ export const RecordModal = ({ baseDate, setBaseDate, isSelectWeek, onClick }: Pr
         <SubmitButtonContainer isSp={isSp}>
           <ButtonWrapper>
             <ColorShortButton
-              width={isSp ? 160 : 200}
+              width={isSp ? 140 : 200}
               height={36}
               color={`${Color.BLACK}`}
               backgroundColor={`${Color.PREDICT_COLOR}`}
@@ -121,7 +125,7 @@ export const RecordModal = ({ baseDate, setBaseDate, isSelectWeek, onClick }: Pr
           <Spacer x={isSp ? 12 : 24} />
           <ButtonWrapper>
             <ColorShortButton
-              width={isSp ? 160 : 200}
+              width={isSp ? 140 : 200}
               height={36}
               color={`${Color.BLACK}`}
               backgroundColor={`${Color.RECORD_COLOR}`}
@@ -142,6 +146,12 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
+`
+
+const DeleteIconWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
 `
 
 const FunctionsContainer = styled.div<{ isSp: boolean }>`
