@@ -112,7 +112,7 @@ const Container = styled.div<{ isSp: boolean }>`
   ${({ isSp }) =>
     isSp &&
     css`
-      width: 250px;
+      width: 270px;
     `}
 
   .rc-slider-rail {
