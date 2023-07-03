@@ -34,7 +34,8 @@ const MemoWrapper = styled.div<{ isSp: boolean }>`
   ${({ isSp }) =>
     isSp &&
     css`
-      width: 90%;
+      width: 100%;
+      margin-right: 24px;
     `}
 `
 
