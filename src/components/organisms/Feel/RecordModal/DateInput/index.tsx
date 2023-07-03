@@ -27,7 +27,6 @@ const Container = styled.div``
 
 const DescriptionWrapper = styled.div`
   margin-left: 4px;
-  margin-top: 18px;
 `
 
 const Description = styled.p`

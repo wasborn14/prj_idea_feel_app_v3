@@ -125,7 +125,7 @@ export const WhiteLargeButton = styled.button`
 
 export const ColorShortButton = styled.button`
   ${BaseStyle}
-  ${ShortStyle}
+  ${VeryShortStyle}
   ${ColorStyle}
 `
 
