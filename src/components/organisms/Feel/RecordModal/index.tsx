@@ -107,7 +107,7 @@ export const RecordModal = ({ baseDate, setBaseDate, isSelectWeek, onClick }: Pr
         <Spacer y={12} />
         <FeelInput sliderValue={sliderValue} setSliderValue={setSliderValue} />
         <Spacer y={24} />
-        <MemoInput setMemo={setMemo} />
+        <MemoInput setMemo={setMemo} onInnerClick={onInnerClick} />
         <Spacer y={12} />
         <SubmitButtonContainer isSp={isSp}>
           <ButtonWrapper>

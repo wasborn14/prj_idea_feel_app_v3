@@ -7,9 +7,10 @@ import { TextArea } from '@/components/atoms/Forms/TextArea'
 
 type Props = {
   setMemo: Dispatch<SetStateAction<string>>
+  onInnerClick: () => void
 }
 
-export const MemoInput = ({ setMemo }: Props) => {
+export const MemoInput = ({ setMemo, onInnerClick }: Props) => {
   const isSp = useIsSp()
 
   return (
@@ -22,6 +23,7 @@ export const MemoInput = ({ setMemo }: Props) => {
         onChange={(e) => {
           setMemo(e.target.value)
         }}
+        onClick={onInnerClick}
       />
     </MemoWrapper>
   )
