@@ -96,7 +96,7 @@ export const RecordModal = ({ baseDate, setBaseDate, isSelectWeek, onClick }: Pr
   return (
     <BaseModal width={isSp ? 340 : 650} color='white' onClick={onClose} wrapperId='success-modal' isRadius>
       <Container onClick={onInnerClick}>
-        <DeleteIconWrapper onClick={onClose}>
+        {/* <DeleteIconWrapper onClick={onClose}>
           <DeleteIcon size={16} />
         </DeleteIconWrapper>
         <FunctionsContainer isSp={isSp}>
@@ -106,7 +106,7 @@ export const RecordModal = ({ baseDate, setBaseDate, isSelectWeek, onClick }: Pr
         </FunctionsContainer>
         <Spacer y={12} />
         <FeelInput sliderValue={sliderValue} setSliderValue={setSliderValue} />
-        <Spacer y={24} />
+        <Spacer y={24} /> */}
         <MemoInput setMemo={setMemo} />
         <Spacer y={12} />
         <SubmitButtonContainer isSp={isSp}>
