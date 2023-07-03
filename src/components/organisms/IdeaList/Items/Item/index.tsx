@@ -190,7 +190,7 @@ const ItemWrapper = styled.div`
 
 const ItemLabel = styled.div<{ isUrl: boolean }>`
   width: 100%;
-  max-width: 260px;
+  max-width: 240px;
   ${({ isUrl }) =>
     !isUrl &&
     css`
