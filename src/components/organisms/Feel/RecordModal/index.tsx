@@ -5,9 +5,9 @@ import 'react-datepicker/dist/react-datepicker.css'
 import 'rc-slider/assets/index.css'
 import { Option } from 'react-dropdown'
 import 'react-dropdown/style.css'
-import { DateInput } from './DateInput'
-import { FeelInput } from './FeelInput'
-import { ReasonSelect } from './ReasonSelect'
+// import { DateInput } from './DateInput'
+// import { FeelInput } from './FeelInput'
+// import { ReasonSelect } from './ReasonSelect'
 import { MemoInput } from './MemoInput'
 import { useIsSp } from '@/hooks/util/useIsSp'
 import { ColorShortButton } from '@/components/atoms/Buttons/Button'
@@ -15,7 +15,7 @@ import { useGetFeelGraphData, usePostFeel } from '@/hooks/api/feel'
 import { BaseModal } from '@/components/mlecules/BaseModal'
 import { Spacer } from '@/components/atoms/Spacer'
 import { pc } from '@/media'
-import { DeleteIcon } from '@/components/atoms/Icons/DeleteIcon'
+// import { DeleteIcon } from '@/components/atoms/Icons/DeleteIcon'
 
 const DEFAULT_SLIDER_VALUE = 50
 
@@ -96,7 +96,7 @@ export const RecordModal = ({ baseDate, setBaseDate, isSelectWeek, onClick }: Pr
   return (
     <BaseModal width={isSp ? 340 : 650} color='white' onClick={onClose} wrapperId='success-modal' isRadius>
       <Container onClick={onInnerClick}>
-        <DeleteIconWrapper onClick={onClose}>
+        {/* <DeleteIconWrapper onClick={onClose}>
           <DeleteIcon size={16} />
         </DeleteIconWrapper>
         <FunctionsContainer isSp={isSp}>
@@ -106,7 +106,7 @@ export const RecordModal = ({ baseDate, setBaseDate, isSelectWeek, onClick }: Pr
         </FunctionsContainer>
         <Spacer y={12} />
         <FeelInput sliderValue={sliderValue} setSliderValue={setSliderValue} />
-        <Spacer y={24} />
+        <Spacer y={24} /> */}
         <MemoInput setMemo={setMemo} />
         <Spacer y={12} />
         <SubmitButtonContainer isSp={isSp}>
