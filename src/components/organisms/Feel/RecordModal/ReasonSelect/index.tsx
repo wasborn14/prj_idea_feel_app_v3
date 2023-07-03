@@ -9,7 +9,7 @@ import 'react-dropdown/style.css'
 import { useSelector } from 'react-redux'
 import { feelReasonSelectListDataSelector } from '@/store/domain/feelReasonSelectList'
 import { FeelReasonModal } from '../FeelReasonModal'
-import { ShortButton } from '@/components/atoms/Buttons/Button'
+import { VeryShortButton } from '@/components/atoms/Buttons/Button'
 import { FormDropdown } from '@/components/atoms/Forms/FormDropdown'
 import { useGetFeelReasonSelectList } from '@/hooks/api/feel'
 import { pc, sp } from '@/media'
@@ -33,13 +33,6 @@ export const ReasonSelect = ({ selectReason, setSelectReason }: Props) => {
   const closeFeelReasonModal = () => {
     setIsFeelReasonModalVisible(false)
     refetch()
-    // fetchFeelReasonSelectList()
-    //   .then((res) => {
-    //     dispatch(feelReasonSelectListActions.setFeelReasonSelectListData(res.data))
-    //   })
-    //   .catch((err) => {
-    //     console.error(err.message)
-    //   })
   }
 
   return (
@@ -49,7 +42,7 @@ export const ReasonSelect = ({ selectReason, setSelectReason }: Props) => {
         <DescriptionWrapper>
           <Description>Reason</Description>
         </DescriptionWrapper>
-        <ShortButton onClick={openFeelReasonModal}>Create</ShortButton>
+        <VeryShortButton onClick={openFeelReasonModal}>Create</VeryShortButton>
       </ReasonWrapper>
       <FormDropdown
         width={isSp ? 280 : 300}

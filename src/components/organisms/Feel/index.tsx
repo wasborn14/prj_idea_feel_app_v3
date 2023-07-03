@@ -204,7 +204,7 @@ export const FeelContents = () => {
           data={data}
         />
       </LineWrapper>
-      <Spacer y={40} />
+      <Spacer y={isSp ? 20 : 40} />
       <HStack>
         {!isSp && (
           <>
@@ -228,12 +228,7 @@ export const FeelContents = () => {
           </>
         )}
       </HStack>
-      {isSp && (
-        <>
-          <Spacer x={80} />
-          <ShortButton onClick={() => setIsRecordOpen(!isRecordOpen)}>Create</ShortButton>
-        </>
-      )}
+      {isSp && <ShortButton onClick={() => setIsRecordOpen(!isRecordOpen)}>Create</ShortButton>}
       <Spacer y={42} />
       {!isSp && <FeelList />}
     </Container>
@@ -275,6 +270,6 @@ const InputWrapper = styled.div<{ isSp: boolean }>`
   ${({ isSp }) =>
     isSp &&
     css`
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     `}
 `
