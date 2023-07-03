@@ -94,7 +94,13 @@ export const RecordModal = ({ baseDate, setBaseDate, isSelectWeek, onClick }: Pr
   }
 
   return (
-    <BaseModal width={isSp ? 340 : 650} color='white' onClick={onClose} wrapperId='success-modal' isRadius>
+    <BaseModal
+      width={isSp ? 340 : 650}
+      color='white'
+      onClick={isSp ? () => {} : onClose}
+      wrapperId='success-modal'
+      isRadius
+    >
       <Container onClick={onInnerClick}>
         <DeleteIconWrapper onClick={onClose}>
           <DeleteIcon size={16} />
