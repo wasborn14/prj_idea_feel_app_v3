@@ -15,7 +15,7 @@ export const MemoInput = ({ setMemo }: Props) => {
   return (
     <MemoWrapper isSp={isSp}>
       <DescriptionWrapper>
-        <Description>Memo</Description>
+        <Description>Diary</Description>
       </DescriptionWrapper>
       <TextArea
         heightPx={200}
