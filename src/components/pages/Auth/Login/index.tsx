@@ -40,10 +40,6 @@ export const Login = () => {
   }
   const { data: session, status } = useSession()
 
-  useEffect(() => {
-    console.log({ status })
-  }, [status])
-
   const {
     getValues,
     handleSubmit,
