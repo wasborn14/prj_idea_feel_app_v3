@@ -28,8 +28,8 @@ const cookie = new Cookie()
 
 export type FormProps = Schema & {}
 
-const GUEST_EMAIL = 'ideafeel.app+1@gmail.com'
-const GUEST_PASSWORD = 'password'
+const GUEST_EMAIL = process.env.NEXT_PUBLIC_GUEST_EMAIL
+const GUEST_PASSWORD = process.env.NEXT_PUBLIC_GUEST_PASSWORD
 
 export const Login = () => {
   const router = useRouter()
