@@ -1,38 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ifee
+
+## About
+
+暮らしていく上での考え方や知識を整理し、
+
+感情の変化を記録・観察していくことで、
+
+生活をよりよくする行動をしていくためのアプリです。
+
+こちらはそのアプリのフロント側になります。
 
 ## Getting Started
 
-First, run the development server:
+ライブラリのインストール
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+```
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+.env.example から.env.local ファイルを作成
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+NEXT_PUBLIC_IDEA_API_URL=http://127.0.0.1:8000/api/
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+起動
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```
+yarn dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+バックエンド側は Laravel で作成しています。下記から git clone して起動してください。
 
-## Learn More
+https://github.com/wasborn14/prj_idea_feel_api_v2
 
-To learn more about Next.js, take a look at the following resources:
+## Technology used
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+フロントエンド：Next.js, TypeScript, styled-components
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+バックエンド：Laravel, PHP
 
-## Deploy on Vercel
+## Environment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+フロントエンド：Vercel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+バックエンド：conohaVPS (Ubuntu)
