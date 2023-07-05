@@ -24,6 +24,13 @@ yarn install
 NEXT_PUBLIC_IDEA_API_URL=http://127.0.0.1:8000/api/
 ```
 
+下記コマンドで NEXTAUTH_SECRET を作成
+GOOGLE_CLIENT_ID と SECRET は Google Developer Console から取得してください
+
+```
+openssl rand -base64 32
+```
+
 起動
 
 ```
