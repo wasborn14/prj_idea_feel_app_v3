@@ -21,6 +21,10 @@ yarn install
 .env.example から.env.local ファイルを作成
 
 ```
+cp .env.example .env.local
+```
+
+```
 NEXT_PUBLIC_IDEA_API_URL=http://127.0.0.1:8000/api/
 ```
 
