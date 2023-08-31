@@ -22,7 +22,7 @@ export type FormProps = Schema & {}
 export const ForgotPassword = () => {
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false)
   const defaultValues: FormProps = {
-    email: 'ideafeel.app@gmail.com'
+    email: ''
   }
 
   const {
